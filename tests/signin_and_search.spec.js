@@ -1,20 +1,19 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
-
+import { test, expect } from '@playwright/test'
+import { VCD_URL, EMAIL, PASSWORD} from '../config.js'
 
 test('Sign in and Search', async ({ page }) => {
-    // TODO: use ENV variables to set vcd_url, email and password
-  let vcd_url = "https://....view-court-data.service.justice.gov.uk/"
-  let email = "...@digital.justice.gov.uk'"
-  let password = "..."
+  // if (!vcd_url || !email || !password) {
+  //   throw new Error('Missing required environment variables: VCD_URL, EMAIL, or PASSWORD');
+  // }
 
-  await page.goto(vcd_url);
+  await page.goto(VCD_URL);
 
   await page.locator('[data-cy="login-username"]')
-            .fill(email);
+            .fill(EMAIL);
 
   await page.locator('[data-cy="login-password"]')
-            .fill(password)
+            .fill(PASSWORD)
 
   await page.click('[data-cy="login-submit"]');
 
