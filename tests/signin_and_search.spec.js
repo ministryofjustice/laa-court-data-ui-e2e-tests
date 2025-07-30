@@ -1,37 +1,33 @@
-// @ts-check
 import { test, expect } from '@playwright/test'
 import { VCD_URL, EMAIL, PASSWORD} from '../config.js'
+import { SigninPage } from './signin_page.js'
+import { SearchPage } from './search_page.js'
 
 test('Sign in and Search', async ({ page }) => {
-  // if (!vcd_url || !email || !password) {
-  //   throw new Error('Missing required environment variables: VCD_URL, EMAIL, or PASSWORD');
-  // }
+  // Sign in
+  const signinPage = new SigninPage(page, VCD_URL)
 
-  await page.goto(VCD_URL);
+  await signinPage.signin(EMAIL, PASSWORD)
 
-  await page.locator('[data-cy="login-username"]')
-            .fill(EMAIL);
+  const searchPage = new SearchPage(page)
 
-  await page.locator('[data-cy="login-password"]')
-            .fill(PASSWORD)
+  // Search by URN
+  await searchPage.searchByUrn('XZKWOGUORZ')
 
-  await page.click('[data-cy="login-submit"]');
+  await expect(page.locator('body')).toContainText('1 search result')
 
-  await expect(page.locator('.lcdui-notice-summary')).toHaveText('Signed in successfully.');
+  // Search by ASN - with 0 results
+  await searchPage.searchByASN('AAAAAAAAAAAA')
 
-  await page.getByLabel('A case by URN').check()
+  await expect(page.locator('body')).toContainText('0 search results');
+  await expect(page.locator('body')).toContainText('There are no matching results.');
 
-  await page.getByRole('button', { name: 'Continue' }).click();
-
-  await page.click('[data-module="govuk-button"]');
-
-  await page.locator('#search-term-field')
-            .fill('XZKWOGUORZ')
-
-  await page.getByRole('button', { name: 'Search' }).click();
-
-  await page.click('[data-module="govuk-button"]');
+  await searchPage.searchByASN('912ZWN690MMK')
 
   await expect(page.locator('body')).toContainText('1 search result');
 
+  // Search by Defendant and Date
+  await searchPage.searchByDefendant('Duane', '02-11-1960')
+
+  await expect(page.locator('body')).toContainText('1 search result');
 });
