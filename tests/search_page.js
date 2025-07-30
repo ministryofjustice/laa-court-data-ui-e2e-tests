@@ -9,7 +9,7 @@ export class SearchPage {
   }
 
   async searchByUrn(urn) {
-    await this.page.goto(this.search_url)
+    this.goto()
 
     await this.page.getByLabel('A case by URN')
               .check()
@@ -25,7 +25,7 @@ export class SearchPage {
   }
 
   async searchByASN(asn) {
-    await this.page.goto(this.search_url)
+    this.goto()
 
     await this.page.getByLabel('A defendant by ASN or National insurance number')
               .check()
@@ -42,7 +42,7 @@ export class SearchPage {
   }
 
   async searchByDefendant(defendantName, date_str) {
-    await this.page.goto(this.search_url)
+    this.goto()
 
     await this.page.getByLabel('A defendant by name and date of birth')
               .check()
@@ -64,5 +64,9 @@ export class SearchPage {
     await this.page.getByRole('button', { name: 'Search' })
               .click();
 
+  }
+
+  async goto(urn) {
+    await this.page.goto(this.search_url)
   }
 }
