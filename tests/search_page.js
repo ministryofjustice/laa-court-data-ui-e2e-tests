@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test';
-
 import { VCD_URL } from '../config.js'
 
 export class SearchPage {
@@ -66,7 +64,7 @@ export class SearchPage {
 
   }
 
-  async goto(urn) {
+  async goto() {
     await this.page.goto(this.search_url)
   }
 }
