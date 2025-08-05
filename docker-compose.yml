@@ -1,0 +1,140 @@
+# This Docker Compose file sets up multiple services for a web application stack.
+# The services include a database service (acd-db-services) and 3 application services (vcd, cda and mock).
+# The 'start_applications' service uses the 'dockerize' tool to wait for the other services to be available before starting.
+# The 'laa-court-data-end-to-end-tests' service runs end-to-end tests for the application.
+# Environment variables are used to configure the services, and volumes are used for data persistence.
+# This configuration allows for a full-stack application to be run and tested in an isolated environment with consistent IP addresses for inter-service communication.
+
+services:
+  start_applications:
+    container_name: start_applications
+    image: jwilder/dockerize
+    command: >
+      -wait tcp://cda:3000
+      -wait tcp://vcd:3000
+      -wait tcp://mock:3000
+      -wait-retry-interval 10s
+      -timeout 300s
+    depends_on:
+      - cda
+      - vcd
+      - mock
+
+  laa-court-data-end-to-end-tests:
+    container_name: laa-court-data-end-to-end-tests
+    build: .
+    environment:
+      - VCD_URL=${VCD_URL:-http://vcd:3000}
+      - EMAIL=caseworker@example.com
+      - PASSWORD=caseworker-password
+    volumes:
+      - ./data:/data
+
+  # DATABASE services
+
+  acd-db-services:
+    container_name: acd-db-services
+    image: postgis/postgis:16-3.4-alpine
+    volumes:
+      - ./tmp/pgdata:/var/lib/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: acd-db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - 5432:5432
+
+  cda: &cda
+    container_name: cda
+    image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor-dev:latest}
+    ports:
+      - 3002:3000
+    environment: &cdaenvironment
+      SECRET_KEY_BASE: some-secret-key
+      RAILS_ENV: development
+      ENV: localhost
+      RAILS_DEVELOPMENT_HOSTS: cda
+      HOSTS: "cda:3000"
+      PROTOCOL: http
+      RAILS_LOG_TO_STDOUT: enabled
+      APP_STORE_URL: http://nscc-appstore:3000
+      SIDEKIQ_WEB_UI_USERNAME: sidekiq
+      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_court_data_adaptor_dev
+    depends_on:
+      - acd-db-services
+
+  mock: &mock
+    container_name: mock
+    image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api-dev:latest}
+    ports:
+      - 3003:3000
+    environment: &mockenvironment
+      SECRET_KEY_BASE: some-secret-key
+      RAILS_ENV: development
+      ENV: localhost
+      RAILS_DEVELOPMENT_HOSTS: mock
+      HOSTS: "mock:3000"
+      PROTOCOL: http
+      RAILS_LOG_TO_STDOUT: enabled
+      SIDEKIQ_WEB_UI_USERNAME: sidekiq
+      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/hmcts-common-platform-mock-api-dev
+    depends_on:
+      - acd-db-services
+
+  vcd: &caseworker
+    container_name: vcd
+    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-forms-team/laa-court-data-ui-dev:latest}
+    ports:
+      - 3001:3000
+    environment: &caseworkerenvironment
+      WORKERS: 3
+      SECRET_KEY_BASE: some-secret-key
+      RAILS_ENV: development
+      ENV: local
+      RAILS_DEVELOPMENT_HOSTS: vcd
+      HOSTS: "vcd:3000"
+      PROTOCOL: http
+      RAILS_LOG_TO_STDOUT: enabled
+      SIDEKIQ_WEB_UI_USERNAME: sidekiq
+      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_assess_non_standard_magistrate_fee_dev
+      APP_STORE_URL: http://nscc-appstore:3000
+      DEV_AUTH_ENABLED: true
+      GOVUK_NOTIFY_API_KEY: 12345
+      RUN_SIDEKIQ_IN_TEST_MODE: true
+    depends_on:
+      - acd-db-services
+
+  # NSCC Application Store service
+
+  nscc-appstore:
+    container_name: nscc-appstore
+    image: ${NSCC_APPSTORE_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-forms-team/laa-crime-application-store-dev:latest}
+    environment: &appstoreenvironment
+      WORKERS: 3
+      SECRET_KEY_BASE: any-key
+      RAILS_ENV: development
+      RAILS_DEVELOPMENT_HOSTS: nscc-appstore
+      AUTHENTICATION_REQUIRED: "false"
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_crime_application_store
+      RUN_SIDEKIQ_IN_TEST_MODE: "true"
+      ANALYTICS_USERNAME: analytics
+      ANALYTICS_PASSWORD: postgres
+    depends_on:
+      acd-db-services:
+        condition: service_healthy
+    healthcheck:
+      test: "curl -I  http://localhost:3000/ping | grep 200 || exit 1"
+      interval: 5s
+      timeout: 10s
+      retries: 30
+    ports:
+      - 3003:3000
