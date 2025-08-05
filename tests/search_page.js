@@ -7,7 +7,7 @@ export class SearchPage {
   }
 
   async searchByUrn(urn) {
-    this.goto()
+    await this.goto()
 
     await this.page.getByLabel('A case by URN')
               .check()
@@ -23,7 +23,7 @@ export class SearchPage {
   }
 
   async searchByASN(asn) {
-    this.goto()
+    await this.goto()
 
     await this.page.getByLabel('A defendant by ASN or National insurance number')
               .check()
