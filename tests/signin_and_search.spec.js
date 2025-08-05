@@ -38,7 +38,7 @@ test.describe('Sign in and Search', () => {
     test('shows a warning message', async ({ page }) => {
       const searchPage = new SearchPage(page)
 
-      searchPage.goto()
+      await searchPage.goto()
 
       await expect(page.locator('body')).toContainText('You need to sign in before continuing.')
     })

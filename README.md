@@ -34,6 +34,11 @@ To run the tests locally, follow these steps:
    npx playwright test --ui
    ```
 
-This will open an interactive UI where you can explore and run the test suite.
+   This will open an interactive UI where you can explore and run the test suite.
 
+   If you want to run the tests in a CI environment, use:
+   ```
+   npx playwright test --reporter line -j 1
+   ```
+   The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
 ---
