@@ -92,6 +92,7 @@ services:
     image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-ui-dev:latest}
     ports:
       - 3001:3000
+    command: bundle exec rails db:create db:migrate db:seed && bundle exec puma
     environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local
@@ -101,5 +102,6 @@ services:
       COURT_DATA_ADAPTOR_API_URL: http://cda:3000/api/internal/v1
       COURT_DATA_ADAPTOR_API_UID: test-app-id
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
+      CASEWORKER_PASSWORD: caseworker-password
     depends_on:
       - acd-db-services
