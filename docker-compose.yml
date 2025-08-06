@@ -56,17 +56,15 @@ services:
     ports:
       - 3002:3000
     environment: &cdaenvironment
-      SECRET_KEY_BASE: some-secret-key
       RAILS_ENV: development
       ENV: localhost
       RAILS_DEVELOPMENT_HOSTS: cda
       HOSTS: "cda:3000"
       PROTOCOL: http
-      RAILS_LOG_TO_STDOUT: enabled
-      APP_STORE_URL: http://nscc-appstore:3000
-      SIDEKIQ_WEB_UI_USERNAME: sidekiq
-      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
-      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_court_data_adaptor_dev
+      COMMON_PLATFORM_URL: http://mock:3000/LAA/v1
+      SHARED_SECRET_KEY: super-secret-key
+      INLINE_SIDEKIQ: 'true'
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/cda_dev
     depends_on:
       - acd-db-services
 
@@ -76,65 +74,32 @@ services:
     ports:
       - 3003:3000
     environment: &mockenvironment
-      SECRET_KEY_BASE: some-secret-key
       RAILS_ENV: development
       ENV: localhost
       RAILS_DEVELOPMENT_HOSTS: mock
       HOSTS: "mock:3000"
-      PROTOCOL: http
-      RAILS_LOG_TO_STDOUT: enabled
-      SIDEKIQ_WEB_UI_USERNAME: sidekiq
-      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
-      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/hmcts-common-platform-mock-api-dev
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/mock_dev
+      SHARED_SECRET_KEY: super-secret-key
+      LAA_DEV_API_URL: http://cda:3000
+      LAA_DEV_OAUTH_URL: http://cda:3000/v1/oauth/token
+      LAA_DEV_CLIENT_ID: test-app-id
+      LAA_DEV_CLIENT_SECRET: test-app-secret
     depends_on:
       - acd-db-services
 
-  vcd: &caseworker
+  vcd: &vcd
     container_name: vcd
-    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-forms-team/laa-court-data-ui-dev:latest}
+    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-ui-dev:latest}
     ports:
       - 3001:3000
-    environment: &caseworkerenvironment
-      WORKERS: 3
-      SECRET_KEY_BASE: some-secret-key
+    environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local
       RAILS_DEVELOPMENT_HOSTS: vcd
       HOSTS: "vcd:3000"
-      PROTOCOL: http
-      RAILS_LOG_TO_STDOUT: enabled
-      SIDEKIQ_WEB_UI_USERNAME: sidekiq
-      SIDEKIQ_WEB_UI_PASSWORD: sidekiq
-      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_assess_non_standard_magistrate_fee_dev
-      APP_STORE_URL: http://nscc-appstore:3000
-      DEV_AUTH_ENABLED: true
-      GOVUK_NOTIFY_API_KEY: 12345
-      RUN_SIDEKIQ_IN_TEST_MODE: true
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/vcd_dev
+      COURT_DATA_ADAPTOR_API_URL: http://cda:3000/api/internal/v1
+      COURT_DATA_ADAPTOR_API_UID: test-app-id
+      COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
     depends_on:
       - acd-db-services
-
-  # NSCC Application Store service
-
-  nscc-appstore:
-    container_name: nscc-appstore
-    image: ${NSCC_APPSTORE_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-forms-team/laa-crime-application-store-dev:latest}
-    environment: &appstoreenvironment
-      WORKERS: 3
-      SECRET_KEY_BASE: any-key
-      RAILS_ENV: development
-      RAILS_DEVELOPMENT_HOSTS: nscc-appstore
-      AUTHENTICATION_REQUIRED: "false"
-      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/laa_crime_application_store
-      RUN_SIDEKIQ_IN_TEST_MODE: "true"
-      ANALYTICS_USERNAME: analytics
-      ANALYTICS_PASSWORD: postgres
-    depends_on:
-      acd-db-services:
-        condition: service_healthy
-    healthcheck:
-      test: "curl -I  http://localhost:3000/ping | grep 200 || exit 1"
-      interval: 5s
-      timeout: 10s
-      retries: 30
-    ports:
-      - 3003:3000
