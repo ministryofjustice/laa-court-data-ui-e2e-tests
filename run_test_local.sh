@@ -14,15 +14,15 @@ fi
 
 function teardown {
   # stop and remove containers with all images, networks and volumes
-  docker-compose $DOCKER_FILES down --volumes --rmi "all"
+  docker compose $DOCKER_FILES down --volumes --rmi "all"
 }
 
 function start_applications {
-  docker-compose $DOCKER_FILES run start_applications
+  docker compose $DOCKER_FILES run start_applications
 }
 
 function run_tests {
-  docker-compose up --build laa-court-data-end-to-end-tests
+  docker compose up --build laa-court-data-end-to-end-tests
 }
 
 teardown

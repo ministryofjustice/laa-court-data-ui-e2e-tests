@@ -5,14 +5,18 @@ services:
 
   vcd:
     platform: ${LOCAL_PLATFORM}
-    build: https://github.com/ministryofjustice/laa-court-data-ui.git#main
+    build:
+      # TODO: Switch back to main
+      context: https://github.com/ministryofjustice/laa-court-data-ui.git#e2e-fixes
+      dockerfile: docker/Dockerfile
     pull_policy: always
     volumes:
       - ./tmp/logs/vcd:/usr/src/app/log
 
   cda:
     platform: ${LOCAL_PLATFORM}
-    build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#main
+      # TODO: Switch back to main
+    build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#e2e-fixes
     pull_policy: always
     volumes:
       - ./tmp/logs/cda:/usr/src/app/log

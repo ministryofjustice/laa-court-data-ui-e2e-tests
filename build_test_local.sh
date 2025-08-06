@@ -13,13 +13,13 @@ else
 fi
 
 function build {
-  docker-compose $DOCKER_FILES down --volumes --rmi "all"
-  docker-compose $DOCKER_FILES build --no-cache
-  docker-compose $DOCKER_FILES up -d
+  docker compose $DOCKER_FILES down --volumes --rmi "all"
+  docker compose $DOCKER_FILES build --no-cache
+  docker compose $DOCKER_FILES up -d
 }
 
 function shellin {
-  docker-compose run --entrypoint sh laa-court-data-end-to-end-tests
+  docker compose run --entrypoint sh laa-court-data-end-to-end-tests
 }
 
 build
