@@ -15,7 +15,7 @@ services:
 
   cda:
     platform: ${LOCAL_PLATFORM}
-      # TODO: Switch back to main
+    # TODO: Switch back to main
     build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#e2e-fixes
     pull_policy: always
     volumes:
@@ -23,7 +23,8 @@ services:
 
   mock:
     platform: ${LOCAL_PLATFORM}
-    build: https://github.com/ministryofjustice/hmcts-common-platform-mock-api.git#main
+    # TODO: Switch back to main
+    build: https://github.com/ministryofjustice/hmcts-common-platform-mock-api.git#e2e-fixes
     pull_policy: always
     volumes:
       - ./tmp/logs/mock:/usr/src/app/log

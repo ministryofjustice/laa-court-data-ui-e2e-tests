@@ -30,6 +30,7 @@ services:
       - URN=TEST12345
       - DEFENDANT_NAME=Jammy Dodger
       - DEFENDANT_DOB=21-05-1987
+      - ASN=912ZWN690MMK
     volumes:
       - ./data:/data
 

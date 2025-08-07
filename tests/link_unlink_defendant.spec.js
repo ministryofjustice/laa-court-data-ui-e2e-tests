@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, EMAIL, PASSWORD} from '../config.js'
+import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME} from '../config.js'
 import { SigninPage } from './signin_page.js'
 
-const URN = 'SIYSRNYEFV'
 const MAAT_ID = '6079985'
-const DEFENDANT_NAME = 'John Doe TestLink1'
-let prosecution_cases_url = `${VCD_URL}/prosecution_cases/${URN}`
+let prosecutionCaseUrl = `${VCD_URL}/prosecution_cases/${URN}`
 
 test.describe.configure({ mode: 'serial' })
 
@@ -30,13 +28,13 @@ test.describe('Link and Unlink defendant flow', () => {
   })
 
   test('step 1: checks "Not linked" status', async () => {
-    await sharedPage.goto(prosecution_cases_url)
+    await sharedPage.goto(prosecutionCaseUrl)
     await expect(sharedPage.locator('body')).toContainText('Not linked')
   })
 
   test.describe('step 2: Link a defendant to a Court Data', () => {
     test('Link using a wrong MAAT ID', async () => {
-      await sharedPage.goto(prosecution_cases_url)
+      await sharedPage.goto(prosecutionCaseUrl)
 
       await sharedPage.getByRole('link', { name: DEFENDANT_NAME })
                 .click();
@@ -64,7 +62,7 @@ test.describe('Link and Unlink defendant flow', () => {
 
     test.describe('step 3: Unlink the defendant from Court Data', async () => {
       test('Unlink the defendant', async () => {
-        await sharedPage.goto(prosecution_cases_url)
+        await sharedPage.goto(prosecutionCaseUrl)
 
         await sharedPage.getByRole('link', { name: DEFENDANT_NAME })
                   .click();
