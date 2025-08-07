@@ -70,6 +70,9 @@ services:
       SHARED_SECRET_KEY: super-secret-key
       INLINE_SIDEKIQ: 'true'
       DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/cda_dev
+      MAAT_API_API_URL: ''
+      MAAT_API_CLIENT_ID: ''
+      MAAT_API_CLIENT_SECRET: ''
     depends_on:
       - acd-db-services
 
@@ -78,7 +81,7 @@ services:
     image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api-dev:latest}
     ports:
       - 3003:3000
-    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
+    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:unload; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
     environment: &mockenvironment
       RAILS_ENV: development
       ENV: localhost
