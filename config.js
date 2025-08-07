@@ -7,3 +7,6 @@ dotenv.config({ path: envFile })
 export const VCD_URL = process.env.VCD_URL
 export const EMAIL = process.env.EMAIL
 export const PASSWORD = process.env.PASSWORD
+export const URN = process.env.URN
+export const DEFENDANT_NAME = process.env.DEFENDANT_NAME
+export const DEFENDANT_DOB = process.env.DEFENDANT_DOB

@@ -27,6 +27,9 @@ services:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - PASSWORD=caseworker-password
+      - URN=TEST12345
+      - DEFENDANT_NAME=Jammy Dodger
+      - DEFENDANT_DOB=21-05-1987
     volumes:
       - ./data:/data
 
@@ -55,6 +58,7 @@ services:
     image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor-dev:latest}
     ports:
       - 3002:3000
+    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
     environment: &cdaenvironment
       RAILS_ENV: development
       ENV: localhost
@@ -73,6 +77,7 @@ services:
     image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api-dev:latest}
     ports:
       - 3003:3000
+    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
     environment: &mockenvironment
       RAILS_ENV: development
       ENV: localhost
@@ -84,6 +89,8 @@ services:
       LAA_DEV_OAUTH_URL: http://cda:3000/v1/oauth/token
       LAA_DEV_CLIENT_ID: test-app-id
       LAA_DEV_CLIENT_SECRET: test-app-secret
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: password
     depends_on:
       - acd-db-services
 
@@ -92,7 +99,7 @@ services:
     image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-ui-dev:latest}
     ports:
       - 3001:3000
-    command: bundle exec rails db:create db:migrate db:seed && bundle exec puma
+    command: sh -c "echo 'setting up db' ; bundle exec rails db:create db:migrate db:seed ; echo 'starting server' ; bundle exec puma"
     environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local

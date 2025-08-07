@@ -24,4 +24,4 @@ function shellin {
 
 build
 shellin
-# now run `npx playwright test --trace on` in container
+# now run `npx playwright test --reporter line -j 1` in container

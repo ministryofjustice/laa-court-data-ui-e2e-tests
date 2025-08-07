@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, EMAIL, PASSWORD} from '../config.js'
+import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME, DEFENDANT_DOB} from '../config.js'
 import { SigninPage } from './signin_page.js'
 import { SearchPage } from './search_page.js'
 
@@ -13,7 +13,7 @@ test.describe('Sign in and Search', () => {
       const searchPage = new SearchPage(page)
 
       // Search by URN
-      await searchPage.searchByUrn('XZKWOGUORZ')
+      await searchPage.searchByUrn(URN)
 
       await expect(page.locator('body')).toContainText('1 search result')
 
@@ -28,7 +28,7 @@ test.describe('Sign in and Search', () => {
       await expect(page.locator('body')).toContainText('1 search result');
 
       // Search by Defendant and Date
-      await searchPage.searchByDefendant('Duane', '02-11-1960')
+      await searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
 
       await expect(page.locator('body')).toContainText('1 search result')
     })
