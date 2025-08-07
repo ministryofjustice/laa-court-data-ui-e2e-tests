@@ -42,11 +42,11 @@ test.describe('Link and Unlink defendant flow', () => {
       await expect(sharedPage).toHaveTitle(/^Defendant details/)
 
       await sharedPage.getByLabel('MAAT ID')
-                .fill('1234567')
+                .fill('123456')
 
       await sharedPage.getByRole('button', { name: 'Create link to court data' })
                 .click();
-      await expect(sharedPage.locator('.govuk-error-summary__body')).toContainText('The MAAT reference you provided is not available to be associated with this defendant')
+      await expect(sharedPage.locator('.govuk-error-summary__body')).toContainText('Enter a MAAT ID in the correct format')
     })
 
     test('Link using a correct MAAT ID', async () => {

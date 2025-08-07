@@ -25,7 +25,7 @@ test.describe('Sign in and Search', () => {
 
       await searchPage.searchByASN(ASN)
 
-      await expect(page.locator('body')).toContainText('4 search results');
+      await expect(page.locator('body')).toContainText('7 search results');
 
       // Search by Defendant and Date
       await searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
