@@ -65,7 +65,7 @@ services:
       RAILS_DEVELOPMENT_HOSTS: cda
       HOSTS: "cda:3000"
       PROTOCOL: http
-      COMMON_PLATFORM_URL: http://mock:3000/LAA/v1
+      COMMON_PLATFORM_URL: http://mock:3000
       SHARED_SECRET_KEY: super-secret-key
       INLINE_SIDEKIQ: 'true'
       DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/cda_dev
@@ -110,5 +110,6 @@ services:
       COURT_DATA_ADAPTOR_API_UID: test-app-id
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
       CASEWORKER_PASSWORD: caseworker-password
+      SHOW_APPEALS: 'true'
     depends_on:
       - acd-db-services
