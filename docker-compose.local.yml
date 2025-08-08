@@ -6,8 +6,7 @@ services:
   vcd:
     platform: ${LOCAL_PLATFORM}
     build:
-      # TODO: Switch back to main
-      context: https://github.com/ministryofjustice/laa-court-data-ui.git#e2e-fixes
+      context: https://github.com/ministryofjustice/laa-court-data-ui.git#main
       dockerfile: docker/Dockerfile
     pull_policy: always
     volumes:
@@ -15,16 +14,14 @@ services:
 
   cda:
     platform: ${LOCAL_PLATFORM}
-    # TODO: Switch back to main
-    build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#e2e-fixes
+    build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#main
     pull_policy: always
     volumes:
       - ./tmp/logs/cda:/usr/src/app/log
 
   mock:
     platform: ${LOCAL_PLATFORM}
-    # TODO: Switch back to main
-    build: https://github.com/ministryofjustice/hmcts-common-platform-mock-api.git#e2e-fixes
+    build: https://github.com/ministryofjustice/hmcts-common-platform-mock-api.git#main
     pull_policy: always
     volumes:
       - ./tmp/logs/mock:/usr/src/app/log
