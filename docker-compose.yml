@@ -56,7 +56,7 @@ services:
 
   cda: &cda
     container_name: cda
-    image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor-dev:latest}
+    image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor:latest}
     ports:
       - 3002:3000
     command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
@@ -78,7 +78,7 @@ services:
 
   mock: &mock
     container_name: mock
-    image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api-dev:latest}
+    image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:latest}
     ports:
       - 3003:3000
     command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:unload; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
@@ -100,7 +100,7 @@ services:
 
   vcd: &vcd
     container_name: vcd
-    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-ui-dev:latest}
+    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:latest}
     ports:
       - 3001:3000
     command: sh -c "echo 'setting up db' ; bundle exec rails db:create db:migrate db:seed ; echo 'starting server' ; bundle exec puma"
