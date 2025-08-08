@@ -1,0 +1,119 @@
+# This Docker Compose file sets up multiple services for a web application stack.
+# The services include a database service (acd-db-services) and 3 application services (vcd, cda and mock).
+# The 'start_applications' service uses the 'dockerize' tool to wait for the other services to be available before starting.
+# The 'laa-court-data-end-to-end-tests' service runs end-to-end tests for the application.
+# Environment variables are used to configure the services, and volumes are used for data persistence.
+# This configuration allows for a full-stack application to be run and tested in an isolated environment with consistent IP addresses for inter-service communication.
+
+services:
+  start_applications:
+    container_name: start_applications
+    image: jwilder/dockerize
+    command: >
+      -wait tcp://cda:3000
+      -wait tcp://vcd:3000
+      -wait tcp://mock:3000
+      -wait-retry-interval 10s
+      -timeout 300s
+    depends_on:
+      - cda
+      - vcd
+      - mock
+
+  laa-court-data-end-to-end-tests:
+    container_name: laa-court-data-end-to-end-tests
+    build: .
+    environment:
+      - VCD_URL=${VCD_URL:-http://vcd:3000}
+      - EMAIL=caseworker@example.com
+      - PASSWORD=caseworker-password
+      - URN=TEST12345
+      - DEFENDANT_NAME=Jammy Dodger
+      - DEFENDANT_DOB=21-05-1987
+      - ASN=912ZWN690MMK
+    volumes:
+      - ./data:/data
+
+  # DATABASE services
+
+  acd-db-services:
+    container_name: acd-db-services
+    image: postgres:16.9-alpine3.22
+    volumes:
+      - ./tmp/pgdata:/var/lib/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: acd-db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    ports:
+      - 5432:5432
+
+  cda: &cda
+    container_name: cda
+    image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor:latest}
+    ports:
+      - 3002:3000
+    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
+    environment: &cdaenvironment
+      RAILS_ENV: development
+      ENV: localhost
+      RAILS_DEVELOPMENT_HOSTS: cda
+      HOSTS: "cda:3000"
+      PROTOCOL: http
+      COMMON_PLATFORM_URL: http://mock:3000
+      SHARED_SECRET_KEY: super-secret-key
+      INLINE_SIDEKIQ: 'true'
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/cda_dev
+      MAAT_API_API_URL: ''
+      MAAT_API_CLIENT_ID: ''
+      MAAT_API_CLIENT_SECRET: ''
+    depends_on:
+      - acd-db-services
+
+  mock: &mock
+    container_name: mock
+    image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:latest}
+    ports:
+      - 3003:3000
+    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:unload; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
+    environment: &mockenvironment
+      RAILS_ENV: development
+      ENV: localhost
+      RAILS_DEVELOPMENT_HOSTS: mock
+      HOSTS: "mock:3000"
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/mock_dev
+      SHARED_SECRET_KEY: super-secret-key
+      LAA_DEV_API_URL: http://cda:3000
+      LAA_DEV_OAUTH_URL: http://cda:3000/v1/oauth/token
+      LAA_DEV_CLIENT_ID: test-app-id
+      LAA_DEV_CLIENT_SECRET: test-app-secret
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: password
+    depends_on:
+      - acd-db-services
+
+  vcd: &vcd
+    container_name: vcd
+    image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:latest}
+    ports:
+      - 3001:3000
+    command: sh -c "echo 'setting up db' ; bundle exec rails db:create db:migrate db:seed ; echo 'starting server' ; bundle exec puma"
+    environment: &vcdenvironment
+      RAILS_ENV: development
+      ENV: local
+      RAILS_DEVELOPMENT_HOSTS: vcd
+      HOSTS: "vcd:3000"
+      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/vcd_dev
+      COURT_DATA_ADAPTOR_API_URL: http://cda:3000/api/internal/v1
+      COURT_DATA_ADAPTOR_API_UID: test-app-id
+      COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
+      CASEWORKER_PASSWORD: caseworker-password
+      SHOW_APPEALS: 'true'
+    depends_on:
+      - acd-db-services

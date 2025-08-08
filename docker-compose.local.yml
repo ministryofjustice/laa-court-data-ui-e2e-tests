@@ -1,0 +1,27 @@
+services:
+  laa-court-data-end-to-end-tests:
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+
+  vcd:
+    platform: ${LOCAL_PLATFORM}
+    build:
+      context: https://github.com/ministryofjustice/laa-court-data-ui.git#main
+      dockerfile: docker/Dockerfile
+    pull_policy: always
+    volumes:
+      - ./tmp/logs/vcd:/usr/src/app/log
+
+  cda:
+    platform: ${LOCAL_PLATFORM}
+    build: https://github.com/ministryofjustice/laa-court-data-adaptor.git#main
+    pull_policy: always
+    volumes:
+      - ./tmp/logs/cda:/usr/src/app/log
+
+  mock:
+    platform: ${LOCAL_PLATFORM}
+    build: https://github.com/ministryofjustice/hmcts-common-platform-mock-api.git#main
+    pull_policy: always
+    volumes:
+      - ./tmp/logs/mock:/usr/src/app/log
