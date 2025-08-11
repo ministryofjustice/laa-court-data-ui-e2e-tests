@@ -2,11 +2,35 @@
 
 This project contains end-to-end (E2E) tests to validate the integration between:
 
-**Court Data UI (VCD) → Court Data Adaptor (CDA) → Common Platform (CP)**
+**Court Data UI (VCD) → Court Data Adaptor (CDA) → Common Platform Mock (Mock)**
 
 ## Running the tests locally
 
-To run the tests locally, follow these steps:
+You must have docker installed. Run the following command:
+
+```
+./run_test_local.sh
+```
+
+This will use `docker compose` to build images from the `main` branch of the VCD, CDA and Mock repos, spin up
+containers based on those images, seed appropriate data, and then run the tests against them. The tests run with
+the following command (defined in `package.json`):
+
+```
+npx playwright test --reporter line -j 1
+```
+The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
+
+If you want to build the test environment and shell into the test runner but not run the tests automatically,
+you can use:
+
+```
+./build_test_local.sh
+```
+
+## Running the tests outside docker
+
+To run the tests outside docker, follow these steps:
 
 1. Install Node.js.
    Check the required version in the `.tool-versions` file and install it using a version manager like `asdf` or `nvm`.
@@ -27,6 +51,10 @@ To run the tests locally, follow these steps:
    - `VCD_URL`: The base URL of the Court Data UI application.
    - `EMAIL`: The user email for authentication.
    - `PASSWORD`: The corresponding password.
+   - `URN`: The URN of a case with 4 defendants
+   - `ASN`: The ASN of a defendant who appears in 2 cases with a total of 7 defendants
+   - `DEFENDANT_NAME`: The full name of the above defendant
+   - `DEFENDANT_DOB`: The date of birth of the above defendant
 
 4. Run the tests.
    Use the Playwright test runner UI:
@@ -35,10 +63,4 @@ To run the tests locally, follow these steps:
    ```
 
    This will open an interactive UI where you can explore and run the test suite.
-
-   If you want to run the tests in a CI environment, use:
-   ```
-   npx playwright test --reporter line -j 1
-   ```
-   The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
 ---

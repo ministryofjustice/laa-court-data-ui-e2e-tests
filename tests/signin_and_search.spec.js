@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, EMAIL, PASSWORD} from '../config.js'
+import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
 import { SigninPage } from './signin_page.js'
 import { SearchPage } from './search_page.js'
 
@@ -13,9 +13,9 @@ test.describe('Sign in and Search', () => {
       const searchPage = new SearchPage(page)
 
       // Search by URN
-      await searchPage.searchByUrn('XZKWOGUORZ')
+      await searchPage.searchByUrn(URN)
 
-      await expect(page.locator('body')).toContainText('1 search result')
+      await expect(page.locator('body')).toContainText('4 search results')
 
       // Search by ASN - with 0 results
       await searchPage.searchByASN('AAAAAAAAAAAA')
@@ -23,14 +23,14 @@ test.describe('Sign in and Search', () => {
       await expect(page.locator('body')).toContainText('0 search results');
       await expect(page.locator('body')).toContainText('There are no matching results.');
 
-      await searchPage.searchByASN('912ZWN690MMK')
+      await searchPage.searchByASN(ASN)
 
-      await expect(page.locator('body')).toContainText('1 search result');
+      await expect(page.locator('body')).toContainText('7 search results');
 
       // Search by Defendant and Date
-      await searchPage.searchByDefendant('Duane', '02-11-1960')
+      await searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
 
-      await expect(page.locator('body')).toContainText('1 search result')
+      await expect(page.locator('body')).toContainText('7 search results')
     })
   })
 

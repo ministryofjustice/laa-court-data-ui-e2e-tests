@@ -53,8 +53,6 @@ export class SearchPage {
 
     let [day, month, year] = date_str.split('-')
 
-    console.log(day, month, year)
-
     await this.page.getByLabel('Day').fill(day)
     await this.page.getByLabel('Month').fill(month)
     await this.page.getByLabel('Year').fill(year)
