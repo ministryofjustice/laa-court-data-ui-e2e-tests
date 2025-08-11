@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME} from '../config.js'
+import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME } from '../config.js'
 import { SigninPage } from './signin_page.js'
 
 const MAAT_ID = '6079985'
@@ -33,7 +33,7 @@ test.describe('Link and Unlink defendant flow', () => {
   })
 
   test.describe('step 2: Link a defendant to a Court Data', () => {
-    test('Link using a wrong MAAT ID', async () => {
+    test('Link using an invalid MAAT ID', async () => {
       await sharedPage.goto(prosecutionCaseUrl)
 
       await sharedPage.getByRole('link', { name: DEFENDANT_NAME })

@@ -20,7 +20,7 @@ jobs:
       - setup_remote_docker
 
       - aws-cli/setup:
-          role_arn: $MOCK_ECR_ROLE_TO_ASSUME # this will use the env var
+          role_arn: $MOCK_ECR_ROLE_TO_ASSUME
           region: $ECR_REGION
       - run:
           name: Pull mock image
@@ -72,7 +72,6 @@ workflows:
       - hold_dev_orb_publishing:
           type: approval
 
-      # orb-tools@10.1.0 compatible only
       - orb-tools/publish-dev:
           name: publish_dev_orb
           attach-workspace: false
@@ -93,7 +92,6 @@ workflows:
               only:
                 - main
 
-      # orb-tools@10.1.0 compatible only
       - orb-tools/increment:
           name: publish_production_orb
           segment: patch

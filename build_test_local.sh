@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# This script will build all the relevant containers and set them running,
+# then shell into the test runner, but not actually run the tests. Use it
+# to debug specific tests you want to run individually etc.
+
 # Exit immediately if there is an error
 set -e
 export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"

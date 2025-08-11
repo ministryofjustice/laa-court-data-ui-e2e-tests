@@ -1,3 +1,7 @@
+# This file builds an basic image of a container that can
+# run Playwright and, when given the appropriate env vars to point
+# it at the right place, run our e2e test suite.
+
 # Get the latest version of Playwright
 FROM mcr.microsoft.com/playwright:v1.54.1-jammy
 

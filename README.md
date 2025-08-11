@@ -13,7 +13,13 @@ You must have docker installed. Run the following command:
 ```
 
 This will use `docker compose` to build images from the `main` branch of the VCD, CDA and Mock repos, spin up
-containers based on those images, seed appropriate data, and then run the tests against them.
+containers based on those images, seed appropriate data, and then run the tests against them. The tests run with
+the following command (defined in `package.json`):
+
+```
+npx playwright test --reporter line -j 1
+```
+The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
 
 If you want to build the test environment and shell into the test runner but not run the tests automatically,
 you can use:
@@ -57,9 +63,4 @@ To run the tests outside docker, follow these steps:
    ```
 
    This will open an interactive UI where you can explore and run the test suite.
-
-   If you want to run the tests in a CI environment, use:
-   ```
-   npx playwright test --reporter line -j 1
-   ```
 ---

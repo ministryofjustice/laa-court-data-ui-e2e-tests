@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# This script will build all the relevant containers and set them running,
+# then run the full test suite.
+
 # Exit immediately if there is an error
 set -e
 export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
