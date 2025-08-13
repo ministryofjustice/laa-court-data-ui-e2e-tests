@@ -18,11 +18,11 @@ test.describe('Manage users', () => {
   const whenIVisitTheUsersPage = async () => {
     await usersPage.goto()
   }
-  const whenIAddANewUser = async () => {
+  const andIAddANewUser = async () => {
     await usersPage.addNewCaseworker('Jane', 'Doe', 'jdoe', 'jane@example.com');
   }
 
-  const whenIDeleteAUser = async () => {
+  const andIDeleteAUser = async () => {
     await usersPage.deleteUser('Jane Doe');
   }
 
@@ -56,14 +56,14 @@ test.describe('Manage users', () => {
   test('managers can create new users', async () => {
     await givenIAmSignedInAsAManager();
     await whenIVisitTheUsersPage();
-    await whenIAddANewUser();
+    await andIAddANewUser();
     await thenIShouldSeeText('User successfully added and password reset instructions sent')
   });
 
   test('managers can delete users', async () => {
     await givenIAmSignedInAsAManager();
     await whenIVisitTheUsersPage();
-    await whenIDeleteAUser();
+    await andIDeleteAUser();
     await thenIShouldSeeText('User successfully deleted')
   });
 })
