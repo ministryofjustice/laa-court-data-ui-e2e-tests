@@ -1,15 +1,17 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, EMAIL, PASSWORD, URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
-import { SigninPage } from './signin_page.js'
-import { SearchPage } from './search_page.js'
+import { VCD_URL, URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
+import { SigninPage } from '../pages/signin_page.js'
+import { SearchPage } from '../pages/search_page.js'
 
 test.describe('Sign in and Search', () => {
   test.describe('when the user is logged in', () => {
-    test('show the results of the search', async ({ page }) => {
+    test.beforeEach(async ({ page }) => {
       // Sign in
       const signinPage = new SigninPage(page, VCD_URL)
-      await signinPage.signin(EMAIL, PASSWORD)
+      await signinPage.signInAsManager();
+    });
 
+    test('show the results of the search', async ({ page }) => {
       const searchPage = new SearchPage(page)
 
       // Search by URN
