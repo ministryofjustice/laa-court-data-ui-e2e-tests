@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { VCD_URL, URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
+import { URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
 import { SigninPage } from '../pages/signin_page.js'
 import { SearchPage } from '../pages/search_page.js'
 
@@ -7,8 +7,8 @@ test.describe('Sign in and Search', () => {
   test.describe('when the user is logged in', () => {
     test.beforeEach(async ({ page }) => {
       // Sign in
-      const signinPage = new SigninPage(page, VCD_URL)
-      await signinPage.signInAsManager();
+      const signinPage = new SigninPage(page)
+      await signinPage.signInAsCaseworker();
     });
 
     test('show the results of the search', async ({ page }) => {
