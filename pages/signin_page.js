@@ -1,12 +1,21 @@
 import { expect } from '@playwright/test';
+import { EMAIL, PASSWORD, MANAGER_EMAIL, MANAGER_PASSWORD, VCD_URL } from '../config'
 
 export class SigninPage {
-  constructor(page, base_url) {
+  constructor(page) {
     this.page = page;
-    this.signin_url = `${base_url}/users/sign_in`
+    this.signin_url = `${VCD_URL}/users/sign_in`
   }
 
-  async signin(email, password) {
+  async signInAsCaseworker() {
+    await this.signIn(EMAIL, PASSWORD)
+  }
+
+  async signInAsManager() {
+    await this.signIn(MANAGER_EMAIL, MANAGER_PASSWORD)
+  }
+
+  async signIn(email, password) {
     await this.page.goto(this.signin_url)
 
     await this.page.getByLabel('Username or email')

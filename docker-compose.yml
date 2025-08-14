@@ -27,6 +27,8 @@ services:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - PASSWORD=caseworker-password
+      - MANAGER_EMAIL=manager@example.com
+      - MANAGER_PASSWORD=manager-password
       - URN=TEST12345
       - DEFENDANT_NAME=Jammy Dodger
       - DEFENDANT_DOB=21-05-1987
@@ -114,6 +116,7 @@ services:
       COURT_DATA_ADAPTOR_API_UID: test-app-id
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
       CASEWORKER_PASSWORD: caseworker-password
+      MANAGER_PASSWORD: manager-password
       SHOW_APPEALS: 'true'
     depends_on:
       - acd-db-services
