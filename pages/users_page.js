@@ -1,12 +1,12 @@
-import {  VCD_URL } from '../config'
-import { expect } from '@playwright/test';
+const { VCD_URL } = require('../config')
+const { expect } = require('@playwright/test')
 
-export class UsersPage {
+class UsersPage {
   constructor(page) {
     this.page = page
   }
 
-  async goto() {
+  async visit() {
     await this.page.goto(`${VCD_URL}/users`)
   }
 
@@ -28,3 +28,5 @@ export class UsersPage {
     await row.getByRole('link', { name: 'Delete '}).click()
   }
 }
+
+module.exports = { UsersPage }
