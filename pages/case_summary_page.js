@@ -8,4 +8,14 @@ export class CaseSummaryPage {
   async goto(urn) {
     await this.page.goto(`${VCD_URL}/prosecution_cases/${urn}`)
   }
+
+  async sortByDate() {
+    await this.page.getByRole('link', { name: 'Date' })
+              .click();
+  }
+
+  async sortByHearingType() {
+    await this.page.locator('a[aria-label="Sort type desc"]')
+              .click();
+  }
 }
