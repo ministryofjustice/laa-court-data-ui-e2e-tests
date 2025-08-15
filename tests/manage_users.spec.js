@@ -1,69 +1,55 @@
-import { test, expect } from '@playwright/test'
-import { SigninPage } from '../pages/signin_page.js'
-import { UsersPage } from '../pages/users_page.js'
+import { test } from '@playwright/test'
+import { SignInSteps } from '../steps/sign_in_steps'
+import { UsersSteps } from '../steps/users_steps'
+import { GenericSteps } from '../steps/generic_steps'
 
 test.describe('Manage users', () => {
-  let currentPage
-  let usersPage
-
-  const givenIAmSignedInAsACaseworker = async () => {
-    const signinPage = new SigninPage(currentPage)
-    await signinPage.signInAsCaseworker()
-  }
-  const givenIAmSignedInAsAManager = async () => {
-    const signinPage = new SigninPage(currentPage)
-    await signinPage.signInAsManager()
-  }
-  const givenIAmNotSignedIn = async () => {}
-  const whenIVisitTheUsersPage = async () => {
-    await usersPage.goto()
-  }
-  const andIAddANewUser = async () => {
-    await usersPage.addNewCaseworker('Jane', 'Doe', 'jdoe', 'jane@example.com');
-  }
-
-  const andIDeleteAUser = async () => {
-    await usersPage.deleteUser('Jane Doe');
-  }
-
-  const thenIShouldSeeText = async (message) => {
-    await expect(currentPage.locator('body')).toContainText(message)
-  }
+  let signInSteps
+  let usersSteps
+  let genericSteps
 
   test.beforeEach(async ({ page }) => {
-    currentPage = page
-    usersPage = new UsersPage(page)
+    signInSteps = new SignInSteps(page)
+    usersSteps = new UsersSteps(page)
+    genericSteps = new GenericSteps(page)
   })
 
   test('not-logged-in users cannot access the page', async () => {
-    await givenIAmNotSignedIn();
-    await whenIVisitTheUsersPage();
-    await thenIShouldSeeText('You need to sign in before continuing')
+    await signInSteps.givenIAmNotSignedIn();
+    await usersSteps.whenIVisitTheUsersPage();
+    await genericSteps.thenIShouldSeeText('You need to sign in before continuing')
   });
 
   test('caseworkers cannot access the page', async () => {
-    await givenIAmSignedInAsACaseworker();
-    await whenIVisitTheUsersPage();
-    await thenIShouldSeeText('You are unauthorised to manage users')
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await usersSteps.whenIVisitTheUsersPage();
+    await genericSteps.thenIShouldSeeText('You are unauthorised to manage users')
   });
 
   test('managers can access the page', async () => {
-    await givenIAmSignedInAsAManager();
-    await whenIVisitTheUsersPage();
-    await thenIShouldSeeText('List of users')
+    await signInSteps.givenIAmSignedInAsAManager();
+    await usersSteps.whenIVisitTheUsersPage();
+    await genericSteps.thenIShouldSeeText('List of users')
   });
 
   test('managers can create new users', async () => {
-    await givenIAmSignedInAsAManager();
-    await whenIVisitTheUsersPage();
-    await andIAddANewUser();
-    await thenIShouldSeeText('User successfully added and password reset instructions sent')
+    await signInSteps.givenIAmSignedInAsAManager();
+    await usersSteps.whenIVisitTheUsersPage();
+    await usersSteps.andIAddANewUser();
+    await genericSteps.thenIShouldSeeText('User successfully added and password reset instructions sent')
+  });
+
+  test('managers can edit user details', async () => {
+    await signInSteps.givenIAmSignedInAsAManager();
+    await usersSteps.whenIVisitTheUsersPage();
+    await usersSteps.andIChangeAUsersEmailAddress();
+    await genericSteps.thenIShouldSeeText('User details successfully updated')
   });
 
   test('managers can delete users', async () => {
-    await givenIAmSignedInAsAManager();
-    await whenIVisitTheUsersPage();
-    await andIDeleteAUser();
-    await thenIShouldSeeText('User successfully deleted')
+    await signInSteps.givenIAmSignedInAsAManager();
+    await usersSteps.whenIVisitTheUsersPage();
+    await usersSteps.andIDeleteAUser();
+    await genericSteps.thenIShouldSeeText('User successfully deleted')
   });
 })

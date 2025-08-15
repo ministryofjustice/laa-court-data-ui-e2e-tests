@@ -6,7 +6,7 @@ export class SearchPage {
     this.search_url = `${VCD_URL}/search_filters/new`
   }
 
-  async searchByUrn(urn) {
+  async searchByURN(urn) {
     await this.goto()
 
     await this.page.getByLabel('A case by URN')

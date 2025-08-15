@@ -1,48 +1,50 @@
-import { test, expect } from '@playwright/test'
-import { URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN } from '../config.js'
-import { SigninPage } from '../pages/signin_page.js'
-import { SearchPage } from '../pages/search_page.js'
+import { test } from '@playwright/test'
+import { SignInSteps } from '../steps/sign_in_steps'
+import { SearchSteps } from '../steps/search_steps'
+import { GenericSteps } from '../steps/generic_steps'
 
-test.describe('Sign in and Search', () => {
-  test.describe('when the user is logged in', () => {
-    test.beforeEach(async ({ page }) => {
-      // Sign in
-      const signinPage = new SigninPage(page)
-      await signinPage.signInAsCaseworker();
-    });
+test.describe('Sign in and search', () => {
+  let signInSteps
+  let searchSteps
+  let genericSteps
 
-    test('show the results of the search', async ({ page }) => {
-      const searchPage = new SearchPage(page)
-
-      // Search by URN
-      await searchPage.searchByUrn(URN)
-
-      await expect(page.locator('body')).toContainText('4 search results')
-
-      // Search by ASN - with 0 results
-      await searchPage.searchByASN('AAAAAAAAAAAA')
-
-      await expect(page.locator('body')).toContainText('0 search results');
-      await expect(page.locator('body')).toContainText('There are no matching results.');
-
-      await searchPage.searchByASN(ASN)
-
-      await expect(page.locator('body')).toContainText('7 search results');
-
-      // Search by Defendant and Date
-      await searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
-
-      await expect(page.locator('body')).toContainText('7 search results')
-    })
+  test.beforeEach(async ({ page }) => {
+    signInSteps = new SignInSteps(page)
+    searchSteps = new SearchSteps(page)
+    genericSteps = new GenericSteps(page)
   })
 
-  test.describe('when the user is NOT logged in', () => {
-    test('shows a warning message', async ({ page }) => {
-      const searchPage = new SearchPage(page)
+  test('not-logged-in users cannot access the page', async () => {
+    await signInSteps.givenIAmNotSignedIn();
+    await searchSteps.whenIVisitTheSearchPage();
+    await genericSteps.thenIShouldSeeText('You need to sign in before continuing')
+  })
 
-      await searchPage.goto()
+  test('caseworkers can search by URN', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchForAValidURN();
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase();
+  })
 
-      await expect(page.locator('body')).toContainText('You need to sign in before continuing.')
-    })
+  test('caseworkers can search by ASN', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchForAValidASN();
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
+  })
+
+  test('caseworkers can search by defendant name/DOB', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchByNameAndDOB();
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
+  })
+
+  test('searches without results are handled appropriately', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchForAnInvalidASN();
+    await searchSteps.thenIShouldSeeNoSearchResults();
   })
 })

@@ -21,9 +21,16 @@ export class UsersPage {
     await this.page.getByRole('button', { name: 'Save' }).click()
   }
 
+  async changeEmail(fullName, newEmail) {
+    let row = await this.page.locator('tr', { hasText: fullName })
+    await row.getByRole('link', { name: 'Edit '}).click()
+    await this.page.getByRole('textbox', { name: 'Email', exact: true }).fill(newEmail)
+    await this.page.getByLabel('Confirm email').fill(newEmail)
+    await this.page.getByRole('button', { name: 'Save' }).click()
+  }
+
   async deleteUser(fullName) {
     let row = await this.page.locator('tr', { hasText: fullName })
-    await expect(row).toContainText('Delete')
     this.page.on('dialog', dialog => dialog.accept());
     await row.getByRole('link', { name: 'Delete '}).click()
   }
