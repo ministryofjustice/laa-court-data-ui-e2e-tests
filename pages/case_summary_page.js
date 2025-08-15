@@ -18,4 +18,9 @@ export class CaseSummaryPage {
     await this.page.locator('a[aria-label="Sort type desc"]')
               .click();
   }
+
+  async clickOnHearing(hearingDate) {
+    await this.page.getByRole('link', { name: hearingDate })
+              .click();
+  }
 }

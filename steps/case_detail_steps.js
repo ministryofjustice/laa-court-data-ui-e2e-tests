@@ -77,8 +77,7 @@ export class CaseDetailSteps {
   }
 
   async andIClickOnAHearingDate() {
-    await this.page.getByRole('link', { name: '23/10/2019' })
-              .click();
+    await this.caseSummaryPage.clickOnHearing('23/10/2019')
   }
 
   async thenICanClickThroughToTheDefendantDetailsScreen() {
