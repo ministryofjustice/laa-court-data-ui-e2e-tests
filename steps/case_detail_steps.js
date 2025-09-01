@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 import { CaseSummaryPage } from "../pages/case_summary_page";
-import { URN, DEFENDANT_NAME, VCD_URL } from '../config.js'
+import { URN, DEFENDANT_NAME } from '../config.js'
 
 const MAAT_ID = '6079985'
 const ORDERED_HEARING_DATES = [
@@ -55,16 +55,6 @@ export class CaseDetailSteps {
   }
 
   async andIUnlinkTheDefendant() {
-    // It would be easier to simply click on the link, but for reasons
-    // we don't fully understand, in headless webkit browsers specifically,
-    // this sometimes fails with the message "element was detached from the DOM"
-    // appearing in the call log. As this does not appear to occur in actual
-    // usage via a webkit browser (Safari), this seems to be purely a bit of
-    // test infrastructure weirdness, so we work around it by visiting the
-    // link's href directly rather than clicking the link.
-    const url = await this.page.getByRole('link', { name: DEFENDANT_NAME }).getAttribute('href');
-    await this.page.goto(`${VCD_URL}${url}`);
-
     await this.page.locator('summary:has-text("Remove link to court data")') // Expand the summary section
               .click();
 
