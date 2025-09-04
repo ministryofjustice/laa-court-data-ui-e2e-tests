@@ -28,6 +28,10 @@ export class SearchSteps {
    await this.searchPage.searchByASNOrNI(NI_NUMBER)
   }
 
+  async andISearchWithABlankNIIdentifier() {
+   await this.searchPage.searchByASNOrNI('')
+  }
+
   async andISearchByNameAndDOB() {
    await this.searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
   }
@@ -43,5 +47,10 @@ export class SearchSteps {
   async thenIShouldSeeNoSearchResults() {
     await expect(this.page.locator('body')).toContainText('0 search results');
     await expect(this.page.locator('body')).toContainText('There are no matching results.');
+  }
+
+  async thenIShouldSeeAWarningThatSearchTermIsRequired() {
+    await expect(this.page.locator('body')).toContainText('There is a problem');
+    await expect(this.page.locator('body')).toContainText('Search term required');
   }
 }

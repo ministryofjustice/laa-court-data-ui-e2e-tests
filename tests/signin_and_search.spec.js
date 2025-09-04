@@ -54,4 +54,11 @@ test.describe('Sign in and search', () => {
     await searchSteps.andISearchForAnInvalidASN();
     await searchSteps.thenIShouldSeeNoSearchResults();
   })
+
+  test('blank searches are handled appropriately', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchWithABlankNIIdentifier();
+    await searchSteps.thenIShouldSeeAWarningThatSearchTermIsRequired();
+  })
 })
