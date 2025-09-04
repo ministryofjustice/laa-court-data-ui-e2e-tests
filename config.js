@@ -13,3 +13,4 @@ export const URN = process.env.URN
 export const ASN = process.env.ASN
 export const DEFENDANT_NAME = process.env.DEFENDANT_NAME
 export const DEFENDANT_DOB = process.env.DEFENDANT_DOB
+export const NI_NUMBER = process.env.NI_NUMBER

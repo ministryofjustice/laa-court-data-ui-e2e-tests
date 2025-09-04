@@ -34,6 +34,13 @@ test.describe('Sign in and search', () => {
     await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
   })
 
+  test('caseworkers can search by NI Number', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchForAValidNINumber();
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
+  })
+
   test('caseworkers can search by defendant name/DOB', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
     await searchSteps.whenIVisitTheSearchPage();
