@@ -34,10 +34,6 @@ export class HearingDetailSteps {
     await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[1])
   }
 
-  async thenIShouldSeeTheDetailsPageForTheLastHearing() {
-    await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[7])
-  }
-
   async thenIShouldSeeTheDetailsPageForTheSecondLastHearing() {
     await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[6])
   }
