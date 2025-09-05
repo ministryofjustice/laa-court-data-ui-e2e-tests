@@ -24,6 +24,10 @@ export class CaseDetailSteps {
     await this.caseSummaryPage.goto(URN)
   }
 
+  async whenIVisitTheSummaryPageOfANonexistentCase() {
+    await this.caseSummaryPage.goto("NOT_A_REAL_CASE")
+  }
+
   async whenIVisitTheSummaryPageOfAnUnlinkedCase() {
     await this.whenIVisitTheSummaryPageOfACase()
     await expect(this.page.locator('body')).toContainText('Not linked')
