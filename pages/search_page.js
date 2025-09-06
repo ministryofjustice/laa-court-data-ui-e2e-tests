@@ -22,7 +22,7 @@ export class SearchPage {
               .click();
   }
 
-  async searchByASN(asn) {
+  async searchByASNOrNI(asn) {
     await this.goto()
 
     await this.page.getByLabel('A defendant by ASN or National insurance number')

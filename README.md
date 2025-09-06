@@ -55,6 +55,7 @@ To run the tests outside docker, follow these steps:
    - `ASN`: The ASN of a defendant who appears in 2 cases with a total of 7 defendants
    - `DEFENDANT_NAME`: The full name of the above defendant
    - `DEFENDANT_DOB`: The date of birth of the above defendant
+   - `NI_NUMBER`: The national insurance number of the above defendant
 
   Note that if you want to run the tests against the dockerised version of VCD you can point `VCD_URL` at `localhost:3001` (you will also need to ensure your local env vars mirror those in the docker-compose)
 
