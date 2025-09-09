@@ -17,16 +17,28 @@ else
   export DOCKER_BUILDKIT=0
 fi
 
-function build {
+function build_clean {
+  echo "⚙️  Running clean build (slow, full rebuild) ..."
   docker compose $DOCKER_FILES down --volumes --rmi "all"
   docker compose $DOCKER_FILES build --no-cache
   docker compose $DOCKER_FILES up -d
+}
+
+function build_fast {
+  echo "⚙️  Running fast build (cached layers, quicker) ..."
+  docker compose $DOCKER_FILES up -d --build
 }
 
 function shellin {
   docker compose run --entrypoint sh laa-court-data-end-to-end-tests
 }
 
-build
+# Choose build mode: default = clean
+if [[ "$1" == "fast" ]]; then
+  build_fast
+else
+  build_clean
+fi
+
 shellin
 # now run `npm run e2e-test` in container
