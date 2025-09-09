@@ -33,6 +33,7 @@ services:
       - DEFENDANT_NAME=Jammy Dodger
       - DEFENDANT_DOB=21-05-1987
       - ASN=912ZWN690MMK
+      - NI_NUMBER=JC123456A
     volumes:
       - ./data:/data
 

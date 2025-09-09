@@ -34,6 +34,13 @@ test.describe('Sign in and search', () => {
     await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
   })
 
+  test('caseworkers can search by NI Number', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchForAValidNINumber();
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant();
+  })
+
   test('caseworkers can search by defendant name/DOB', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
     await searchSteps.whenIVisitTheSearchPage();
@@ -46,5 +53,12 @@ test.describe('Sign in and search', () => {
     await searchSteps.whenIVisitTheSearchPage();
     await searchSteps.andISearchForAnInvalidASN();
     await searchSteps.thenIShouldSeeNoSearchResults();
+  })
+
+  test('blank searches are handled appropriately', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker();
+    await searchSteps.whenIVisitTheSearchPage();
+    await searchSteps.andISearchWithABlankNIIdentifier();
+    await searchSteps.thenIShouldSeeAWarningThatSearchTermIsRequired();
   })
 })
