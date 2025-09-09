@@ -19,7 +19,7 @@ fi
 
 function build {
   docker compose $DOCKER_FILES down --volumes --rmi "all"
-  docker compose $DOCKER_FILES build --no-cache
+  docker compose $DOCKER_FILES build --no-cache vcd cda laa-court-data-end-to-end-tests # It does not build mock in local
   docker compose $DOCKER_FILES up -d
 }
 
