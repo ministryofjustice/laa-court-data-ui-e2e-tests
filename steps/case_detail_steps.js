@@ -59,9 +59,6 @@ export class CaseDetailSteps {
   }
 
   async andIUnlinkTheDefendant() {
-    await this.page.locator('summary:has-text("Remove link to court data")') // Expand the summary section
-              .click();
-
     await this.page.getByLabel('Reason for unlinking')
               .selectOption('1')
 
