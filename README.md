@@ -28,6 +28,9 @@ you can use:
 ./build_test_local.sh
 ```
 
+You can pass in the `--fast` flag to avoid a full rebuild, and the `--no-mock` flag to have CDA point to your own
+copy of the mock, expected to be running on localhost:3000, instead of the dockerised mock
+
 ## Running the tests outside docker
 
 To run the tests outside docker, follow these steps:
