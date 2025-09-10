@@ -118,6 +118,6 @@ services:
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
       CASEWORKER_PASSWORD: caseworker-password
       MANAGER_PASSWORD: manager-password
-      SHOW_APPEALS: 'true'
+      APPEALS_V2: 'true'
     depends_on:
       - acd-db-services
