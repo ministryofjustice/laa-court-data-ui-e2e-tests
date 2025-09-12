@@ -2,6 +2,7 @@ import { test } from '@playwright/test'
 import { SignInSteps } from '../steps/sign_in_steps'
 import { SearchSteps } from '../steps/search_steps'
 import { GenericSteps } from '../steps/generic_steps'
+import { URN } from '../config.js'
 
 test.describe('Sign in and search', () => {
   let signInSteps
@@ -23,8 +24,8 @@ test.describe('Sign in and search', () => {
   test('caseworkers can search by URN', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
     await searchSteps.whenIVisitTheSearchPage();
-    await searchSteps.andISearchForAValidURN();
-    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase();
+    await searchSteps.andISearchForAValidURN(URN);
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase(4);
   })
 
   test('caseworkers can search by ASN', async () => {

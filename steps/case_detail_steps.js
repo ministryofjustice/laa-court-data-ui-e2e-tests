@@ -20,8 +20,8 @@ export class CaseDetailSteps {
     this.caseSummaryPage = new CaseSummaryPage(page)
   }
 
-  async whenIVisitTheSummaryPageOfACase() {
-    await this.caseSummaryPage.goto(URN)
+  async whenIVisitTheSummaryPageOfACase(urn) {
+    await this.caseSummaryPage.goto(urn)
   }
 
   async whenIVisitTheSummaryPageOfANonexistentCase() {
@@ -29,12 +29,12 @@ export class CaseDetailSteps {
   }
 
   async whenIVisitTheSummaryPageOfAnUnlinkedCase() {
-    await this.whenIVisitTheSummaryPageOfACase()
+    await this.whenIVisitTheSummaryPageOfACase(URN)
     await expect(this.page.locator('body')).toContainText('Not linked')
   }
 
   async whenIVisitTheSummaryPageOfAnLinkedCase() {
-    await this.whenIVisitTheSummaryPageOfACase()
+    await this.whenIVisitTheSummaryPageOfACase(URN)
     await expect(this.page.locator('body')).toContainText(MAAT_ID)
   }
 
@@ -104,5 +104,10 @@ export class CaseDetailSteps {
 
   async thenIShouldSeeTheHearingDetailsPageForThatDate() {
     await expect(this.page).toHaveTitle(/^Hearing day 23\/10\/2019/)
+  }
+
+  async andIClickOnRelatedCourtApplications() {
+    await this.page.getByRole('link', { name: 'Related court applications' }).click();
+    await expect(this.page).toHaveTitle(/^Case\s.+/)
   }
 }
