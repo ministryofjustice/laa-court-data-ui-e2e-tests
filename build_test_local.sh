@@ -6,7 +6,13 @@
 
 # Exit immediately if there is an error
 set -e
-export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
+if [[ $* == *--no-mock* ]]; then
+  echo "Skipping the mock"
+  export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.no-mock.yml"
+else
+  echo "Building all services including mock"
+  export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
+fi
 
 if [[ $(uname -m) == 'arm64' ]];
 then
@@ -34,7 +40,7 @@ function shellin {
 }
 
 # Choose build mode: default = clean
-if [[ "$1" == "fast" ]]; then
+if [[ $* == *--fast* ]]; then
   build_fast
 else
   build_clean
