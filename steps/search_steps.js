@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 import { SearchPage } from "../pages/search_page";
-import { URN, DEFENDANT_NAME, DEFENDANT_DOB, ASN, NI_NUMBER } from '../config.js'
+import { DEFENDANT_NAME, DEFENDANT_DOB, ASN, NI_NUMBER } from '../config.js'
 
 export class SearchSteps {
   constructor(page) {
@@ -12,8 +12,8 @@ export class SearchSteps {
     await this.searchPage.goto()
   }
 
-  async andISearchForAValidURN() {
-    await this.searchPage.searchByURN(URN)
+  async andISearchForAValidURN(urn) {
+    await this.searchPage.searchByURN(urn)
   }
 
   async andISearchForAnInvalidASN() {
@@ -36,8 +36,8 @@ export class SearchSteps {
    await this.searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
   }
 
-  async thenIShouldSeeResultsForAllDefendantsInTheCase() {
-    await expect(this.page.locator('body')).toContainText('4 search results')
+  async thenIShouldSeeResultsForAllDefendantsInTheCase(number_of_defendants) {
+    await expect(this.page.locator('body')).toContainText(`${number_of_defendants} search results`)
   }
 
   async thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant() {
