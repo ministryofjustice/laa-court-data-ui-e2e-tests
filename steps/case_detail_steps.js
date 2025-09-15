@@ -105,4 +105,8 @@ export class CaseDetailSteps {
     await this.page.getByRole('link', { name: 'Related court applications' }).click();
     await expect(this.page).toHaveTitle(/^Case\s.+/)
   }
+
+  async andIVisitRelatedCourtApplications(urn) {
+    await this.caseSummaryPage.gotoRelatedCourtApplications(urn)
+  }
 }

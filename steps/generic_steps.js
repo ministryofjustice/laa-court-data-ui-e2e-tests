@@ -14,13 +14,13 @@ export class GenericSteps {
   }
 
   // This method checks that the <h1> heading contains all the expected texts
-  async thenISeeHeading(...expectedTexts) {
+  async thenIShouldSeeHeading(...expectedTexts) {
     const heading = this.page.locator('h1')
     await expect(heading).toBeVisible()
 
     const text = await heading.innerText()
     for (const t of expectedTexts) {
-      expect(text).toContain(t)
+      await expect(heading).toContainText(t)
     }
   }
 }
