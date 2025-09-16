@@ -23,7 +23,7 @@ test.describe('Sort hearings', () => {
 
   test('Hearing details pages have forward links', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
-    await caseDetailSteps.whenIVisitTheSummaryPageOfACase();
+    await caseDetailSteps.whenIVisitTheSummaryPageOfACase(URN);
     await caseDetailSteps.andIClickOnTheFirstHearingDate();
     await hearingDetailSteps.andIClickNext();
     await hearingDetailSteps.thenIShouldSeeTheDetailsPageForTheSecondHearing();
@@ -31,7 +31,7 @@ test.describe('Sort hearings', () => {
 
   test('Hearing details pages have backwards links', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
-    await caseDetailSteps.whenIVisitTheSummaryPageOfACase();
+    await caseDetailSteps.whenIVisitTheSummaryPageOfACase(URN);
     await caseDetailSteps.andIClickOnTheLastHearingDate();
     await hearingDetailSteps.andIClickPrevious();
     await hearingDetailSteps.thenIShouldSeeTheDetailsPageForTheSecondLastHearing();
@@ -54,7 +54,7 @@ test.describe('Sort hearings', () => {
   test('Hearings are clickable', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
     await caseDetailSteps.whenIVisitTheSummaryPageOfACase(URN);
-    await caseDetailSteps.andIClickOnAHearingDate();
-    await caseDetailSteps.thenIShouldSeeTheHearingDetailsPageForThatDate();
+    await caseDetailSteps.andIClickOnTheFirstHearingDate();
+    await hearingDetailSteps.thenIShouldSeeTheDetailsPageForTheFirstHearing();
   })
 })
