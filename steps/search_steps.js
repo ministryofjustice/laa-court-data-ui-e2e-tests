@@ -7,11 +7,11 @@ export class SearchSteps {
     this.searchPage = new SearchPage(page)
 
     this.urn = testData.urn
-    this.defendant_name = testData.defendant_name
-    this.defendant_dob = testData.defendant_dob
+    this.defendantName = testData.defendant_name
+    this.defendantDob = testData.defendant_dob
     this.asn = testData.asn
-    this.ni_number = testData.ni_number
-    this.number_of_defendants = testData.number_of_defendants
+    this.niNumber = testData.ni_number
+    this.numberOfDefendants = testData.number_of_defendants
   }
 
   async whenIVisitTheSearchPage() {
@@ -31,7 +31,7 @@ export class SearchSteps {
   }
 
   async andISearchForAValidNINumber() {
-   await this.searchPage.searchByASNOrNI(this.ni_number)
+   await this.searchPage.searchByASNOrNI(this.niNumber)
   }
 
   async andISearchWithABlankNIIdentifier() {
@@ -39,11 +39,11 @@ export class SearchSteps {
   }
 
   async andISearchByNameAndDOB() {
-   await this.searchPage.searchByDefendant(this.defendant_name, this.defendant_dob)
+   await this.searchPage.searchByDefendant(this.defendantName, this.defendantDob)
   }
 
   async thenIShouldSeeResultsForAllDefendantsInTheCase() {
-    await expect(this.page.locator('body')).toContainText(`${this.number_of_defendants} search results`)
+    await expect(this.page.locator('body')).toContainText(`${this.numberOfDefendants} search results`)
   }
 
   async thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant() {
