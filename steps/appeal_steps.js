@@ -5,19 +5,15 @@ export class AppealSteps {
     this.page = page
   }
 
-// TODO: test this method
   async andIClickOnTheFirstAppellantLink() {
     const nameLink = this.page.locator('table.govuk-table tbody tr td:nth-child(1) a').first();
-
-    // log nameLink for debugging
-    console.log('>>>');
-    console.log(await nameLink.textContent());
 
     await expect(nameLink).toBeVisible();
     await nameLink.click();
   }
 
-  async andIEnterAValidMAAT(maatId) {
+  async andIEnterAValidMAAT() {
+    const maatId = '7777777'
     await this.page.getByLabel('MAAT ID')
                     .fill(maatId)
 

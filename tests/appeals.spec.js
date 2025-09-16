@@ -4,6 +4,7 @@ import { SearchSteps } from '../steps/search_steps'
 import { GenericSteps } from '../steps/generic_steps'
 import { CaseDetailSteps } from '../steps/case_detail_steps'
 import { AppealSteps } from '../steps/appeal_steps'
+import { CommonPlatformTestData } from '../lib/common_platform_test_data'
 
 test.describe('Appeal workflow', () => {
   let signInSteps
@@ -13,8 +14,11 @@ test.describe('Appeal workflow', () => {
   let caseDetailSteps
 
   test.beforeEach(async ({ page }) => {
+    const testData = new CommonPlatformTestData('appeal_with_two_defendants').content
+
+    console.log(testData)
     signInSteps = new SignInSteps(page)
-    searchSteps = new SearchSteps(page)
+    searchSteps = new SearchSteps(page, testData)
     appealSteps = new AppealSteps(page)
     genericSteps = new GenericSteps(page)
     caseDetailSteps = new CaseDetailSteps(page)
@@ -22,10 +26,11 @@ test.describe('Appeal workflow', () => {
 
   test('caseworker visits the "Related court applications" and the Appeal page', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
-    await searchSteps.whenIVisitTheSearchPage()
-    await searchSteps.andISearchForAValidURN('TESTAP123')
 
-    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase(2)
+    await searchSteps.whenIVisitTheSearchPage()
+    await searchSteps.andISearchForAValidURN()
+
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase()
 
     await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTAP123')
     await caseDetailSteps.andIClickOnRelatedCourtApplications()
@@ -34,7 +39,7 @@ test.describe('Appeal workflow', () => {
     await genericSteps.thenIShouldSeeHeading('Appeal', 'TESTAP123')
   })
 
-  test('caseworker links an Appeal', async () => {
+  test('caseworker links and unlinks an appeal', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
     await caseDetailSteps.andIVisitRelatedCourtApplications('TESTAP123')
     await genericSteps.andIClickOnTheLink("Appeal against conviction and sentence by a Magistrates' Court to the Crown Court")

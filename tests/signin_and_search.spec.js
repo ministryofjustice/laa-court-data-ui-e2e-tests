@@ -2,7 +2,7 @@ import { test } from '@playwright/test'
 import { SignInSteps } from '../steps/sign_in_steps'
 import { SearchSteps } from '../steps/search_steps'
 import { GenericSteps } from '../steps/generic_steps'
-import { URN } from '../config.js'
+import { CommonPlatformTestData } from '../lib/common_platform_test_data'
 
 test.describe('Sign in and search', () => {
   let signInSteps
@@ -10,8 +10,10 @@ test.describe('Sign in and search', () => {
   let genericSteps
 
   test.beforeEach(async ({ page }) => {
+    const testData = new CommonPlatformTestData('prosecution_case_with_four_defendants').content
+
     signInSteps = new SignInSteps(page)
-    searchSteps = new SearchSteps(page)
+    searchSteps = new SearchSteps(page, testData)
     genericSteps = new GenericSteps(page)
   })
 
@@ -24,7 +26,7 @@ test.describe('Sign in and search', () => {
   test('caseworkers can search by URN', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker();
     await searchSteps.whenIVisitTheSearchPage();
-    await searchSteps.andISearchForAValidURN(URN);
+    await searchSteps.andISearchForAValidURN();
     await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase(4);
   })
 

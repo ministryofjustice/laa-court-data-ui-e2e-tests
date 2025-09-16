@@ -18,7 +18,6 @@ export class GenericSteps {
     const heading = this.page.locator('h1')
     await expect(heading).toBeVisible()
 
-    const text = await heading.innerText()
     for (const t of expectedTexts) {
       await expect(heading).toContainText(t)
     }

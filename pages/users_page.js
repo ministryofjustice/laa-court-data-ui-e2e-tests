@@ -1,5 +1,4 @@
 import {  VCD_URL } from '../config'
-import { expect } from '@playwright/test';
 
 export class UsersPage {
   constructor(page) {

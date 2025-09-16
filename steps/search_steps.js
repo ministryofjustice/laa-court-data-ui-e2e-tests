@@ -1,19 +1,25 @@
 import { expect } from '@playwright/test'
 import { SearchPage } from "../pages/search_page";
-import { DEFENDANT_NAME, DEFENDANT_DOB, ASN, NI_NUMBER } from '../config.js'
 
 export class SearchSteps {
-  constructor(page) {
+  constructor(page, testData) {
     this.page = page
     this.searchPage = new SearchPage(page)
+
+    this.urn = testData.urn
+    this.defendant_name = testData.defendant_name
+    this.defendant_dob = testData.defendant_dob
+    this.asn = testData.asn
+    this.ni_number = testData.ni_number
+    this.number_of_defendants = testData.number_of_defendants
   }
 
   async whenIVisitTheSearchPage() {
     await this.searchPage.goto()
   }
 
-  async andISearchForAValidURN(urn) {
-    await this.searchPage.searchByURN(urn)
+  async andISearchForAValidURN() {
+    await this.searchPage.searchByURN(this.urn)
   }
 
   async andISearchForAnInvalidASN() {
@@ -21,11 +27,11 @@ export class SearchSteps {
   }
 
   async andISearchForAValidASN() {
-   await this.searchPage.searchByASNOrNI(ASN)
+   await this.searchPage.searchByASNOrNI(this.asn)
   }
 
   async andISearchForAValidNINumber() {
-   await this.searchPage.searchByASNOrNI(NI_NUMBER)
+   await this.searchPage.searchByASNOrNI(this.ni_number)
   }
 
   async andISearchWithABlankNIIdentifier() {
@@ -33,11 +39,11 @@ export class SearchSteps {
   }
 
   async andISearchByNameAndDOB() {
-   await this.searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB)
+   await this.searchPage.searchByDefendant(this.defendant_name, this.defendant_dob)
   }
 
-  async thenIShouldSeeResultsForAllDefendantsInTheCase(number_of_defendants) {
-    await expect(this.page.locator('body')).toContainText(`${number_of_defendants} search results`)
+  async thenIShouldSeeResultsForAllDefendantsInTheCase() {
+    await expect(this.page.locator('body')).toContainText(`${this.number_of_defendants} search results`)
   }
 
   async thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant() {
