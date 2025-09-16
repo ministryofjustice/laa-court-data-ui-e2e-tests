@@ -1,16 +1,5 @@
-import { expect } from '@playwright/test'
-import { HearingDetailPage } from '../pages/hearing_detail_page';
-
-export const ORDERED_HEARING_DATES = [
-  '23/10/2019',
-  '24/10/2019',
-  '26/10/2019',
-  '27/10/2019',
-  '28/10/2019',
-  '29/10/2019',
-  '30/10/2019',
-  '31/10/2019',
-]
+import orderedHearingDates from '../data/ordered_hearing_dates'
+import { HearingDetailPage } from '../pages/hearing_detail_page'
 
 export class HearingDetailSteps {
   constructor(page) {
@@ -27,14 +16,14 @@ export class HearingDetailSteps {
   }
 
   async thenIShouldSeeTheDetailsPageForTheFirstHearing() {
-    await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[0])
+    await this.hearingDetailPage.expectTitle(orderedHearingDates[0])
   }
 
   async thenIShouldSeeTheDetailsPageForTheSecondHearing() {
-    await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[1])
+    await this.hearingDetailPage.expectTitle(orderedHearingDates[1])
   }
 
   async thenIShouldSeeTheDetailsPageForTheSecondLastHearing() {
-    await this.hearingDetailPage.expectTitle(ORDERED_HEARING_DATES[6])
+    await this.hearingDetailPage.expectTitle(orderedHearingDates.at(-2))
   }
 }

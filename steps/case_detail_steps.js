@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test'
 import { CaseSummaryPage } from "../pages/case_summary_page";
 import { URN, DEFENDANT_NAME } from '../config.js'
-import { ORDERED_HEARING_DATES } from './hearing_detail_steps.js';
+import orderedHearingDates from '../data/ordered_hearing_dates'
 
 const MAAT_ID = '6079985'
 
@@ -66,11 +66,11 @@ export class CaseDetailSteps {
   }
 
   async andIClickOnTheFirstHearingDate() {
-    await this.caseSummaryPage.clickOnHearing(ORDERED_HEARING_DATES[0])
+    await this.caseSummaryPage.clickOnHearing(orderedHearingDates[0])
   }
 
   async andIClickOnTheLastHearingDate() {
-    await this.caseSummaryPage.clickOnHearing(ORDERED_HEARING_DATES[7])
+    await this.caseSummaryPage.clickOnHearing(orderedHearingDates.at(-1))
   }
 
   async thenICanClickThroughToTheDefendantDetailsScreen() {
@@ -84,12 +84,12 @@ export class CaseDetailSteps {
 
   async thenHearingsShouldBeSortedByDateAscending() {
     const cellList = await this.page.locator('td');
-    await expect(cellList).toContainText(ORDERED_HEARING_DATES);
+    await expect(cellList).toContainText(orderedHearingDates);
   }
 
   async thenHearingsShouldBeSortedByDateDescending() {
     const cellList = await this.page.locator('td');
-    await expect(cellList).toContainText(ORDERED_HEARING_DATES.reverse())
+    await expect(cellList).toContainText(orderedHearingDates.reverse())
   }
 
   async thenHearingsShouldBeSortedByHearingTypeDescending() {
