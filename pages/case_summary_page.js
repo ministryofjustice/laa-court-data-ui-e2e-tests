@@ -9,6 +9,10 @@ export class CaseSummaryPage {
     await this.page.goto(`${VCD_URL}/prosecution_cases/${urn}`)
   }
 
+  async gotoRelatedCourtApplications(urn) {
+    await this.page.goto(`${VCD_URL}/prosecution_cases/${urn}/related_court_applications`)
+  }
+
   async sortByDate() {
     await this.page.getByRole('link', { name: 'Date' })
               .click();
