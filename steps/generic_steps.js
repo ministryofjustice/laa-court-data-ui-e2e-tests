@@ -22,4 +22,9 @@ export class GenericSteps {
       await expect(heading).toContainText(t)
     }
   }
+
+  async thenIShouldSeeSubheading(text) {
+    const h2 = this.page.locator('h2', { hasText: text })
+    await expect(h2).toBeVisible()
+  }
 }
