@@ -53,7 +53,6 @@ To run the tests outside docker, follow these steps:
    Then edit `.env.local` and set the following variables:
    - `VCD_URL`: The base URL of the Court Data UI application.
    - `EMAIL`: The user email for authentication.
-   - `PASSWORD`: The corresponding password.
    - `URN`: The URN of a case with 4 defendants
    - `ASN`: The ASN of a defendant who appears in 2 cases with a total of 7 defendants
    - `DEFENDANT_NAME`: The full name of the above defendant

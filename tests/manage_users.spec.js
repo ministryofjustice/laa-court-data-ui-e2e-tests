@@ -36,7 +36,7 @@ test.describe('Manage users', () => {
     await signInSteps.givenIAmSignedInAsAManager();
     await usersSteps.whenIVisitTheUsersPage();
     await usersSteps.andIAddANewUser();
-    await genericSteps.thenIShouldSeeText('User successfully added and password reset instructions sent')
+    await genericSteps.thenIShouldSeeText('User successfully added')
   });
 
   test('managers can edit user details', async () => {
