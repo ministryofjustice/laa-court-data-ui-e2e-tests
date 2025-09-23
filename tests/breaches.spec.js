@@ -3,14 +3,14 @@ import { SignInSteps } from '../steps/sign_in_steps'
 import { SearchSteps } from '../steps/search_steps'
 import { GenericSteps } from '../steps/generic_steps'
 import { CaseDetailSteps } from '../steps/case_detail_steps'
-import { AppealSteps } from '../steps/appeal_steps'
+import { CourtApplicationSteps } from '../steps/court_application_steps'
 import { CommonPlatformTestData } from '../lib/common_platform_test_data'
 
 test.describe('Breach workflow', () => {
   let signInSteps
   let searchSteps
   let genericSteps
-  let appealSteps
+  let courtApplicationSteps
   let caseDetailSteps
 
   test.beforeEach(async ({ page }) => {
@@ -19,7 +19,7 @@ test.describe('Breach workflow', () => {
     console.log(testData)
     signInSteps = new SignInSteps(page)
     searchSteps = new SearchSteps(page, testData)
-    appealSteps = new AppealSteps(page)
+    courtApplicationSteps = new CourtApplicationSteps(page)
     genericSteps = new GenericSteps(page)
     caseDetailSteps = new CaseDetailSteps(page)
   })
@@ -37,8 +37,8 @@ test.describe('Breach workflow', () => {
     await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
 
     await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
-    await genericSteps.thenIShouldSeeSubheading('Respondent')
-    await genericSteps.thenIShouldSeeSubheading('Hearings')
+    await genericSteps.andIShouldSeeSubheading('Respondent')
+    await genericSteps.andIShouldSeeSubheading('Hearings')
   })
 
   test('caseworker links and unlinks a breach', async () => {
@@ -48,17 +48,17 @@ test.describe('Breach workflow', () => {
     await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
 
     await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
-    await genericSteps.thenIShouldSeeText('Not linked') // in the table of Respondents
+    await genericSteps.andIShouldSeeText('Not linked') // in the table of Respondents
 
-    await appealSteps.andIClickOnTheFirstAppellantLink()
+    await courtApplicationSteps.andIClickOnTheFirstAppellantLink()
 
     await genericSteps.thenIShouldSeeHeading('Respondent')
-    await genericSteps.thenIShouldSeeText('Breach')
+    await genericSteps.andIShouldSeeText('Breach')
 
-    await appealSteps.andIEnterAValidMAAT()
-    await genericSteps.thenIShouldSeeText('You have successfully linked to the court data source')
+    await courtApplicationSteps.andIEnterAValidMAAT()
+    await genericSteps.andIShouldSeeText('You have successfully linked to the court data source')
 
-    await appealSteps.andIUnlink()
+    await courtApplicationSteps.andIUnlink()
     await genericSteps.thenIShouldSeeText('You have successfully unlinked from the court data source')
   })
 })

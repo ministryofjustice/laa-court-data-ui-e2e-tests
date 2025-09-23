@@ -28,3 +28,7 @@ export class GenericSteps {
     await expect(h2).toBeVisible()
   }
 }
+
+// Aliases for readability in tests:
+GenericSteps.prototype.andIShouldSeeSubheading = GenericSteps.prototype.thenIShouldSeeSubheading
+GenericSteps.prototype.andIShouldSeeText = GenericSteps.prototype.thenIShouldSeeText
