@@ -26,20 +26,39 @@ test.describe('Breach workflow', () => {
 
   test('caseworker visits the "Related court applications" and the Breach page', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
-
     await searchSteps.whenIVisitTheSearchPage()
     await searchSteps.andISearchForAValidURN()
 
-    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase() // Scenario 1
+    await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase()
 
     await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTBR111')
     await caseDetailSteps.andIClickOnRelatedCourtApplications()
+
     await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
 
-
     await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
-
     await genericSteps.thenIShouldSeeSubheading('Respondent')
     await genericSteps.thenIShouldSeeSubheading('Hearings')
+  })
+
+  test('caseworker links and unlinks a breach', async () => {
+    await signInSteps.givenIAmSignedInAsACaseworker()
+    await caseDetailSteps.andIVisitRelatedCourtApplications('TESTBR111')
+
+    await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
+
+    await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
+    await genericSteps.thenIShouldSeeText('Not linked') // in the table of Respondents
+
+    await appealSteps.andIClickOnTheFirstAppellantLink()
+
+    await genericSteps.thenIShouldSeeHeading('Respondent')
+    await genericSteps.thenIShouldSeeText('Breach')
+
+    await appealSteps.andIEnterAValidMAAT()
+    await genericSteps.thenIShouldSeeText('You have successfully linked to the court data source')
+
+    await appealSteps.andIUnlink()
+    await genericSteps.thenIShouldSeeText('You have successfully unlinked from the court data source')
   })
 })

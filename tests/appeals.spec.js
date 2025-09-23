@@ -49,11 +49,9 @@ test.describe('Appeal workflow', () => {
     await appealSteps.andIClickOnTheFirstAppellantLink()
     await genericSteps.thenIShouldSeeHeading('Appellant')
 
-    // Test Link Appellant
-    await appealSteps.andIEnterAValidMAAT('7777777')
+    await appealSteps.andIEnterAValidMAAT()
     await genericSteps.thenIShouldSeeText('You have successfully linked to the court data source')
 
-    // Test Unlink Appellant
     await appealSteps.andIUnlink()
     await genericSteps.thenIShouldSeeText('You have successfully unlinked from the court data source')
   })
