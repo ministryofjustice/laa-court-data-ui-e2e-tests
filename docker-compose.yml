@@ -76,6 +76,7 @@ services:
       MAAT_API_API_URL: ''
       MAAT_API_CLIENT_ID: ''
       MAAT_API_CLIENT_SECRET: ''
+      BREACH_COURT_APPLICATIONS: 'true'
     depends_on:
       - acd-db-services
 

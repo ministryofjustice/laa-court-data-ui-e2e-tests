@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 
-export class AppealSteps {
+export class CourtApplicationSteps {
   constructor(page) {
     this.page = page
   }
@@ -13,7 +13,10 @@ export class AppealSteps {
   }
 
   async andIEnterAValidMAAT() {
-    const maatId = '7777777'
+
+    const maatId = this.getRandomMaatId();
+    console.log(`Using MAAT ID: ${maatId}`);
+
     await this.page.getByLabel('MAAT ID')
                     .fill(maatId)
 
@@ -27,5 +30,11 @@ export class AppealSteps {
 
     await this.page.getByRole('button', { name: 'Remove link to court data' })
               .click();
+  }
+
+  // Return 7 digit timestamp to use as MAAT ID
+  // Used to generate unique MAAT IDs to avoid conflicts
+  getRandomMaatId() {
+    return Date.now().toString().slice(-7);
   }
 }
