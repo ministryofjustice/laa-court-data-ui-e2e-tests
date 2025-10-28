@@ -3,7 +3,7 @@ import { VCD_URL } from '../config.js'
 export class SearchPage {
   constructor(page) {
     this.page = page
-    this.search_url = `${VCD_URL}/search_filters/new`
+    this.searchUrl = `${VCD_URL}/search_filters/new`
   }
 
   async searchByURN(urn) {
@@ -39,7 +39,7 @@ export class SearchPage {
 
   }
 
-  async searchByDefendant(defendantName, date_str) {
+  async searchByDefendant(defendantName, dateStr) {
     this.goto()
 
     await this.page.getByLabel('A defendant by name and date of birth')
@@ -51,7 +51,7 @@ export class SearchPage {
     await this.page.getByLabel('Defendant name')
               .fill(defendantName)
 
-    let [day, month, year] = date_str.split('-')
+    let [day, month, year] = dateStr.split('-')
 
     await this.page.getByLabel('Day').fill(day)
     await this.page.getByLabel('Month').fill(month)
@@ -63,6 +63,6 @@ export class SearchPage {
   }
 
   async goto() {
-    await this.page.goto(this.search_url)
+    await this.page.goto(this.searchUrl)
   }
 }
