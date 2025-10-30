@@ -15,7 +15,7 @@ export class UsersPage {
     await this.page.getByLabel('First name').fill(firstName)
     await this.page.getByLabel('Last name').fill(lastName)
     await this.page.getByLabel('Username').fill(username)
-    await this.page.getByRole('textbox', { name: 'Email', exact: true }).fill(email)
+    await this.page.getByRole('textbox', { name: 'Email address', exact: true }).fill(email)
     await this.page.getByLabel('Confirm email').fill(email)
     await this.page.getByRole('button', { name: 'Save' }).click()
   }
@@ -23,7 +23,7 @@ export class UsersPage {
   async changeEmail(fullName, newEmail) {
     let row = await this.page.locator('tr', { hasText: fullName })
     await row.getByRole('link', { name: 'Edit '}).click()
-    await this.page.getByRole('textbox', { name: 'Email', exact: true }).fill(newEmail)
+    await this.page.getByRole('textbox', { name: 'Email address', exact: true }).fill(newEmail)
     await this.page.getByLabel('Confirm email').fill(newEmail)
     await this.page.getByRole('button', { name: 'Save' }).click()
   }
