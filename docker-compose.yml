@@ -27,7 +27,7 @@ services:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
-      - URN=TEST12345
+      - URN=TEST1234567
       - DEFENDANT_NAME=Jammy Dodger
       - DEFENDANT_DOB=21-05-1987
       - ASN=912ZWN690MMK
