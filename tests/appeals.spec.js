@@ -32,19 +32,19 @@ test.describe('Appeal workflow', () => {
 
     await searchSteps.thenIShouldSeeResultsForAllDefendantsInTheCase()
 
-    await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTAP123')
+    await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTAP12345')
     await caseDetailSteps.andIClickOnRelatedCourtApplications()
     await genericSteps.andIClickOnTheLink("Appeal against conviction and sentence by a Magistrates' Court to the Crown Court")
 
-    await genericSteps.thenIShouldSeeHeading('Appeal', 'TESTAP123')
+    await genericSteps.thenIShouldSeeHeading('Appeal', 'TESTAP12345')
   })
 
   test('caseworker links and unlinks an appeal', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
-    await caseDetailSteps.andIVisitRelatedCourtApplications('TESTAP123')
+    await caseDetailSteps.andIVisitRelatedCourtApplications('TESTAP12345')
     await genericSteps.andIClickOnTheLink("Appeal against conviction and sentence by a Magistrates' Court to the Crown Court")
 
-    await genericSteps.thenIShouldSeeHeading('Appeal', 'TESTAP123')
+    await genericSteps.thenIShouldSeeHeading('Appeal', 'TESTAP12345')
 
     await courtApplicationSteps.andIClickOnTheFirstAppellantLink()
     await genericSteps.thenIShouldSeeHeading('Appellant')

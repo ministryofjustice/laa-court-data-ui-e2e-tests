@@ -23,23 +23,23 @@ test.describe('Breach workflow', () => {
 
   test('caseworker visits the "Related court applications" and the Breach page', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
-    await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTBR111')
+    await caseDetailSteps.whenIVisitTheSummaryPageOfACase('TESTBR11111')
     await caseDetailSteps.andIClickOnRelatedCourtApplications()
 
     await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
 
-    await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
+    await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR11111')
     await genericSteps.andIShouldSeeSubheading('Respondent')
     await genericSteps.andIShouldSeeSubheading('Hearings')
   })
 
   test('caseworker links and unlinks a breach', async () => {
     await signInSteps.givenIAmSignedInAsACaseworker()
-    await caseDetailSteps.andIVisitRelatedCourtApplications('TESTBR111')
+    await caseDetailSteps.andIVisitRelatedCourtApplications('TESTBR11111')
 
     await genericSteps.andIClickOnTheLink("Failing to comply with the community requirements of a suspended sentence order")
 
-    await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR111')
+    await genericSteps.thenIShouldSeeHeading('Breach', 'TESTBR11111')
     await genericSteps.andIShouldSeeText('Not linked') // in the table of Respondents
 
     await courtApplicationSteps.andIClickOnTheFirstAppellantLink()
