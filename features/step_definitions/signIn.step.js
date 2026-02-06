@@ -1,4 +1,4 @@
-import { Given, Before, setDefaultTimeout } from "@cucumber/cucumber";
+import { Given, Before, setDefaultTimeout, After } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 
 setDefaultTimeout(60 * 1000);
@@ -15,3 +15,7 @@ Before(async function () {
 Given("User navigates to the test environment", async () => {
     await page.goto("https://test.view-court-data.service.justice.gov.uk/");
 });
+
+After(async function () {
+    await browser.close();    
+})
