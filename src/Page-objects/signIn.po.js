@@ -1,18 +1,16 @@
-import NewPage from "../Page/NewPage";
-import Page from '@playwright/test'
-import SignInLocators from "../Page-locators/signIn.lo";
+import NewPage from "../Page/NewPage.js";
+import SignInLocators from "../Page-locators/signIn.lo.js";
 
 /** Sign in page class and methods */
 
-export class SignInPage extends NewPage{
-    constructor() {
-        this.page = Page;
-        signInButton = new SignInLocators(page);
+export class SignInPage extends NewPage {
+    constructor(page) {
+        super(page);
+        this.locators = new SignInLocators(page);
     }
 
-    async signIn(){
-        signIn = this.signInButton;
-        await this.signIn?.click();
-        await this.page?.waitForLoadState();
+    async signIn() {
+        await this.locators.signInButton().click();
+        await this.page.waitForLoadState();
     }
 }

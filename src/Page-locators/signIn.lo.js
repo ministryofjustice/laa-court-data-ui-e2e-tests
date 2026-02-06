@@ -1,11 +1,11 @@
-import { Locator } from '@playwright/test';
-import Page from '@playwright/test'
-import NewPage from '../Page/NewPage';
+import NewPage from '../Page/NewPage.js';
 
-export default class SignInLocators extends NewPage{
-    /** stores the element via a getter */
+export default class SignInLocators extends NewPage {
+    constructor(page) {
+        super(page);
+    }
 
     signInButton() {
-        const button = this.page.getByRole('button', { hasText: 'Sign in'});
+        return this.page.getByRole('button', { hasText: 'Sign in' });
     }
 }
