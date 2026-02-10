@@ -10,7 +10,7 @@ export class SignInPage extends NewPage {
     }
 
     async signIn() {
-        await this.locators.signInButton().click();
+        await this.locators.signInButton.click();
         await this.page.waitForLoadState();
     }
 }

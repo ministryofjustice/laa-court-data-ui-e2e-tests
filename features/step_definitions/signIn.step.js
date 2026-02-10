@@ -1,4 +1,4 @@
-import { Given, When, Before, setDefaultTimeout, After } from "@cucumber/cucumber";
+import { Given, When, Then, Before, setDefaultTimeout, After } from "@cucumber/cucumber";
 import { chromium } from "@playwright/test";
 import { SignInPage } from "../../src/Page-objects/signIn.po.js";
 
@@ -9,6 +9,7 @@ let browser;
 let signIn;
 const AuthFile = "playwright/.auth/user.json";
 
+
 Before(async function () {
     browser = await chromium.launch({ headless: false });
     const context = await browser.newContext(
@@ -16,7 +17,6 @@ Before(async function () {
             storageState: AuthFile
         }
     );
-
     page = await context.newPage();
     signIn = new SignInPage(page);
 });
@@ -26,6 +26,11 @@ Given("User navigates to the test environment", async () => {
 });
 
 When("User logs in", async () => {
+    await signIn.signIn();
+});
+
+Then("User should land in the home page", async () => {
+    await page.pause();
     await page.url(process.env.AUTHORITY)
 });
 

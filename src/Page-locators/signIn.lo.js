@@ -1,11 +1,8 @@
 import NewPage from '../Page/NewPage.js';
 
 export default class SignInLocators extends NewPage {
-    constructor(page) {
-        super(page);
-    }
+    get signInButton() {
+        return this.page.locator('button[type="submit"]');
 
-    signInButton() {
-        return this.page.getByRole('button', { hasText: 'Sign in' });
     }
 }
