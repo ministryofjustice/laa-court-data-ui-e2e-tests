@@ -1,39 +1,21 @@
-import { Given, When, Then, Before, setDefaultTimeout, After } from "@cucumber/cucumber";
-import { chromium } from "@playwright/test";
+import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
 import { SignInPage } from "../../src/Page-objects/signIn.po.js";
+import { VCD_URL } from "../../config.js";
+
 
 setDefaultTimeout(60 * 1000);
 
-let page;
-let browser;
-let signIn;
-const AuthFile = "playwright/.auth/user.json";
-
-
-Before(async function () {
-    browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext(
-        {
-            storageState: AuthFile
-        }
-    );
-    page = await context.newPage();
-    signIn = new SignInPage(page);
+Given("User navigates to the test environment", async function () {
+    await this.page.goto("https://test.view-court-data.service.justice.gov.uk/");
 });
 
-Given("User navigates to the test environment", async () => {
-    await page.goto("https://test.view-court-data.service.justice.gov.uk/");
-});
-
-When("User logs in", async () => {
+When("User logs in", async function () {
+    const signIn = new SignInPage(this.page);
     await signIn.signIn();
 });
 
-Then("User should land in the home page", async () => {
-    await page.pause();
-    await page.url(process.env.AUTHORITY)
+Then("User should land in the home page", async function () {
+    // await this.page.pause();
+    await expect(this.page).toHaveURL(VCD_URL);
 });
-
-After(async function () {
-    await browser.close();    
-})
