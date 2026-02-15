@@ -1,5 +1,7 @@
 import { expect } from '@playwright/test'
-import { CaseSummaryPage } from "../pages/case_summary_page";
+import { CaseSummaryPage } from '../src/Page-objects/case_summary.po.js'
+import { CaseDetailPage } from '../src/Page-objects/case_detail.po.js'
+import { GenericPage } from '../src/Page-objects/generic.po.js'
 import { URN, DEFENDANT_NAME } from '../config.js'
 import orderedHearingDates from '../data/ordered_hearing_dates'
 
@@ -9,6 +11,8 @@ export class CaseDetailSteps {
   constructor(page) {
     this.page = page
     this.caseSummaryPage = new CaseSummaryPage(page)
+    this.caseDetailPage = new CaseDetailPage(page)
+    this.genericPage = new GenericPage(page)
   }
 
   async whenIVisitTheSummaryPageOfACase(urn) {
@@ -21,40 +25,31 @@ export class CaseDetailSteps {
 
   async whenIVisitTheSummaryPageOfAnUnlinkedCase() {
     await this.whenIVisitTheSummaryPageOfACase(URN)
-    await expect(this.page.locator('body')).toContainText('Not linked')
+    await expect(this.genericPage.body()).toContainText('Not linked')
   }
 
   async whenIVisitTheSummaryPageOfAnLinkedCase() {
     await this.whenIVisitTheSummaryPageOfACase(URN)
-    await expect(this.page.locator('body')).toContainText(MAAT_ID)
+    await expect(this.genericPage.body()).toContainText(MAAT_ID)
   }
 
   async andIClickThroughToTheDefendantDetailsScreen() {
-    await this.page.getByRole('link', { name: DEFENDANT_NAME }).click();
+    await this.caseDetailPage.clickDefendant(DEFENDANT_NAME)
   }
 
   async andIEnterAnInvalidMAAT() {
-    await this.page.getByLabel('MAAT ID')
-                    .fill('123456')
-
-    await this.page.getByRole('button', { name: 'Create link to court data' })
-              .click();
+    await this.caseDetailPage.enterMaatId('123456')
+    await this.caseDetailPage.createLinkToCourtData()
   }
 
   async andIEnterAValidMAAT() {
-    await this.page.getByLabel('MAAT ID')
-                    .fill(MAAT_ID)
-
-    await this.page.getByRole('button', { name: 'Create link to court data' })
-              .click();
+    await this.caseDetailPage.enterMaatId(MAAT_ID)
+    await this.caseDetailPage.createLinkToCourtData()
   }
 
   async andIUnlinkTheDefendant() {
-    await this.page.getByLabel('Reason for unlinking')
-              .selectOption('1')
-
-    await this.page.getByRole('button', { name: 'Remove link to court data' })
-              .click();
+    await this.caseDetailPage.selectUnlinkReason('1')
+    await this.caseDetailPage.removeLinkToCourtData()
   }
 
   async andISortByDate() {
@@ -79,21 +74,21 @@ export class CaseDetailSteps {
   }
 
   async andIShouldSeeTheMAAT() {
-     await expect(this.page.locator('body')).toContainText(MAAT_ID)
+      await expect(this.genericPage.body()).toContainText(MAAT_ID)
   }
 
   async thenHearingsShouldBeSortedByDateAscending() {
-    const cellList = await this.page.locator('td');
+    const cellList = this.caseDetailPage.tableCells()
     await expect(cellList).toContainText(orderedHearingDates);
   }
 
   async thenHearingsShouldBeSortedByDateDescending() {
-    const cellList = await this.page.locator('td');
+    const cellList = this.caseDetailPage.tableCells()
     await expect(cellList).toContainText(orderedHearingDates.reverse())
   }
 
   async thenHearingsShouldBeSortedByHearingTypeDescending() {
-    const cellList = await this.page.locator('td');
+    const cellList = this.caseDetailPage.tableCells()
     await expect(cellList).toContainText(['Trial (TRL)', 'Pre-Trial Review (PTR)', 'Plea and Trial Preparation (PTP)']);
   }
 
@@ -102,7 +97,7 @@ export class CaseDetailSteps {
   }
 
   async andIClickOnRelatedCourtApplications() {
-    await this.page.getByRole('link', { name: 'Related court applications' }).click();
+    await this.caseDetailPage.clickRelatedCourtApplications()
     await expect(this.page).toHaveTitle(/^Case\s.+/)
   }
 

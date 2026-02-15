@@ -1,5 +1,6 @@
+import { expect } from '@playwright/test'
 import orderedHearingDates from '../data/ordered_hearing_dates'
-import { HearingDetailPage } from '../pages/hearing_detail_page'
+import { HearingDetailPage } from '../src/Page-objects/hearing_detail.po.js'
 
 export class HearingDetailSteps {
   constructor(page) {
@@ -16,14 +17,14 @@ export class HearingDetailSteps {
   }
 
   async thenIShouldSeeTheDetailsPageForTheFirstHearing() {
-    await this.hearingDetailPage.expectTitle(orderedHearingDates[0])
+    await expect(this.page).toHaveTitle(new RegExp(`Hearing day ${orderedHearingDates[0]}`))
   }
 
   async thenIShouldSeeTheDetailsPageForTheSecondHearing() {
-    await this.hearingDetailPage.expectTitle(orderedHearingDates[1])
+    await expect(this.page).toHaveTitle(new RegExp(`Hearing day ${orderedHearingDates[1]}`))
   }
 
   async thenIShouldSeeTheDetailsPageForTheSecondLastHearing() {
-    await this.hearingDetailPage.expectTitle(orderedHearingDates.at(-2))
+    await expect(this.page).toHaveTitle(new RegExp(`Hearing day ${orderedHearingDates.at(-2)}`))
   }
 }

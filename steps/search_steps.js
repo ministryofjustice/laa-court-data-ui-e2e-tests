@@ -1,10 +1,12 @@
 import { expect } from '@playwright/test'
-import { SearchPage } from "../pages/search_page";
+import { SearchPage } from '../src/Page-objects/search.po.js'
+import { GenericPage } from '../src/Page-objects/generic.po.js'
 
 export class SearchSteps {
   constructor(page, testData) {
     this.page = page
     this.searchPage = new SearchPage(page)
+    this.genericPage = new GenericPage(page)
 
     this.urn = testData.urn
     this.defendantName = testData.defendant_name
@@ -43,20 +45,21 @@ export class SearchSteps {
   }
 
   async thenIShouldSeeResultsForAllDefendantsInTheCase() {
-    await expect(this.page.locator('body')).toContainText(`${this.numberOfDefendants} search results`)
+    const resultsRegex = new RegExp(`${this.numberOfDefendants}\\s+search results`)
+    await expect(this.searchPage.resultsCountHeading()).toContainText(resultsRegex)
   }
 
   async thenIShouldSeeResultsForAllDefendantsConnectedToTheSearchedDefendant() {
-    await expect(this.page.locator('body')).toContainText('7 search results');
+    await expect(this.searchPage.resultsCountHeading()).toContainText(/7\s+search results/)
   }
 
   async thenIShouldSeeNoSearchResults() {
-    await expect(this.page.locator('body')).toContainText('0 search results');
-    await expect(this.page.locator('body')).toContainText('There are no matching results.');
+    await expect(this.searchPage.resultsCountHeading()).toContainText(/0\s+search results/)
+    await expect(this.genericPage.body()).toContainText('There are no matching results.');
   }
 
   async thenIShouldSeeAWarningThatSearchTermIsRequired() {
-    await expect(this.page.locator('body')).toContainText('There is a problem');
-    await expect(this.page.locator('body')).toContainText('Search term required');
+    await expect(this.genericPage.body()).toContainText('There is a problem');
+    await expect(this.genericPage.body()).toContainText('Search term required');
   }
 }
