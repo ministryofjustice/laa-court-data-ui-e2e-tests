@@ -13,9 +13,13 @@ import { CourtApplicationPage } from "../../src/Page-objects/court_application.p
 
 const AuthFile = "playwright/.auth/user.json";
 
-Before(async function () {
+Before(async function (scenario) {
+    const hasDevAuthTag = scenario?.pickle?.tags?.some(tag => tag.name === "@dev-auth");
+
     this.browser = await chromium.launch({ headless: false });
-    this.context = await this.browser.newContext({ storageState: AuthFile });
+    this.context = hasDevAuthTag
+        ? await this.browser.newContext()
+        : await this.browser.newContext({ storageState: AuthFile });
     this.page = await this.context.newPage();
     this.signIn = new SignInPage(this.page);
     this.searchPage = new SearchPage(this.page);
