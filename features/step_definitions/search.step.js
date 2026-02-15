@@ -4,6 +4,10 @@ import { URN, ASN, NI_NUMBER, DEFENDANT_NAME, DEFENDANT_DOB } from "../../config
 
 setDefaultTimeout(60 * 1000);
 
+When("User visits the search page", async function () {
+    await this.searchPage.goto();
+});
+
 When("User searches by valid URN", async function () {
     await this.searchPage.searchByURN(URN);
 });
