@@ -5,6 +5,7 @@ const envFile = `.env.${process.env.NODE_ENV || 'local'}`
 dotenv.config({ path: envFile })
 
 export const VCD_URL = process.env.VCD_URL
+export const VCD_UAT_URL = process.env.VCD_UAT_URL
 export const VCD_DEV_URL = process.env.VCD_DEV_URL
 export const EMAIL = process.env.EMAIL
 export const MANAGER_EMAIL = process.env.MANAGER_EMAIL
