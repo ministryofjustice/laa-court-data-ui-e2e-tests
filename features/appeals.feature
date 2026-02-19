@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Appeals
 
     Scenario: Caseworker visits related court applications and the appeal page

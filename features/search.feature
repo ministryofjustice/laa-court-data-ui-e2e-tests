@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Case search in VCD
 
     Background:

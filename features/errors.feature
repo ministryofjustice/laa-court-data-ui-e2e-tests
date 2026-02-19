@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Errors
 
     Scenario: 404 errors are handled appropriately

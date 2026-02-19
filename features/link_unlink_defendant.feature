@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Link and unlink defendants
 
     Scenario: Link status is visible

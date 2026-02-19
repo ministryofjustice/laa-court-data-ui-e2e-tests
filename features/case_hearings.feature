@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Case hearings
 
     Scenario: Hearings are sorted by date by default

@@ -1,3 +1,4 @@
+@dev-auth
 Feature: Breaches
 
     Scenario: Caseworker visits related court applications and the breach page
