@@ -13,7 +13,7 @@ When("User visits related court applications for breach case {string}", async fu
     await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
 });
 
-When("User opens related court applications", async function () {
+When("User opens related court applications tab", async function () {
     await this.caseDetailPage.clickRelatedCourtApplications();
     await expect(this.page).toHaveTitle(/^Case\s.+/);
 });
@@ -41,6 +41,11 @@ Then("I should see the breach heading for case {string}", async function (urn) {
     const heading = this.genericPage.heading();
     await expect(heading).toContainText("Breach");
     await expect(heading).toContainText(urn);
+});
+
+Then("I should see the link {string}", async function (text) {
+    const heading = this.caseSummaryPage.locators.applicationTypeLink;
+    await expect(heading).toContainText(text);
 });
 
 Then("I should see the respondent heading", async function () {

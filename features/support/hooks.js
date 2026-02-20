@@ -11,15 +11,15 @@ import { CaseDetailPage } from "../../src/Page-objects/case_detail.po.js";
 import { CourtApplicationPage } from "../../src/Page-objects/court_application.po.js";
 
 
-const AuthFile = "playwright/.auth/user.json";
+const AuthFile = "playwright/.auth/user2.json";
 
 Before(async function (scenario) {
     const hasDevAuthTag = scenario?.pickle?.tags?.some(tag => tag.name === "@dev-auth");
-
     this.browser = await chromium.launch({ headless: false });
     this.context = hasDevAuthTag
         ? await this.browser.newContext()
         : await this.browser.newContext({ storageState: AuthFile });
+    
     this.page = await this.context.newPage();
     this.signIn = new SignInPage(this.page);
     this.searchPage = new SearchPage(this.page);
@@ -30,6 +30,7 @@ Before(async function (scenario) {
     this.genericPage = new GenericPage(this.page);
     this.caseDetailPage = new CaseDetailPage(this.page);
     this.courtApplicationPage = new CourtApplicationPage(this.page);
+    this.worldContext = scenario
 });
 
 After(async function () {

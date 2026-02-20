@@ -15,12 +15,13 @@ export class SignInPage extends NewPage {
     }
 
     async goToDev() {
-        await this.page.goto(VCD_DEV_URL || VCD_URL);
+        await this.page.goto(VCD_DEV_URL);
     }
 
-    async signInNormal() {
-        await this.goTo();
+    async signIn() {
+        await this.goTo(VCD_URL);
         await this.page.waitForLoadState();
+        await this.locators.signInButton.click();
     }
 
     async signInAs(email) {
@@ -28,9 +29,5 @@ export class SignInPage extends NewPage {
         await this.locators.userSelect.selectOption(email);
         await this.locators.signInWithoutSsoButton.click();
         await this.page.waitForLoadState();
-    }
-
-    async signIn() {
-        await this.signInNormal();
     }
 }

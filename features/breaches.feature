@@ -1,12 +1,12 @@
-@dev-auth
 Feature: Breaches
 
     Scenario: Caseworker visits related court applications and the breach page
         When User logs in
-        And User visits the summary page for breach case "TESTBR11111"
-        And User opens related court applications
+        And User visits the summary page for breach case "KR139776672"
+        Then I should see the link "Failing to comply with the requirements of an engagement and support order"
+        And User opens related court applications tab
         And User opens the breach application
-        Then I should see the breach heading for case "TESTBR11111"
+        Then I should see the breach heading for case "KR139776672"
         And I should see the subheading "Respondent"
         And I should see the subheading "Hearings"
 

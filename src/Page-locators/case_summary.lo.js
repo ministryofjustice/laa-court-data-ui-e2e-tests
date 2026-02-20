@@ -12,4 +12,8 @@ export default class CaseSummaryLocators extends NewPage {
     hearingLink(hearingDate) {
         return this.page.getByRole('link', { name: hearingDate });
     }
+
+    get applicationTypeLink() {
+        return this.page.locator('a.govuk-link');
+    }
 }

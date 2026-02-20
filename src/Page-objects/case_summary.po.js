@@ -27,4 +27,8 @@ export class CaseSummaryPage extends NewPage {
     async clickOnHearing(hearingDate) {
         await this.locators.hearingLink(hearingDate).click();
     }
+
+    async clickOnApplication() {
+        await this.locators.applicationTypeLink().click();
+    }
 }

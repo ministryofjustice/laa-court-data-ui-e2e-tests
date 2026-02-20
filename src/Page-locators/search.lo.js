@@ -38,7 +38,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get searchButton() {
-        return this.page.getByRole('button', { name: 'Search' });
+        return this.page.getByRole('button', { type: 'Search' });
     }
 
     get resultsCountHeading() {

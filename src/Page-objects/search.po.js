@@ -9,12 +9,11 @@ export class SearchPage extends NewPage {
         this.searchUrl = `${VCD_URL}/search_filters/new`;
     }
 
-    async goto() {
+        async goto() {
         await this.page.goto(this.searchUrl);
     }
 
     async searchByURN(urn) {
-        await this.goto();
         await this.locators.caseByUrnRadio.check();
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(urn);
@@ -22,7 +21,6 @@ export class SearchPage extends NewPage {
     }
 
     async searchByASNOrNI(asnOrNi) {
-        await this.goto();
         await this.locators.defendantByAsnOrNiRadio.check();
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(asnOrNi);
@@ -30,7 +28,6 @@ export class SearchPage extends NewPage {
     }
 
     async searchByDefendant(defendantName, dateStr) {
-        await this.goto();
         await this.locators.defendantByNameDobRadio.check();
         await this.locators.continueButton.click();
         await this.locators.defendantNameField.fill(defendantName);

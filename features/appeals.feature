@@ -7,7 +7,7 @@ Feature: Appeals
         And User searches by valid URN
         Then I should see 4 search results
         When User visits the summary page for appeal case "TESTAP12345"
-        And User opens related court applications
+        And User opens related court applications tab
         And User opens the appeal application
         Then I should see the appeal heading for case "TESTAP12345"
 

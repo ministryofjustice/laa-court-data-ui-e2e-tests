@@ -8,7 +8,6 @@ export class HomePage extends NewPage {
         this.locators = new HomePageLocators(page);
     }
 
-    // Header
     async selectBreadcrumb(breadcrumb) {
         await this.locators.header.breadcrumbs.getByText(breadcrumb).click();
         await this.page.waitForLoadState();
