@@ -7,10 +7,12 @@ setDefaultTimeout(60 * 1000);
 
 Given("User navigates to the test environment", async function () {
     await this.page.goto(VCD_URL);
+    await this.page.wait
 });
 
 When("User logs in", async function () {
     const data = await this.worldContext
+
 
     if (data.pickle.tags.some(tag => tag.name === "@dev-auth") === true)
     {
@@ -18,10 +20,13 @@ When("User logs in", async function () {
 
     } else {
         await this.signIn.signIn();
+        await this.page.waitForLoadState();
+        await this.signIn.signIn();
+
     }
 });
 
 Then("User should land in the home page", async function () {
-    await expect(this.page).toHaveURL(VCD_URL);
+    await expect(this.page).toHaveURL(`${VCD_URL}`);
     await expect(this.homePage.locators.title).toContainText('Search for')
 });

@@ -28,4 +28,16 @@ export default class CaseDetailLocators extends NewPage {
     get tableCells() {
         return this.page.locator('td');
     }
+
+    get mattColumn() {
+        return this.page.getByRole('columnheader', { name: 'MAAT number' })
+    }
+    
+    get dobColumn() {
+        return this.page.getByRole('columnheader', { name: 'Date of birth' })
+    }
+
+    get nameColumn() {
+        return this.page.getByRole('columnheader', { name: 'Name' })
+    }
 }

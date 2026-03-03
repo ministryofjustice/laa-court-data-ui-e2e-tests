@@ -18,6 +18,14 @@ export class SignInPage extends NewPage {
         await this.page.goto(VCD_DEV_URL);
     }
 
+    async gotoUsers() {
+        await this.page.goto(`${VCD_URL}/users`);
+    }
+
+    async gotoDevUsers() {
+        await this.page.goto(`${VCD_DEV_URL}/users`);
+    }
+
     async signIn() {
         await this.goTo(VCD_URL);
         await this.page.waitForLoadState();

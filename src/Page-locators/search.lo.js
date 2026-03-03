@@ -44,4 +44,8 @@ export default class SearchPageLocators extends NewPage {
     get resultsCountHeading() {
         return this.page.locator('div.govuk-heading-l');
     }
+
+    caseURNLink(urn) {
+        return this.page.getByRole('link', { name: urn })
+    }
 }

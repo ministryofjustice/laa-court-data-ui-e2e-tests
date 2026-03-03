@@ -14,6 +14,7 @@ export class SearchPage extends NewPage {
     }
 
     async searchByURN(urn) {
+        await this.goto();
         await this.locators.caseByUrnRadio.check();
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(urn);
@@ -42,4 +43,9 @@ export class SearchPage extends NewPage {
     resultsCountHeading() {
         return this.locators.resultsCountHeading;
     }
+
+    openSearchedCase(urn){
+        return this.locators.caseURNLink(urn).click()
+    }
+
 }

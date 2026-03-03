@@ -1,6 +1,20 @@
 import NewPage from "../Page/NewPage.js";
 
 export default class UsersLocators extends NewPage {
+    get userTable() {
+        return this.page.getByRole('table')
+    }
+
+    get userTableHeaders() {
+        const table = this.userTable;
+        return table.locator('thead.govuk-table__head');
+    }
+
+    get userTableBody() {
+        const table = this.userTable;
+        return table.locator('tbody.govuk-table__body')
+    }
+
     get createNewUserButton() {
         return this.page.getByRole('button', { name: 'Create a new user' });
     }

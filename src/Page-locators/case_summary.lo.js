@@ -16,4 +16,12 @@ export default class CaseSummaryLocators extends NewPage {
     get applicationTypeLink() {
         return this.page.locator('a.govuk-link');
     }
+
+    get referenceLink() {
+        return this.page.locator('[href*="/laa_references/#"]');
+    }
+
+    get MAATLink() {
+        return this.page.getByRole('columnheader', { name: 'MAAT number' });
+    }
 }

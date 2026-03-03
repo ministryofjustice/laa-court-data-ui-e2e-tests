@@ -11,6 +11,10 @@ export class GenericPage extends NewPage {
         await this.locators.linkByName(linkText).click();
     }
 
+    signInBox() {
+        return this.locators.signInMessageBox;
+    }
+
     body() {
         return this.locators.body;
     }

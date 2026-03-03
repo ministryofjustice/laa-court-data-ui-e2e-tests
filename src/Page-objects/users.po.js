@@ -13,6 +13,7 @@ export class UsersPage extends NewPage {
     }
 
     async addNewCaseworker(firstName, lastName, username, email) {
+        console.log(firstName, lastName, username, email)
         await this.locators.createNewUserButton.click();
         await this.locators.firstNameField.fill(firstName);
         await this.locators.lastNameField.fill(lastName);
@@ -24,15 +25,17 @@ export class UsersPage extends NewPage {
 
     async changeEmail(fullName, newEmail) {
         const row = this.locators.userRow(fullName);
-        await this.locators.editLinkForRow(row).click();
+        await this.locators.editLinkForRow(row).first().click();
         await this.locators.emailField.fill(newEmail);
         await this.locators.confirmEmailField.fill(newEmail);
+        await this.locators.saveButton.click();
+        await this.page.waitForLoadState();
         await this.locators.saveButton.click();
     }
 
     async deleteUser(fullName) {
         const row = this.locators.userRow(fullName);
         this.page.on('dialog', dialog => dialog.accept());
-        await this.locators.deleteLinkForRow(row).click();
+        await this.locators.deleteLinkForRow(row).first().click();
     }
 }
