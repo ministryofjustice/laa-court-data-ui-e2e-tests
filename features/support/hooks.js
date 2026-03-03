@@ -18,7 +18,7 @@ Before(async function (scenario) {
     this.browser = await chromium.launch({ headless: false });
     this.context = hasDevAuthTag
         ? await this.browser.newContext()
-        : await this.browser.newContext({ storageState: AuthFile });
+        : await this.browser.newContext({ storageState: 'data/auth/user.json' });
     
     this.page = await this.context.newPage();
     this.signIn = new SignInPage(this.page);
