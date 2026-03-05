@@ -1,7 +1,7 @@
 import NewPage from "../Page/NewPage.js";
 import CaseDetailLocators from "../Page-locators/case_detail.lo.js";
 
-export class CaseDetailPage extends NewPage {
+export default class CaseDetailPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new CaseDetailLocators(page);

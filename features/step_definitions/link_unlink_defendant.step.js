@@ -18,8 +18,9 @@ When("User visits the summary page of a linked case", async function () {
     await expect(this.genericPage.body()).toContainText(MAAT_ID);
 });
 
-When("User opens the defendant details", async function () {
-    await this.caseDetailPage.clickDefendant(DEFENDANT_NAME);
+When("User opens the defendant details for {string}", async function (urn) {
+    const testUser = testUsers.find(v => v.urn === urn);
+    await this.caseDetailPage.clickDefendant(testUser.name);
 });
 
 When("User enters an invalid MAAT ID", async function () {
@@ -29,6 +30,11 @@ When("User enters an invalid MAAT ID", async function () {
 
 When("User enters a valid MAAT ID", async function () {
     await this.caseDetailPage.enterMaatId(MAAT_ID);
+    await this.caseDetailPage.createLinkToCourtData();
+});
+
+When("User enters MAAT ID {string}", async function (matt_id) {
+    await this.caseDetailPage.enterMaatId(matt_id);
     await this.caseDetailPage.createLinkToCourtData();
 });
 
@@ -44,8 +50,8 @@ Then("I should see the defendant details page", async function () {
 Then("I should see the defendant details page for {string}", async function (urn) {
     const testUser = testUsers.find(v => v.urn === urn);
     await expect(this.page).toHaveTitle(/^Defendant details/);
-    await expect
-
+    await expect(this.defendantPage.locators.header).toHaveText(`Defendant${testUser.name}`);
+    await expect(this.defendantPage.locators.tag).toHaveText('Case');
 });
 
 Then("I should see the defendant details page", async function () {

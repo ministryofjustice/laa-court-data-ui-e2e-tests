@@ -2,11 +2,15 @@ import NewPage from "../Page/NewPage.js";
 
 export default class GenericLocators extends NewPage {
     get errorBox() {
-        return this.page.locator('govuk-error-summary')
+        return this.page.locator('div.govuk-error-summary')
     }
 
     get signInMessageBox() {
         return this.page.locator('div.govuk-error-summary__title');
+    }
+
+    get successMessageBox() {
+        return this.page.locator('div.lcdui-notice-summary')
     }
 
     get body() {

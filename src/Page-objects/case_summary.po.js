@@ -2,7 +2,7 @@ import NewPage from "../Page/NewPage.js";
 import CaseSummaryLocators from "../Page-locators/case_summary.lo.js";
 import { VCD_URL } from "../../config.js";
 
-export class CaseSummaryPage extends NewPage {
+export default class CaseSummaryPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new CaseSummaryLocators(page);

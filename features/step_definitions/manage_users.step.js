@@ -55,7 +55,12 @@ When("User deletes a user", async function () {
 });
 
 Then("I should see the message {string}", async function (message) {
-    await expect(this.genericPage.signInBox()).toContainText(message);
+    await expect(this.genericPage.locators.errorBox).toContainText(message);
+    // this.page.locator('div').filter({ hasText: `${}` }).nth(2)
+});
+
+Then("I should see the success message {string}", async function (message) {
+    await expect(this.genericPage.signInMessageBox).toContainText(message);
 });
 
 Then("I should see the header {string}", async function (message) {
@@ -64,4 +69,8 @@ Then("I should see the header {string}", async function (message) {
 
 Then("I should see the error {string}", async function (message) {
     await expect(this.genericPage.signInBox()).toContainText(message);
+});
+
+Then("I should see {string} linked on the page", async function (maat_id) {
+    await expect(this.defendantPage.locators.maatField).toHaveText(maat_id);
 });

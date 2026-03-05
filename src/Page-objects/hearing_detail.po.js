@@ -1,7 +1,7 @@
 import NewPage from "../Page/NewPage.js";
 import HearingDetailLocators from "../Page-locators/hearing_detail.lo.js";
 
-export class HearingDetailPage extends NewPage {
+export default class HearingDetailPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new HearingDetailLocators(page);

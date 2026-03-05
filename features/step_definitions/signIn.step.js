@@ -26,6 +26,10 @@ When("User logs in", async function () {
     }
 });
 
+Then("The system will pause", async function () {
+    await this.page.pause();
+})
+
 Then("User should land in the home page", async function () {
     await expect(this.page).toHaveURL(`${VCD_URL}`);
     await expect(this.homePage.locators.title).toContainText('Search for')

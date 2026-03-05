@@ -1,9 +1,6 @@
 import NewPage from "../Page/NewPage.js";
 
 export default class CaseDetailLocators extends NewPage {
-    defendantLink(defendantName) {
-        return this.page.getByRole('link', { name: defendantName });
-    }
 
     get maatIdField() {
         return this.page.getByLabel('MAAT ID');
@@ -29,15 +26,27 @@ export default class CaseDetailLocators extends NewPage {
         return this.page.locator('td');
     }
 
+    defendantLink(defendantName) {
+        return this.page.getByRole('link', { name: defendantName });
+    }
+
+    get defendantTable() {
+        return this.page.getByRole('table').first();
+    }
+
+    get hearingsTable() {
+        return this.page.getByRole('table').nth(1);
+    }
+
     get mattColumn() {
-        return this.page.getByRole('columnheader', { name: 'MAAT number' })
+        return this.defendantTable.filter()
+    }
+
+    get maatDefendantColumn() {
+        return this.page.locator('th.govuk-table__header').filter({ hasText: 'MAAT number' })
     }
     
     get dobColumn() {
         return this.page.getByRole('columnheader', { name: 'Date of birth' })
-    }
-
-    get nameColumn() {
-        return this.page.getByRole('columnheader', { name: 'Name' })
     }
 }

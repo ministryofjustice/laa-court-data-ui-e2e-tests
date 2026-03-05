@@ -1,31 +1,35 @@
 import NewPage from "../Page/NewPage.js";
 
-export default class DefendantPageLocators extends NewPage {
+export default class DefendantPagelocator extends NewPage {
     get navLinks() {
-        return this.page.locators('div.govuk-service-navigation__container')
+        return this.page.locator('div.govuk-service-navigation__container');
     }
 
     get breadcrumbs() {
-        return this.page.locators('ol.govuk-breadcrumbs__list')
+        return this.page.locator('ol.govuk-breadcrumbs__list');
     }
 
     get caption() {
-        return this.page.locators('span.govuk-caption-xl')
+        return this.page.locator('span.govuk-caption-xl');
     }
 
     get header() {
-        return this.page.locators('h1')
+        return this.page.locator('h1');
     }
 
     get tag() {
-        return this.page.locators('strong[class="govuk-tag govuk-!-margin-bottom-5"]')
+        return this.page.locator('strong[class="govuk-tag govuk-!-margin-bottom-5"]');
     }
 
     get table() {
-        return this.page.getByRole('table')
+        return this.page.getByRole('table');
     }
 
-    get viewCaseButton() {
-        return this.page.getByRole('button', {name: 'View case'})
+    get caseButton() {
+        return this.page.getByRole('button', {name: 'View case'});
+    }
+
+    get maatField() {
+        return this.page.getByRole('row', { name: 'MAAT number' }).getByRole('cell');
     }
 }
