@@ -2,7 +2,7 @@ import HomePageLocators from "../Page-locators/home.lo.js";
 import NewPage from "../Page/NewPage.js";
 
 
-export class HomePage extends NewPage {
+export default class HomePage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new HomePageLocators(page);

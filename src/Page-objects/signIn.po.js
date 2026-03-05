@@ -4,7 +4,7 @@ import { VCD_DEV_URL, VCD_URL } from "../../config.js";
 
 /** Sign in page class and methods */
 
-export class SignInPage extends NewPage {
+export default class SignInPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new SignInLocators(page);

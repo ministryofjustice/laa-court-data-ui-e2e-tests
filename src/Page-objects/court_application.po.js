@@ -1,7 +1,7 @@
 import NewPage from "../Page/NewPage.js";
 import CourtApplicationLocators from "../Page-locators/court_application.lo.js";
 
-export class CourtApplicationPage extends NewPage {
+export default class CourtApplicationPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new CourtApplicationLocators(page);

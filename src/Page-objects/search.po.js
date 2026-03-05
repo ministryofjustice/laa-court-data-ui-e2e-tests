@@ -2,7 +2,7 @@ import NewPage from "../Page/NewPage.js";
 import SearchPageLocators from "../Page-locators/search.lo.js";
 import { VCD_URL } from "../../config.js";
 
-export class SearchPage extends NewPage {
+export default class SearchPage extends NewPage {
     constructor(page) {
         super(page);
         this.locators = new SearchPageLocators(page);
