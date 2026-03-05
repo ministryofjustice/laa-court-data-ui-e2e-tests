@@ -1,6 +1,10 @@
 import NewPage from "../Page/NewPage.js";
 
 export default class SearchPageLocators extends NewPage {
+    get searchLink() {
+        return this.page.locator('strong.govuk-service-navigation__active-fallback', {name: 'Search'})
+    }
+
     get caseByUrnRadio() {
         return this.page.getByLabel('A case by URN');
     }

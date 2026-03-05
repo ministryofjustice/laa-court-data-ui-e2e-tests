@@ -26,6 +26,10 @@ export default class CaseDetailLocators extends NewPage {
         return this.page.locator('td');
     }
 
+    get dateCells() {
+        return this.page.locator('a');
+    }
+
     defendantLink(defendantName) {
         return this.page.getByRole('link', { name: defendantName });
     }

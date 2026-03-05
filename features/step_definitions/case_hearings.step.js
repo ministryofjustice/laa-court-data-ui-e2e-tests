@@ -5,8 +5,19 @@ import orderedHearingDates from "../../data/ordered_hearing_dates.js";
 
 setDefaultTimeout(60 * 1000);
 
-When("User visits the summary page for the configured case", async function () {
-    await this.caseSummaryPage.goto(URN);
+When("User visits the summary page for the configured case {string}", async function (urn) {
+        const data = await this.worldContext
+    
+    
+        if (data.pickle.tags.some(tag => tag.name === "@dev-auth") === true)
+        {
+             await this.caseSummaryPage.goto(VCD_DEV_URL);
+    
+        } else {
+            await this.searchPage.searchByURN(urn)
+            await this.searchPage.openSearchedCase(urn)
+    
+        }
 });
 
 When("User opens the first hearing", async function () {
@@ -34,21 +45,19 @@ When("User sorts hearings by type", async function () {
 });
 
 Then("Hearings should be sorted by date ascending", async function () {
-    const cellList = this.caseDetailPage.tableCells();
-    await expect(cellList).toContainText(orderedHearingDates);
+    await expect(this.caseDetailPage.locators.tableCells).toContainText(orderedHearingDates);
 });
 
 Then("Hearings should be sorted by date descending", async function () {
-    const cellList = this.caseDetailPage.tableCells();
-    await expect(cellList).toContainText(orderedHearingDates.slice().reverse());
+    await expect(this.caseDetailPage.locators.tableCells).toContainText(orderedHearingDates.slice().reverse());
 });
 
 Then("Hearings should be sorted by hearing type descending", async function () {
     const cellList = this.caseDetailPage.tableCells();
     await expect(cellList).toContainText([
-        "Trial (TRL)",
-        "Pre-Trial Review (PTR)",
-        "Plea and Trial Preparation (PTP)"
+        "Mention - Defendant to Attend (MDA)",
+        "Changed description to this",
+        "Application to Break Fixture (BFA)"
     ]);
 });
 

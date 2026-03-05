@@ -14,7 +14,6 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByURN(urn) {
-        await this.goto();
         await this.locators.caseByUrnRadio.check();
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(urn);
