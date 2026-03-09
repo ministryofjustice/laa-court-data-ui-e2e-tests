@@ -1,5 +1,7 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
+import { VCD_URL } from "../../config.js";
+
 
 setDefaultTimeout(60 * 1000);
 
@@ -23,6 +25,7 @@ When("User opens the appeal application", async function () {
 });
 
 When("User opens the first appellant", async function () {
+    await this.page.waitForURL(`${VCD_URL}court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
 });
 
@@ -35,6 +38,12 @@ When("User links a valid MAAT ID", async function () {
 When("User unlinks the court application", async function () {
     await this.courtApplicationPage.selectUnlinkReason("1");
     await this.courtApplicationPage.removeLinkToCourtData();
+});
+
+Then("I should see the tag for the appeal", async function () {
+    const element = this.breachPage.locators.tag('Appeal');
+    await expect(element).toHaveText('Appeal');
+    await expect(element).toHaveCSS('background-color', 'rgb(239, 223, 237)')
 });
 
 Then("I should see the appeal heading for case {string}", async function (urn) {
