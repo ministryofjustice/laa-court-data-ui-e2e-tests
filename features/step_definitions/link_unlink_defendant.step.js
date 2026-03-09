@@ -1,6 +1,5 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { DEFENDANT_NAME, URN } from "../../config.js";
 import testUsers from "../../data/testUsers.js";
 
 setDefaultTimeout(60 * 1000);
