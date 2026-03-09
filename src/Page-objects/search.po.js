@@ -44,7 +44,7 @@ export default class SearchPage extends NewPage {
     }
 
     openSearchedCase(urn){
-        return this.locators.caseURNLink(urn).click()
+        return this.locators.caseURNLink(urn).first().click()
     }
 
 }
