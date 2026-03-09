@@ -35,7 +35,7 @@ When("User opens the first respondent", async function () {
 });
 
 Then("I should see the tag for the breach", async function () {
-    const element = this.breachPage.locators.breachTag;
+    const element = this.breachPage.locators.tag('Breach');
     await expect(element).toHaveText('Breach');
     await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)')
 });
