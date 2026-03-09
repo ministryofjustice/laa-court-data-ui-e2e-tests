@@ -1,5 +1,7 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
+import { VCD_URL } from "../../config.js";
+
 
 setDefaultTimeout(60 * 1000);
 
@@ -22,7 +24,13 @@ When("User opens the breach application", async function () {
     await this.genericPage.clickLink(breachLinkText);
 });
 
+When("User opens the breach application for the link {string}", async function (link) {
+    await this.genericPage.clickLink(link);
+    await this.page.waitForLoadState('domcontentloaded');
+});
+
 When("User opens the first respondent", async function () {
+    await this.page.waitForURL(`${VCD_URL}court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
 });
 
@@ -32,9 +40,10 @@ When("User links a valid MAAT ID", async function () {
     await this.courtApplicationPage.createLinkToCourtData();
 });
 
-When("User unlinks the court application", async function () {
-    await this.courtApplicationPage.selectUnlinkReason("1");
-    await this.courtApplicationPage.removeLinkToCourtData();
+Then("I should see the tag for the breach", async function () {
+    const element = this.breachPage.locators.breachTag;
+    await expect(element).toHaveText('Breach');
+    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)')
 });
 
 Then("I should see the breach heading for case {string}", async function (urn) {

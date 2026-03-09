@@ -14,7 +14,7 @@ export default class CaseSummaryLocators extends NewPage {
     }
 
     get applicationTypeLink() {
-        return this.page.locator('a.govuk-link');
+        return this.page.locator('td.govuk-table__cell:has-text("Fail"):has(a)')
     }
 
     get referenceLink() {

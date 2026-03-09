@@ -8,6 +8,7 @@ setDefaultTimeout(60 * 1000);
 const MAAT_ID = "6079985";
 
 When("User visits the summary page of unlinked case {string}", async function (urn) {
+    await this.genericPage.clickSearchLink();
     await this.searchPage.searchByURN(urn)
     await this.searchPage.openSearchedCase(urn)
 });

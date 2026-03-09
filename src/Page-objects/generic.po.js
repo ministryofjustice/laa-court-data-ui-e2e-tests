@@ -26,4 +26,8 @@ export default class GenericPage extends NewPage {
     subheading(text) {
         return this.locators.subheading(text);
     }
+
+    async clickSearchLink() {
+        await this.locators.searchLink.click();
+    }
 }

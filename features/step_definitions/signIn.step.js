@@ -1,6 +1,6 @@
 import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { VCD_URL, VCD_DEV_URL, EMAIL } from "../../config.js";
+import { VCD_URL, EMAIL } from "../../config.js";
 
 
 setDefaultTimeout(60 * 1000);

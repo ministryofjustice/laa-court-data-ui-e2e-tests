@@ -28,4 +28,8 @@ export default class GenericLocators extends NewPage {
     linkByName(linkText) {
         return this.page.getByRole('link', { name: linkText });
     }
+
+    get searchLink() {
+        return this.page.getByRole('link', { name: 'Search' });
+    }
 }
