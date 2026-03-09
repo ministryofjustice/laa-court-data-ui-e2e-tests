@@ -34,12 +34,6 @@ When("User opens the first respondent", async function () {
     await this.courtApplicationPage.clickFirstAppellant();
 });
 
-When("User links a valid MAAT ID", async function () {
-    const maatId = Date.now().toString().slice(-7);
-    await this.courtApplicationPage.enterMaatId(maatId);
-    await this.courtApplicationPage.createLinkToCourtData();
-});
-
 Then("I should see the tag for the breach", async function () {
     const element = this.breachPage.locators.breachTag;
     await expect(element).toHaveText('Breach');
