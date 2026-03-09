@@ -10,6 +10,7 @@ import GenericPage from "../../src/Page-objects/generic.po.js";
 import CaseDetailPage from "../../src/Page-objects/case_detail.po.js";
 import CourtApplicationPage from "../../src/Page-objects/court_application.po.js";
 import DefendantPage from "../../src/Page-objects/defendant_page.po.js";
+import BreachPage from "../../src/Page-objects/breach.po.js";
 
 
 const AuthFile = "playwright/.auth/user2.json";
@@ -32,6 +33,7 @@ Before(async function (scenario) {
     this.caseDetailPage = new CaseDetailPage(this.page);
     this.courtApplicationPage = new CourtApplicationPage(this.page);
     this.defendantPage = new DefendantPage(this.page);
+    this.breachPage = new BreachPage(this.page);
     this.worldContext = scenario
 });
 
