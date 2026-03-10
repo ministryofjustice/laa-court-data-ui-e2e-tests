@@ -21,7 +21,7 @@ Feature: Link and unlink defendants
         When User visits the summary page of unlinked case "KR139776672"
         And User opens the defendant details for "KR139776672"
         And User enters MAAT ID "6277243"
-        Then I should see the message "You have successfully linked to the court data source"
+        Then I should see the error message "You have successfully linked to the court data source"
         And I should see "6277243" linked on the page
         And User unlinks the defendant
-        Then I should see the message "You have successfully unlinked from the court data source"
+        Then I should see the error message "You have successfully unlinked from the court data source"
