@@ -13,7 +13,6 @@ export class CourtApplicationSteps {
   async andIEnterAValidMAAT() {
 
     const maatId = this.getRandomMaatId();
-    console.log(`Using MAAT ID: ${maatId}`);
     await this.courtApplicationPage.enterMaatId(maatId)
     await this.courtApplicationPage.createLinkToCourtData()
   }

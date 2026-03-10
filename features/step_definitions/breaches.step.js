@@ -40,9 +40,21 @@ Then("I should see the tag for the breach", async function () {
     await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)')
 });
 
+Then("I should see the tag for the POCA", async function () {
+    const element = this.breachPage.locators.tag('POCA');
+    await expect(element).toHaveText('POCA');
+    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)');
+});
+
 Then("I should see the breach heading for case {string}", async function (urn) {
     const heading = this.genericPage.heading();
     await expect(heading).toContainText("Breach");
+    await expect(heading).toContainText(urn);
+});
+
+Then("I should see the POCA heading for case {string}", async function (urn) {
+    const heading = this.genericPage.heading();
+    await expect(heading).toContainText("POCA");
     await expect(heading).toContainText(urn);
 });
 

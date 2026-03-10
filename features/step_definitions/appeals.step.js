@@ -43,7 +43,7 @@ When("User unlinks the court application", async function () {
 Then("I should see the tag for the appeal", async function () {
     const element = this.breachPage.locators.tag('Appeal');
     await expect(element).toHaveText('Appeal');
-    await expect(element).toHaveCSS('background-color', 'rgb(239, 223, 237)')
+    await expect(element).toHaveCSS('background-color', 'rgb(239, 223, 237)');
 });
 
 Then("I should see the appeal heading for case {string}", async function (urn) {
