@@ -30,4 +30,8 @@ export default class GenericPage extends NewPage {
     async clickSearchLink() {
         await this.locators.searchLink.click();
     }
+
+    async goBackToUserPage() {
+        await this.locators.backToUsersLink.click();
+    }
 }

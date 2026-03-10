@@ -13,7 +13,6 @@ export default class UsersPage extends NewPage {
     }
 
     async addNewCaseworker(firstName, lastName, username, email) {
-        console.log(firstName, lastName, username, email)
         await this.locators.createNewUserButton.click();
         await this.locators.firstNameField.fill(firstName);
         await this.locators.lastNameField.fill(lastName);
@@ -37,5 +36,7 @@ export default class UsersPage extends NewPage {
         const row = this.locators.userRow(fullName);
         this.page.on('dialog', dialog => dialog.accept());
         await this.locators.deleteLinkForRow(row).first().click();
+        await this.page.waitForURL(`**/users/**`);
+        await this.locators.confirmDeleteButton.click();
     }
 }

@@ -32,4 +32,12 @@ export default class GenericLocators extends NewPage {
     get searchLink() {
         return this.page.getByRole('link', { name: 'Search' });
     }
+
+    get bannerMessage() {
+        return this.page.locator('div.moj-banner__message')
+    }
+
+    get backToUsersLink() {
+        return this.page.getByRole('link', { name: 'Back to Manage Users'})
+    }
 }

@@ -16,7 +16,7 @@ export default class UsersLocators extends NewPage {
     }
 
     get createNewUserButton() {
-        return this.page.getByRole('button', { name: 'Create a new user' });
+        return this.page.getByRole('button', { name: 'Create new user' });
     }
 
     get firstNameField() {
@@ -53,5 +53,9 @@ export default class UsersLocators extends NewPage {
 
     deleteLinkForRow(row) {
         return row.getByRole('link', { name: 'Delete ' });
+    }
+
+    get confirmDeleteButton() {
+        return this.page.getByRole('button');
     }
 }

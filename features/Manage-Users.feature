@@ -4,36 +4,34 @@ Feature: Manage users
     Scenario: Not-logged-in users cannot access the page
         Given User is not signed in
         When User visits the users page
-        Then I should see the message "You need to sign in before continuing"
+        Then I should see the error message "You need to sign in before continuing"
 
     Scenario: Caseworkers cannot access the page
         Given User is signed in as a caseworker
         When User visits the users page
-        Then I should see the message "You are unauthorised to manage users"
+        Then I should see the error message "You are unauthorised to manage users"
 
     Scenario: Managers can access the page
-        Given User is signed in as a manager
+        Given User is signed in as an admin
         When User visits the users page
-        Then I should see the header "List of users"
+        Then I should see the header "Manage Users"
 
-    Scenario: Managers can create new users
-        Given User is signed in as a manager
+    Scenario: Managers can create and delete new users
+        Given User is signed in as an admin
         When User visits the users page
         And User creates a new user
-        Then I should see the error "User successfully added"
+        Then I should see the message "account created"
+        And User navigates back to the manage users page
+        And User deletes a user
+        Then I should see the message "account deleted"
 
     Scenario: Managers can edit user details
-        Given User is signed in as a manager
+        Given User is signed in as an admin
         When User visits the users page
         And User creates a new user
         And User visits the users page
         And User updates a user's email address
-        Then I should see the message "User details successfully updated"
-
-    Scenario: Managers can delete users
-        Given User is signed in as a manager
-        When User visits the users page
-        And User creates a new user
-        And User visits the users page
+        Then I should see the message "account updated"
+        And User navigates back to the manage users page
         And User deletes a user
-        Then I should see the message "User successfully deleted"
+

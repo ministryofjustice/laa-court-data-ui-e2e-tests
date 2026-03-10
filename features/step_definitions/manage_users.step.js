@@ -1,6 +1,6 @@
 import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { EMAIL, MANAGER_EMAIL } from "../../config.js";
+import { ADMIN_EMAIL, EMAIL, MANAGER_EMAIL } from "../../config.js";
 
 setDefaultTimeout(60 * 1000);
 
@@ -29,6 +29,10 @@ Given("User is signed in as a manager", async function () {
     await this.signIn.signInAs(MANAGER_EMAIL);
 });
 
+Given("User is signed in as an admin", async function () {
+    await this.signIn.signInAs(ADMIN_EMAIL);
+});
+
 When("User visits the users page", async function () {
 
         const data = await this.worldContext
@@ -54,9 +58,13 @@ When("User deletes a user", async function () {
     await this.usersPage.deleteUser("a");
 });
 
+When("User navigates back to the manage users page", async function () {
+    await this.genericPage.goBackToUserPage()
+})
+
 Then("I should see the message {string}", async function (message) {
-    await expect(this.genericPage.locators.errorBox).toContainText(message);
-    // this.page.locator('div').filter({ hasText: `${}` }).nth(2)
+    // await expect(this.genericPage.locators.errorBox).toContainText(message);
+    await expect(this.genericPage.locators.bannerMessage).toContainText(message);
 });
 
 Then("I should see the success message {string}", async function (message) {
