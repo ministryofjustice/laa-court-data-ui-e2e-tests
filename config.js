@@ -9,6 +9,7 @@ export const VCD_UAT_URL = process.env.VCD_UAT_URL
 export const VCD_DEV_URL = process.env.VCD_DEV_URL
 export const EMAIL = process.env.EMAIL
 export const MANAGER_EMAIL = process.env.MANAGER_EMAIL
+export const ADMIN_EMAIL = process.env.ADMIN_EMAIL
 export const URN = process.env.URN
 export const ASN = process.env.ASN
 export const DEFENDANT_NAME = process.env.DEFENDANT_NAME
