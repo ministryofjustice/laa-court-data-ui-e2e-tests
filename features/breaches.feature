@@ -3,7 +3,8 @@ Feature: Breaches
         When User logs in
         And User visits the summary page of unlinked case "VHAC168852"
         And User opens related court applications tab
-        And User opens the breach application for the link "Failing to comply with the requirements of an engagement and support order"
+        And User opens the breach application for the link "Failing to comply with the requirements of a community order"
+        
 
     Scenario: Caseworker visits related court applications and the breach page
         Then I should see the breach heading for case "VHAC168852"
