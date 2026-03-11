@@ -6,7 +6,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get caseByUrnRadio() {
-        return this.page.getByLabel('A case by URN');
+        return this.page.getByRole('radio', { name: 'A case by URN' });
     }
 
     get defendantByAsnOrNiRadio() {
@@ -22,7 +22,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get searchTermField() {
-        return this.page.locator('#search-term-field');
+        return this.page.getByRole('textbox');
     }
 
     get defendantNameField() {

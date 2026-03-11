@@ -1,6 +1,7 @@
 import NewPage from "../Page/NewPage.js";
 import SearchPageLocators from "../Page-locators/search.lo.js";
 import { VCD_URL } from "../../config.js";
+import { expect } from "@playwright/test";
 
 export default class SearchPage extends NewPage {
     constructor(page) {
@@ -14,10 +15,14 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByURN(urn) {
-        await this.locators.caseByUrnRadio.check();
+        await this.locators.caseByUrnRadio.click();
+        await this.page.waitForTimeout(1000);
+        await this.locators.caseByUrnRadio.click();
         await this.locators.continueButton.click();
+        await this.page.waitForLoadState();
         await this.locators.searchTermField.fill(urn);
         await this.locators.searchButton.click();
+        await this.page.waitForLoadState();
     }
 
     async searchByASNOrNI(asnOrNi) {
