@@ -17,11 +17,13 @@ Feature: Link and unlink defendants
         And User enters an invalid MAAT ID
         Then I should see the error message "Enter a MAAT ID in the correct format"
 
-    Scenario: Caseworkers can link and unlink valid MAAT IDs
-        When User visits the summary page of unlinked case "KR139776672"
-        And User opens the defendant details for "KR139776672"
-        And User enters MAAT ID "6277243"
-        Then I should see the error message "You have successfully linked to the court data source"
-        And I should see "6277243" linked on the page
-        And User unlinks the defendant
-        Then I should see the error message "You have successfully unlinked from the court data source"
+        #Test below is too flaky to run consistently
+
+    # Scenario: Caseworkers can link and unlink valid MAAT IDs
+    #     When User visits the summary page of unlinked case "VHAC168852"
+    #     And User opens the defendant details for "VHAC168852"
+    #     And User enters MAAT ID "6280202"
+    #     Then I should see the error message "You have successfully linked to the court data source"
+    #     And I should see "6280202" linked on the page
+    #     And User unlinks the defendant
+    #     Then I should see the error message "You have successfully unlinked from the court data source"

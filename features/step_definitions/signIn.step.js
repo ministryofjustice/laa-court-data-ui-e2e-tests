@@ -20,9 +20,10 @@ When("User logs in", async function () {
 
     } else {
         await this.signIn.signIn();
+        // await this.page.pause();
+        // await this.page.context().storageState({ path: ".auth/user.json"});
         await this.page.waitForLoadState();
         await this.signIn.signIn();
-
     }
 });
 
