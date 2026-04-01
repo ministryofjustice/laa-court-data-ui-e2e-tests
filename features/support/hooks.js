@@ -17,7 +17,7 @@ const AuthFile = "playwright/.auth/user2.json";
 
 Before(async function (scenario) {
     const hasDevAuthTag = scenario?.pickle?.tags?.some(tag => tag.name === "@dev-auth");
-    this.browser = await chromium.launch({ headless: false });
+    this.browser = await chromium.launch({ headless: true });
     this.context = hasDevAuthTag
         ? await this.browser.newContext()
         : await this.browser.newContext({ storageState: 'data/auth/user.json' });
