@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e-test": "playwright test -j 1 --reporter line"
+    "e2e-test": "playwright test -j 1 --reporter line",
+    "test:allure": "cucumber-js --import features/step_definitions --format @cucumber/pretty-formatter --format allure-cucumberjs --format-options '{\"outputDir\":\"allure-results\"}' features"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@cucumber/cucumber": "^12.6.0",
+    "@cucumber/messages": "^32.2.0",
     "dotenv": "^17.2.2"
   }
 }
