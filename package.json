@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e-test": "npx cucumber-js",
+    "e2e-test": "npx cucumber-js --tags '@dev-auth'",
     "test:allure": "cucumber-js --import features/step_definitions --format @cucumber/pretty-formatter --format allure-cucumberjs --format-options '{\"outputDir\":\"allure-results\"}' features"
   },
   "keywords": [],
