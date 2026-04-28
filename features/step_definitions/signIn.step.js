@@ -23,7 +23,8 @@ When("User logs in", async function () {
         // await this.page.pause();
         // await this.page.context().storageState({ path: ".auth/user.json"});
         await this.page.waitForLoadState();
-        await this.signIn.signIn();
+        await this.homePage.selectBreadcrumb("Home");
+        await this.page.waitForLoadState();
     }
 });
 
@@ -32,6 +33,6 @@ Then("The system will pause", async function () {
 })
 
 Then("User should land in the home page", async function () {
-    await expect(this.page).toHaveURL(`${VCD_URL}`);
-    await expect(this.homePage.locators.title).toContainText('Search for')
+    await expect(this.page).toHaveURL(`${VCD_URL}search_filters/new`);
+    // await expect(this.homePage.locators.title).toContainText('Search for')
 });

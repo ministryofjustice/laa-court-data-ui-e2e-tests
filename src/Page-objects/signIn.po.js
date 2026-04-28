@@ -29,7 +29,6 @@ export default class SignInPage extends NewPage {
     async signIn() {
         await this.goTo(VCD_URL);
         await this.page.waitForLoadState();
-        await this.locators.signInButton.click();
     }
 
     async signInAs(email) {
