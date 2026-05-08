@@ -44,6 +44,11 @@ jobs:
             ./.circleci/pull_image vcd
 
       - run:
+          name: Restore auth storage state
+          command: |
+            mkdir -p data/auth
+            echo "$COOKIES" | base64 --decode > data/auth/user.json
+      - run:
           name: Build and check/wait for services to be up
           command: |
             docker-compose build
@@ -57,6 +62,20 @@ jobs:
           name: Run end to end tests
           command: |
             docker-compose run laa-court-data-end-to-end-tests
+      - store_test_results:
+          path: reports/cucumber.junit.xml
+      - store_artifacts:
+          path: reports/cucumber.html
+          destination: e2e-report/cucumber.html
+      - store_artifacts:
+          path: reports/cucumber.json
+          destination: e2e-report/cucumber.json
+      - store_artifacts:
+          path: reports/screenshots
+          destination: e2e-report/screenshots
+      - store_artifacts:
+          path: reports/traces
+          destination: e2e-report/traces
 
 # ------------------
 # WORKFLOWS

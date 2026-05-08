@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e-test": "npx cucumber-js --tags '@dev-auth'",
-    "test:allure": "cucumber-js --import features/step_definitions --format @cucumber/pretty-formatter --format allure-cucumberjs --format-options '{\"outputDir\":\"allure-results\"}' features"
+    "e2e-test": "cucumber-js",
+    "e2e:dev-auth": "cucumber-js --tags '@dev-auth'",
+    "e2e:wip": "cucumber-js --tags '@wip'",
+    "e2e:flaky": "cucumber-js --tags '@flaky' --retry 1",
+    "e2e:headed": "HEADLESS=false npm run e2e-test",
+    "encode-auth": "node --input-type=module -e \"import fs from 'fs'; console.log(fs.readFileSync('data/auth/user.json').toString('base64'));\""
   },
   "keywords": [],
   "author": "",
