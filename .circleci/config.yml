@@ -46,8 +46,13 @@ jobs:
       - run:
           name: Restore auth storage state
           command: |
+            if [ -z "$COOKIES" ]; then
+              echo "ERROR: COOKIES context variable is not set"
+              exit 1
+            fi
             mkdir -p data/auth
             echo "$COOKIES" | base64 --decode > data/auth/user.json
+            node -e "JSON.parse(require('fs').readFileSync('data/auth/user.json','utf8'))" || { echo "ERROR: data/auth/user.json is not valid JSON — re-run generate-auth.js and update COOKIES"; exit 1; }
       - run:
           name: Build and check/wait for services to be up
           command: |

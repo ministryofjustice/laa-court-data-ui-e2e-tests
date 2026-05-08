@@ -25,6 +25,7 @@ services:
     build: .
     environment:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
+      - VCD_DEV_URL=${VCD_DEV_URL}
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
       - URN=TEST1234567
