@@ -1,7 +1,5 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { VCD_URL } from "../../config.js";
-
 
 setDefaultTimeout(60 * 1000);
 
@@ -25,7 +23,7 @@ When("User opens the appeal application", async function () {
 });
 
 When("User opens the first appellant", async function () {
-    await this.page.waitForURL(`${VCD_URL}court_applications/**`);
+    await this.page.waitForURL(`${this.baseUrl}court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
 });
 

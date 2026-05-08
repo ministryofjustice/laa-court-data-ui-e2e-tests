@@ -2,8 +2,8 @@ import NewPage from "../Page/NewPage.js";
 import CaseDetailLocators from "../Page-locators/case_detail.lo.js";
 
 export default class CaseDetailPage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new CaseDetailLocators(page);
     }
 

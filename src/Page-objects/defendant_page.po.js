@@ -2,8 +2,8 @@ import NewPage from "../Page/NewPage.js";
 import DefendantPageLocators from "../Page-locators/defendant_page.lo.js";
 
 export default class DefendantPage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new DefendantPageLocators(page);
     }
 

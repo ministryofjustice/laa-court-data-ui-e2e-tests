@@ -1,24 +1,14 @@
 import NewPage from "../Page/NewPage.js";
 import SearchPageLocators from "../Page-locators/search.lo.js";
-import { VCD_URL, VCD_DEV_URL } from "../../config.js";
 
 export default class SearchPage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new SearchPageLocators(page);
-        this.searchUrl = `${VCD_URL}/search_filters/new`;
     }
 
-        async goto() {
-              const data = await this.worldContext
-
-            if (data.pickle.tags.some(tag => tag.name === "@dev-auth") === true)
-            {
-                await this.page.goto(VCD_DEV_URL);
-        
-            } else {
-                await this.page.goto(this.searchUrl)
-            }
+    async goto(url) {
+        await this.page.goto(url);
     }
 
     async searchByURN(urn) {

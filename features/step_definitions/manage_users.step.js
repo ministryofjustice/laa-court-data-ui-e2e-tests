@@ -1,10 +1,9 @@
 import { Given, When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { ADMIN_EMAIL, EMAIL, MANAGER_EMAIL } from "../../config.js";
 
 setDefaultTimeout(60 * 1000);
 
- async function getTextFromNthColumn(n, value) {
+async function getTextFromNthColumn(n, value) {
     const rowItems = await this.usersPage.locators.userTableBody.locator('tr').all();
 
     const nameTexts = Promise.all(rowItems.map(row => row.locator('td').nth(n).innerText()));
@@ -13,34 +12,29 @@ setDefaultTimeout(60 * 1000);
     return testValue;
 }
 
- const randomUser = new Date().toLocaleDateString('en', {month: 'long'});
- const randomiser =  Math.floor(Math.random() * randomUser.length);
- const userName = `a${randomiser + randomiser}`
+const randomUser = new Date().toLocaleDateString('en', {month: 'long'});
+const randomiser = Math.floor(Math.random() * randomUser.length);
+const userName = `a${randomiser + randomiser}`;
 
 Given("User is not signed in", async function () {
     // Intentionally no action for unauthenticated access.
 });
 
 Given("User is signed in as a caseworker", async function () {
-    await this.signIn.signInAs(EMAIL);
+    await this.signIn.signInAs(this.parameters.defaultEmail);
 });
 
 Given("User is signed in as a manager", async function () {
-    await this.signIn.signInAs(MANAGER_EMAIL);
+    await this.signIn.signInAs(this.parameters.managerEmail);
 });
 
 Given("User is signed in as an admin", async function () {
-    await this.signIn.signInAs(ADMIN_EMAIL);
+    await this.signIn.signInAs(this.parameters.adminEmail);
 });
 
 When("User visits the users page", async function () {
-
-        const data = await this.worldContext
-
-    if (data.pickle.tags.some(tag => tag.name === "@dev-auth") === true)
-    {
+    if (this.authMode === "dev-auth") {
         await this.signIn.gotoDevUsers();
-
     } else {
         await this.signIn.gotoUsers();
     }

@@ -1,23 +1,16 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { URN } from "../../config.js";
 import orderedHearingDates from "../../data/ordered_hearing_dates.js";
 
 setDefaultTimeout(60 * 1000);
 
 When("User visits the summary page for the configured case {string}", async function (urn) {
-        const data = await this.worldContext
-    
-    
-        if (data.pickle.tags.some(tag => tag.name === "@dev-auth") === true)
-        {
-             await this.caseSummaryPage.goto(VCD_DEV_URL);
-    
-        } else {
-            await this.searchPage.searchByURN(urn)
-            await this.searchPage.openSearchedCase(urn)
-    
-        }
+    if (this.authMode === "dev-auth") {
+        await this.caseSummaryPage.gotoDev(urn);
+    } else {
+        await this.searchPage.searchByURN(urn);
+        await this.searchPage.openSearchedCase(urn);
+    }
 });
 
 When("User opens the first hearing", async function () {

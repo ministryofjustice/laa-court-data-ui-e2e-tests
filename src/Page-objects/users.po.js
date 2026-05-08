@@ -1,15 +1,14 @@
 import NewPage from "../Page/NewPage.js";
 import UsersLocators from "../Page-locators/users.lo.js";
-import { VCD_URL } from "../../config.js";
 
 export default class UsersPage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new UsersLocators(page);
     }
 
     async goto() {
-        await this.page.goto(`${VCD_URL}/users`);
+        await this.page.goto(`${this.baseUrl}/users`);
     }
 
     async addNewCaseworker(firstName, lastName, username, email) {

@@ -1,35 +1,37 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { URN, ASN, NI_NUMBER, DEFENDANT_NAME, DEFENDANT_DOB } from "../../config.js";
 
 setDefaultTimeout(60 * 1000);
 
 When("User visits the search page", async function () {
-    await this.searchPage.goto();
+    const url = this.authMode === "dev-auth"
+        ? `${this.parameters.devUrl}/search_filters/new`
+        : `${this.parameters.baseUrl}/search_filters/new`;
+    await this.searchPage.goto(url);
 });
 
 When("User searches by valid {string}", async function (urnValue) {
-    let urn
+    let urn;
 
     if (urnValue === "URN") {
-        urn = URN
+        urn = this.testData.urn;
     } else {
-        urn = urnValue
+        urn = urnValue;
     }
 
     await this.searchPage.searchByURN(urn);
 });
 
 When("User searches by valid ASN", async function () {
-    await this.searchPage.searchByASNOrNI(ASN);
+    await this.searchPage.searchByASNOrNI(this.testData.asn);
 });
 
 When("User searches by valid NI number", async function () {
-    await this.searchPage.searchByASNOrNI(NI_NUMBER);
+    await this.searchPage.searchByASNOrNI(this.testData.niNumber);
 });
 
 When("User searches by name and DOB", async function () {
-    await this.searchPage.searchByDefendant(DEFENDANT_NAME, DEFENDANT_DOB);
+    await this.searchPage.searchByDefendant(this.testData.defendantName, this.testData.defendantDob);
 });
 
 When("User searches by invalid ASN", async function () {

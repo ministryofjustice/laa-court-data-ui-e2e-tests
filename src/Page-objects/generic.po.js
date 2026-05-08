@@ -2,8 +2,8 @@ import NewPage from "../Page/NewPage.js";
 import GenericLocators from "../Page-locators/generic.lo.js";
 
 export default class GenericPage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new GenericLocators(page);
     }
 

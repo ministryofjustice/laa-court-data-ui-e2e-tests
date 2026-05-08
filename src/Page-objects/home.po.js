@@ -3,8 +3,8 @@ import NewPage from "../Page/NewPage.js";
 
 
 export default class HomePage extends NewPage {
-    constructor(page) {
-        super(page);
+    constructor(page, parameters) {
+        super(page, parameters);
         this.locators = new HomePageLocators(page);
     }
 
