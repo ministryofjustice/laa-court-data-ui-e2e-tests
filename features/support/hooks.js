@@ -1,5 +1,8 @@
-import { Before, After } from "@cucumber/cucumber";
-import { chromium } from "@playwright/test";
+import { Before, After, Status } from "@cucumber/cucumber";
+import path from "node:path";
+import fs from "node:fs/promises";
+import { launchBrowser } from "./browser.js";
+import { ensureAuthStorageState } from "./auth-setup.js";
 import SignInPage from "../../src/Page-objects/signIn.po.js";
 import SearchPage from "../../src/Page-objects/search.po.js";
 import HomePage from "../../src/Page-objects/home.po.js";
@@ -12,31 +15,73 @@ import CourtApplicationPage from "../../src/Page-objects/court_application.po.js
 import DefendantPage from "../../src/Page-objects/defendant_page.po.js";
 import BreachPage from "../../src/Page-objects/breach.po.js";
 
-
-const AuthFile = "playwright/.auth/user2.json";
-
 Before(async function (scenario) {
-    const hasDevAuthTag = scenario?.pickle?.tags?.some(tag => tag.name === "@dev-auth");
-    this.browser = await chromium.launch({ headless: true });
-    this.context = hasDevAuthTag
-        ? await this.browser.newContext()
-        : await this.browser.newContext({ storageState: 'data/auth/user.json' });
-    
+    this.scenario = scenario;
+    this.authMode = this.isDevAuthScenario() ? "dev-auth" : "stored-state";
+
+    this.browser = await launchBrowser(this.parameters);
+
+    const contextOptions = {};
+    if (this.authMode !== "dev-auth") {
+        // Ensure auth storage state exists; generate it if needed
+        await ensureAuthStorageState(this.parameters);
+        contextOptions.storageState = this.parameters.authStorageState;
+    }
+
+    this.context = await this.browser.newContext(contextOptions);
+
+    if (process.env.TRACE === "true") {
+        await this.context.tracing.start({
+            screenshots: true,
+            snapshots: true,
+            sources: true
+        });
+    }
+
     this.page = await this.context.newPage();
-    this.signIn = new SignInPage(this.page);
-    this.searchPage = new SearchPage(this.page);
-    this.homePage = new HomePage(this.page);
-    this.caseSummaryPage = new CaseSummaryPage(this.page);
-    this.hearingDetailPage = new HearingDetailPage(this.page);
-    this.usersPage = new UsersPage(this.page);
-    this.genericPage = new GenericPage(this.page);
-    this.caseDetailPage = new CaseDetailPage(this.page);
-    this.courtApplicationPage = new CourtApplicationPage(this.page);
-    this.defendantPage = new DefendantPage(this.page);
-    this.breachPage = new BreachPage(this.page);
-    this.worldContext = scenario
+
+    this.signIn = new SignInPage(this.page, this.parameters);
+    this.searchPage = new SearchPage(this.page, this.parameters);
+    this.homePage = new HomePage(this.page, this.parameters);
+    this.caseSummaryPage = new CaseSummaryPage(this.page, this.parameters);
+    this.hearingDetailPage = new HearingDetailPage(this.page, this.parameters);
+    this.usersPage = new UsersPage(this.page, this.parameters);
+    this.genericPage = new GenericPage(this.page, this.parameters);
+    this.caseDetailPage = new CaseDetailPage(this.page, this.parameters);
+    this.courtApplicationPage = new CourtApplicationPage(this.page, this.parameters);
+    this.defendantPage = new DefendantPage(this.page, this.parameters);
+    this.breachPage = new BreachPage(this.page, this.parameters);
+
+    this.log(`Auth mode: ${this.authMode}`);
 });
 
-After(async function () {
-    await this.browser.close();
+After(async function (scenario) {
+    if (scenario.result?.status === Status.FAILED && this.page) {
+        this.log(`Failed scenario: ${scenario.pickle.name}`);
+        this.log(`URL at failure: ${this.page.url()}`);
+
+        const screenshot = await this.page.screenshot({ fullPage: true });
+        await this.attach(screenshot, "image/png");
+    }
+
+    if (process.env.TRACE === "true" && this.context) {
+        await fs.mkdir("reports/traces", { recursive: true });
+        const safeName = scenario.pickle.name
+            .replace(/[^a-z0-9-_]+/gi, "-")
+            .toLowerCase();
+        const tracePath = path.join("reports", "traces", `${safeName}.zip`);
+        await this.context.tracing.stop({ path: tracePath });
+
+        if (scenario.result?.status === Status.FAILED) {
+            this.log(`Trace saved to ${tracePath}`);
+        }
+    }
+
+    if (this.context) {
+        await this.context.close();
+    }
+
+    if (this.browser) {
+        await this.browser.close();
+    }
 });

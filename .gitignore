@@ -146,5 +146,5 @@ vite.config.ts.timestamp-*
 /test-results
 /playwright-report
 /reports
-/auth
+/data/auth
 
