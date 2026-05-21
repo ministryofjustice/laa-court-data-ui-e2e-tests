@@ -21,6 +21,7 @@ export class CustomWorld extends World {
         this.courtApplicationPage = null;
         this.defendantPage = null;
         this.breachPage = null;
+        this.linkCasesPage = null;
 
         this.scenario = null;
         this.authMode = "stored-state";
@@ -53,9 +54,13 @@ export class CustomWorld extends World {
         }
 
         await this.signIn.signIn();
-        await this.page.waitForLoadState();
-        await this.homePage.selectBreadcrumb("Home");
-        await this.page.waitForLoadState();
+        // After SSO flow completes, navigate to search page if not already there
+        await this.page.waitForLoadState("networkidle");
+        const currentUrl = this.page.url();
+        if (!currentUrl.includes('/search_filters')) {
+            await this.page.goto(`${this.parameters.baseUrl}search_filters/new`);
+            await this.page.waitForLoadState('networkidle');
+        }
     }
 }
 

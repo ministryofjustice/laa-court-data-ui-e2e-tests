@@ -1,4 +1,10 @@
-{
-  "urn": "TESTBR11111",
-  "number_of_defendants": 2
-}
+[
+  {
+    "urn": "TESTBR11111",
+    "number_of_defendants": 2
+  },
+  {
+    "urn": "BREACHMULTI",
+    "number_of_defendants": 2
+  }
+]

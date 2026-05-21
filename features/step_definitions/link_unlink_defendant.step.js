@@ -50,7 +50,9 @@ Then("I should see the defendant details page", async function () {
 Then("I should see the defendant details page for {string}", async function (urn) {
     const testUser = testUsers.find(v => v.urn === urn);
     await expect(this.page).toHaveTitle(/^Defendant details/);
-    await expect(this.defendantPage.locators.header).toHaveText(`Defendant${testUser.name}`);
+    // Header renders "Defendant" label and name as adjacent elements — match each part separately
+    await expect(this.defendantPage.locators.header).toContainText('Defendant');
+    await expect(this.defendantPage.locators.header).toContainText(testUser.name);
     await expect(this.defendantPage.locators.tag).toHaveText('Case');
 });
 
@@ -64,4 +66,14 @@ Then("I should see the MAAT ID on the page", async function () {
 
 Then("I should see the MAAT ID as {string}", async function (status) {
     await expect(this.caseDetailPage.locators.mattColumn).toContainText(status)
+});
+
+Then('I should be able to copy the following details to clipboard:', async function (dataTable) {
+    for (const row of dataTable.hashes()) {
+        for (const [key, value] of Object.entries(row)) {
+            await this.defendantPage.copyDetailsByType(key);
+            const clipboardText = await this.page.evaluate(() => navigator.clipboard.readText());
+            expect(clipboardText).toBe(value);
+        }
+    }
 });

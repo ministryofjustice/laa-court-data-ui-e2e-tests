@@ -14,6 +14,7 @@ import CaseDetailPage from "../../src/Page-objects/case_detail.po.js";
 import CourtApplicationPage from "../../src/Page-objects/court_application.po.js";
 import DefendantPage from "../../src/Page-objects/defendant_page.po.js";
 import BreachPage from "../../src/Page-objects/breach.po.js";
+import LinkCasesPage from "../../src/Page-objects/link_cases.po.js";
 
 Before(async function (scenario) {
     this.scenario = scenario;
@@ -26,6 +27,10 @@ Before(async function (scenario) {
         // Ensure auth storage state exists; generate it if needed
         await ensureAuthStorageState(this.parameters);
         contextOptions.storageState = this.parameters.authStorageState;
+        contextOptions.permissions = ["clipboard-read", "clipboard-write"];
+    }
+    else {
+        contextOptions.permissions = ["clipboard-read", "clipboard-write"];
     }
 
     this.context = await this.browser.newContext(contextOptions);
@@ -51,6 +56,7 @@ Before(async function (scenario) {
     this.courtApplicationPage = new CourtApplicationPage(this.page, this.parameters);
     this.defendantPage = new DefendantPage(this.page, this.parameters);
     this.breachPage = new BreachPage(this.page, this.parameters);
+    this.linkCasesPage = new LinkCasesPage(this.page, this.parameters);
 
     this.log(`Auth mode: ${this.authMode}`);
 });

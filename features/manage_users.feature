@@ -11,12 +11,12 @@ Feature: Manage users
         When User visits the users page
         Then I should see the error message "You are unauthorised to manage users"
 
-    Scenario: Managers can access the page
+    Scenario: Admins can access the page
         Given User is signed in as an admin
         When User visits the users page
         Then I should see the header "Manage Users"
 
-    Scenario: Managers can create and delete new users
+    Scenario: Admins can create and delete new users
         Given User is signed in as an admin
         When User visits the users page
         And User creates a new user
@@ -25,7 +25,7 @@ Feature: Manage users
         And User deletes a user
         Then I should see the message "account deleted"
 
-    Scenario: Managers can edit user details
+    Scenario: Admins can edit user details
         Given User is signed in as an admin
         When User visits the users page
         And User creates a new user
@@ -34,4 +34,3 @@ Feature: Manage users
         Then I should see the message "account updated"
         And User navigates back to the manage users page
         And User deletes a user
-

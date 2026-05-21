@@ -42,7 +42,7 @@ When("User searches with a blank NI identifier", async function () {
     await this.searchPage.searchByASNOrNI("");
 });
 
-Then("I should see {int} search results", async function (count) {
+Then("I should see {int} search result(s)", async function (count) {
     const responseText = count > 1 ? 'search results'  : 'search result'
     const resultsText = `${count} ${responseText}`
     await expect(this.searchPage.resultsCountHeading()).toContainText(resultsText);
@@ -56,3 +56,7 @@ Then("I should see the search term required warning", async function () {
     await expect(this.page.locator("body")).toContainText("There is a problem");
     await expect(this.page.locator("body")).toContainText("Search term required");
 });
+
+When('User searches by valid URN', async function () {
+  await this.searchPage.searchByURN(this.testData.urn);
+})

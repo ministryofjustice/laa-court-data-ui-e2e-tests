@@ -69,26 +69,26 @@ async function run() {
     // ── 2. Microsoft SSO — email step ─────────────────────────────────────────
     // The app redirects to login.microsoftonline.com.
     // Microsoft renders the email input with name="loginfmt".
-    await page.waitForSelector('input[name="loginfmt"]', { timeout: 15000 });
+    await page.waitForSelector('input[name="loginfmt"]', { timeout: 50000 });
     await page.fill('input[name="loginfmt"]', EMAIL);
     await page.click('input[type="submit"]');   // "Next" button
 
     // ── 3. Microsoft SSO — password step ──────────────────────────────────────
-    await page.waitForSelector('input[name="passwd"]', { timeout: 15000 });
+    await page.waitForSelector('input[name="passwd"]', { timeout: 50000 });
     await page.fill('input[name="passwd"]', PASSWORD);
     await page.click('input[type="submit"]');   // "Sign in" button
 
     // ── 4. "Stay signed in?" prompt — click No to avoid KMSI complications ────
     const staySignedIn = page.locator('[data-testid="idBtn_Back"]');
     try {
-        await staySignedIn.waitFor({ timeout: 5000 });
+        await staySignedIn.waitFor({ timeout: 50000 });
         await staySignedIn.click();
     } catch {
         // Prompt did not appear — that is fine, continue.
     }
 
     // ── 5. Wait for the app to finish loading after redirect ──────────────────
-    await page.waitForURL(`${VCD_URL}**`, { timeout: 30000 });
+    await page.waitForURL(`${VCD_URL}**`, { timeout: 50000 });
     await page.waitForLoadState('networkidle');
 
     // ── 6. Persist session ────────────────────────────────────────────────────
@@ -104,8 +104,3 @@ run().catch(err => {
     console.error('Auth generation failed:', err.message);
     process.exit(1);
 });
-
-const jsonVal = cookies
-const base64String = btoa(JSON.stringify(cookies.cookies));
-
-const finalString = btoa(jsonVal)
