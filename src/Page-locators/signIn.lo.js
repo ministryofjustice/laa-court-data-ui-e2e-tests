@@ -10,6 +10,12 @@ export default class SignInLocators extends NewPage {
     }
 
     get signInButton() {
+        // Specific selector for Microsoft SSO sign-in button (govuk-button--start style)
+        return this.page.locator('button.govuk-button--start[type="submit"]');
+    }
+
+    get microsoftSignInButton() {
+        // Fallback for any submit button if the primary selector fails
         return this.page.locator('button[type="submit"]');
     }
 }

@@ -8,6 +8,10 @@ export default class DefendantPage extends NewPage {
     }
 
     async viewCase() {
-        await this.locators.caseButton().click()
+        await this.locators.caseButton.click()
+    }
+
+    async copyDetailsByType(name) {
+        await this.locators.copyButtonByType(name).click();
     }
 }

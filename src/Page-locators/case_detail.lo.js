@@ -31,7 +31,7 @@ export default class CaseDetailLocators extends NewPage {
     }
 
     defendantLink(defendantName) {
-        return this.page.getByRole('link', { name: defendantName });
+        return this.page.locator(`a:has-text("${defendantName}")`);
     }
 
     get defendantTable() {

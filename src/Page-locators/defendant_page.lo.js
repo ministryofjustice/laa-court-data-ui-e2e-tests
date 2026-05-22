@@ -32,4 +32,14 @@ export default class DefendantPagelocator extends NewPage {
     get maatField() {
         return this.page.getByRole('row', { name: 'MAAT number' }).getByRole('cell');
     }
+
+    copyButtonByType(name) {
+        if (name === 'Defendant name') {
+            return this.page
+                .locator('span.copy-button-heading')
+                .getByRole('button', { name: 'Copy' })
+        }
+
+        return this.page.locator(`tr:has-text("${name}")`).getByRole('button', { name: 'Copy' });
+    }
 }

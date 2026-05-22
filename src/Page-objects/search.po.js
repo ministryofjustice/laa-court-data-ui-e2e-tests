@@ -45,8 +45,8 @@ export default class SearchPage extends NewPage {
         return this.locators.resultsCountHeading;
     }
 
-    openSearchedCase(urn){
-        return this.locators.caseURNLink(urn).first().click()
+    async openSearchedCase(urn){
+        await this.locators.caseURNLink(urn).first().click()
     }
 
 }
