@@ -6,7 +6,9 @@ export default class NewPage {
     }
 
     get baseUrl() {
-        return this.parameters.baseUrl;
+        return this.parameters.authMode === "dev-auth"
+            ? this.parameters.devUrl
+            : this.parameters.baseUrl;
     }
 
     get devUrl() {

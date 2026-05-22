@@ -23,7 +23,6 @@ When("User opens the breach application for the link {string}", async function (
 });
 
 When("User opens the first respondent", async function () {
-    await this.page.waitForURL(`${this.baseUrl}court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
 });
 

@@ -45,18 +45,19 @@ Before(async function (scenario) {
 
     this.page = await this.context.newPage();
 
-    this.signIn = new SignInPage(this.page, this.parameters);
-    this.searchPage = new SearchPage(this.page, this.parameters);
-    this.homePage = new HomePage(this.page, this.parameters);
-    this.caseSummaryPage = new CaseSummaryPage(this.page, this.parameters);
-    this.hearingDetailPage = new HearingDetailPage(this.page, this.parameters);
-    this.usersPage = new UsersPage(this.page, this.parameters);
-    this.genericPage = new GenericPage(this.page, this.parameters);
-    this.caseDetailPage = new CaseDetailPage(this.page, this.parameters);
-    this.courtApplicationPage = new CourtApplicationPage(this.page, this.parameters);
-    this.defendantPage = new DefendantPage(this.page, this.parameters);
-    this.breachPage = new BreachPage(this.page, this.parameters);
-    this.linkCasesPage = new LinkCasesPage(this.page, this.parameters);
+    const pageParams = { ...this.parameters, authMode: this.authMode };
+    this.signIn = new SignInPage(this.page, pageParams);
+    this.searchPage = new SearchPage(this.page, pageParams);
+    this.homePage = new HomePage(this.page, pageParams);
+    this.caseSummaryPage = new CaseSummaryPage(this.page, pageParams);
+    this.hearingDetailPage = new HearingDetailPage(this.page, pageParams);
+    this.usersPage = new UsersPage(this.page, pageParams);
+    this.genericPage = new GenericPage(this.page, pageParams);
+    this.caseDetailPage = new CaseDetailPage(this.page, pageParams);
+    this.courtApplicationPage = new CourtApplicationPage(this.page, pageParams);
+    this.defendantPage = new DefendantPage(this.page, pageParams);
+    this.breachPage = new BreachPage(this.page, pageParams);
+    this.linkCasesPage = new LinkCasesPage(this.page, pageParams);
 
     this.log(`Auth mode: ${this.authMode}`);
 });

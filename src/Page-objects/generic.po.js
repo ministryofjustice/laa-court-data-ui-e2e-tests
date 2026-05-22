@@ -55,11 +55,7 @@ export default class GenericPage extends NewPage {
 
     async verifyTabIsActive(tabName) {
         const tab = this.locators.getTabByName(tabName).first();
-        const ariaCurrent = await tab.getAttribute('aria-current');
-        const ariaSelected = await tab.getAttribute('aria-selected');
-        if (ariaCurrent !== 'page' && ariaSelected !== 'true') {
-            throw new Error(`Expected tab "${tabName}" to be active, but aria-current="${ariaCurrent}" and aria-selected="${ariaSelected}"`);
-        }
+        await expect(tab).toHaveAttribute('aria-current', 'page');
     }
 
     async logout() {
