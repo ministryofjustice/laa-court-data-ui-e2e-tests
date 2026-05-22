@@ -13,11 +13,6 @@ When("User visits related court applications for appeal case {string}", async fu
     await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
 });
 
-When("User opens related court applications", async function () {
-    await this.caseDetailPage.clickRelatedCourtApplications();
-    await expect(this.page).toHaveTitle(/^Case\s.+/);
-});
-
 When("User opens the appeal application", async function () {
     await this.genericPage.clickLink(appealLinkText);
 });

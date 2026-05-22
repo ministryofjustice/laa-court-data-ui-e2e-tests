@@ -13,11 +13,6 @@ When("User visits related court applications for breach case {string}", async fu
     await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
 });
 
-When("User opens related court applications tab", async function () {
-    await this.caseDetailPage.clickRelatedCourtApplications();
-    await expect(this.page).toHaveTitle(/^Case\s.+/);
-});
-
 When("User opens the breach application", async function () {
     await this.genericPage.clickLink(breachLinkText);
 });
@@ -65,6 +60,3 @@ Then("I should see the respondent heading", async function () {
     await expect(this.genericPage.heading()).toContainText("Respondent");
 });
 
-Then("I should see the subheading {string}", async function (text) {
-    await expect(this.genericPage.subheading(text)).toBeVisible();
-});

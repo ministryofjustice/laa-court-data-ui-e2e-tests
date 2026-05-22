@@ -10,9 +10,9 @@ const pickWord = () => randomWords[Math.floor(Math.random() * randomWords.length
 function buildTestUser() {
     const timestamp = Date.now();
     const randomiser = Math.floor(Math.random() * 10000);
-    const token = `${pickWord()}-${pickWord()}-${timestamp}-${random}`;
+    const token = `${pickWord()}-${pickWord()}-${timestamp}-${randomiser}`;
     // Username appears to be truncated by the app; keep it short to preserve exact matching.
-    const username = `at${String(timestamp).slice(-3)}${String(random).padStart(4, '0')}`;
+    const username = `at${String(timestamp).slice(-3)}${String(randomiser).padStart(4, '0')}`;
 
     return {
         firstName: `${newUserKeyword}-${pickWord()}`,

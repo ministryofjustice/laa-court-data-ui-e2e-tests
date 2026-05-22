@@ -50,14 +50,9 @@ Then("I should see the defendant details page", async function () {
 Then("I should see the defendant details page for {string}", async function (urn) {
     const testUser = testUsers.find(v => v.urn === urn);
     await expect(this.page).toHaveTitle(/^Defendant details/);
-    // Header renders "Defendant" label and name as adjacent elements — match each part separately
     await expect(this.defendantPage.locators.header).toContainText('Defendant');
     await expect(this.defendantPage.locators.header).toContainText(testUser.name);
     await expect(this.defendantPage.locators.tag).toHaveText('Case');
-});
-
-Then("I should see the defendant details page", async function () {
-    await expect(this.page).toHaveTitle(/^Defendant details/);
 });
 
 Then("I should see the MAAT ID on the page", async function () {
