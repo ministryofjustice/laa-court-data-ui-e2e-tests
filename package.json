@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "restore-auth": "node scripts/restore-auth.js",
+    "pretest": "npm run restore-auth",
     "e2e-test": "cucumber-js",
     "e2e:dev-auth": "cucumber-js --tags '@dev-auth'",
     "e2e:wip": "cucumber-js --tags '@wip'",

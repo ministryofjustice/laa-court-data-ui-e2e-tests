@@ -45,9 +45,7 @@ jobs:
 
       - run:
           name: Restore auth storage state
-          command: |
-            mkdir -p data/auth
-            echo "$COOKIES" | base64 --decode > data/auth/user.json
+          command: node scripts/restore-auth.js
       - run:
           name: Build and check/wait for services to be up
           command: |
