@@ -42,15 +42,21 @@ jobs:
           name: Pull vcd
           command: |
             ./.circleci/pull_image vcd
-
       - run:
-          name: Restore auth storage state
-          command: node scripts/restore-auth.js
+          name: Prepare report directories
+          command: mkdir -p reports data/auth
       - run:
           name: Build and check/wait for services to be up
           command: |
             docker-compose build
             docker-compose run start_applications
+      - run:
+          name: Validate COOKIES env var exists
+          command: |
+            if [ -z "$COOKIES" ]; then
+              echo "COOKIES env var is missing"
+              exit 1
+            fi
       - run:
           name: "Failure: output container logs to console"
           command: |
