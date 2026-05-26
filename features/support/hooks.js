@@ -20,6 +20,10 @@ Before(async function (scenario) {
     this.scenario = scenario;
     this.authMode = this.isDevAuthScenario() ? "dev-auth" : "stored-state";
 
+    console.log(`[config] Scenario: ${scenario.pickle.name}`);
+    console.log(`[config] Auth mode: ${this.authMode}`);
+    console.log(`[config] Parameters:`, JSON.stringify(this.parameters, null, 2));
+
     this.browser = await launchBrowser(this.parameters);
 
     const contextOptions = {};

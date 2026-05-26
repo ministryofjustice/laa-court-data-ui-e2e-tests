@@ -63,6 +63,12 @@ jobs:
             docker-compose logs
           when: on_fail
       - run:
+          name: Check E2E URL environment variables
+          command: |
+            echo "VCD_UAT_URL set? $([[ -n "$VCD_UAT_URL" ]] && echo yes || echo no)"
+            echo "VCD_DEV_URL set? $([[ -n "$VCD_DEV_URL" ]] && echo yes || echo no)"
+            docker-compose config | sed -n '/laa-court-data-end-to-end-tests:/,/^[^ ]/p'
+      - run:
           name: Run end to end tests
           command: |
             docker-compose run laa-court-data-end-to-end-tests
