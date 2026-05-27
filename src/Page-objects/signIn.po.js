@@ -15,7 +15,7 @@ export default class SignInPage extends NewPage {
     }
 
     async goToDev() {
-        await this.page.goto(this.devUrl);
+        await this.page.goto(this.parameters.devUrl);
     }
 
     async gotoUsers() {
@@ -23,7 +23,7 @@ export default class SignInPage extends NewPage {
     }
 
     async gotoDevUsers() {
-        await this.page.goto(`${this.devUrl}/users`);
+        await this.page.goto(`${this.parameters.devUrl}/users`);
     }
 
     async signIn() {

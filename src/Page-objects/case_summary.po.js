@@ -12,7 +12,7 @@ export default class CaseSummaryPage extends NewPage {
     }
 
     async gotoDev(urn) {
-        await this.page.goto(`${this.devUrl}/prosecution_cases/${urn}`);
+        await this.page.goto(`${this.parameters.devUrl}/prosecution_cases/${urn}`);
     }
 
     async gotoRelatedCourtApplications(urn) {
