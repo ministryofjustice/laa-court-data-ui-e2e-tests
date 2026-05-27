@@ -27,7 +27,7 @@ services:
     environment:
       - COOKIES=${COOKIES}
       - VCD_URL=${VCD_UAT_URL}
-      - VCD_DEV_URL=${VCD_DEV_URL}
+      - VCD_DEV_URL=http://vcd:3000
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
       - URN=TEST1234567
