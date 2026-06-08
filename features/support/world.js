@@ -27,8 +27,21 @@ export class CustomWorld extends World {
         this.authMode = "stored-state";
     }
 
+    getAuthModeFromTags() {
+        const tags = this.scenario?.pickle?.tags || [];
+
+        if (tags.some(tag => tag.name === "@dev-auth")) {
+            return "dev-auth";
+        }
+
+        if (tags.some(tag => tag.name === "@smoke-test")) {
+            return "smoke-test";
+        }
+        return "stored-state";
+    }
+
     isDevAuthScenario() {
-        return this.scenario?.pickle?.tags?.some(tag => tag.name === "@dev-auth") === true;
+        return this.authMode === "dev-auth";
     }
 
     get urls() {

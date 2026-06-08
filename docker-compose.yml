@@ -23,7 +23,7 @@ services:
   laa-court-data-end-to-end-tests:
     container_name: laa-court-data-end-to-end-tests
     build: .
-    command: sh -c "npm run restore-auth && npm run e2e:dev-auth"
+    command: sh -c "npm run restore-auth && npm run e2e:smoke-test"
     environment:
       - COOKIES=${COOKIES}
       - VCD_URL=${VCD_UAT_URL}

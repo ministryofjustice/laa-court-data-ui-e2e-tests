@@ -1,4 +1,5 @@
 @dev-auth
+@smoke-test
 Feature: Sign in and search
 
     Scenario: Not-logged-in users cannot access the page

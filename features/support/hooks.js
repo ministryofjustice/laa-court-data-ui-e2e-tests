@@ -18,8 +18,9 @@ import LinkCasesPage from "../../src/Page-objects/link_cases.po.js";
 
 Before(async function (scenario) {
     this.scenario = scenario;
-    this.authMode = this.isDevAuthScenario() ? "dev-auth" : "stored-state";
+    this.authMode = this.getAuthModeFromTags();
     console.log(`[config] Scenario: ${scenario.pickle.name}`);
+    console.log(`[config] AuthMode: ${this.authMode}`);
     this.browser = await launchBrowser(this.parameters);
 
     const contextOptions = {};

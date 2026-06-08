@@ -1,4 +1,4 @@
-@dev-auth
+@smoke-test
 Feature: Errors
 
     Scenario: 404 errors are handled appropriately

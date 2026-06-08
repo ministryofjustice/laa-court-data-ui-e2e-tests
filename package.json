@@ -8,6 +8,7 @@
     "pretest": "npm run restore-auth",
     "e2e-test": "cucumber-js",
     "e2e:dev-auth": "cucumber-js --tags '@dev-auth'",
+    "e2e:smoke-test": "cucumber-js --tags '@smoke-test'",
     "e2e:wip": "cucumber-js --tags '@wip'",
     "e2e:flaky": "cucumber-js --tags '@flaky' --retry 1",
     "e2e:headed": "HEADLESS=false npm run e2e-test",
