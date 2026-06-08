@@ -5,6 +5,10 @@ export default class NewPage {
         this.parameters = parameters;
     }
 
+    get baseUrl() {
+        return this.parameters.baseUrl;
+    }
+
     get devUrl() {
         return this.parameters.devUrl;
     }

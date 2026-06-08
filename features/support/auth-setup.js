@@ -42,14 +42,14 @@ export async function ensureAuthStorageState(parameters) {
     try {
         console.log(`  → Navigating to ${baseUrl}`);
         await page.goto(baseUrl);
-        
+
         // Wait for SSO redirect or login form to complete
         // The VCD app will handle SSO; we just need to wait for navigation to settle
         await page.waitForLoadState("networkidle");
 
         // Check if we're authenticated by looking for a sign-in button or home page indicator
         const isSignedIn = await page.locator("button:has-text('Sign out')").isVisible({ timeout: 5000 }).catch(() => false);
-        
+
         if (!isSignedIn) {
             throw new Error(
                 `Auth setup failed: unable to authenticate with ${email}. ` +

@@ -2,16 +2,7 @@ import dotenv from 'dotenv';
 
 const envName = process.env.NODE_ENV || 'local';
 const envFile = `.env.${envName}`;
-const result = dotenv.config({ path: envFile });
-
-console.log(`[config.js] Loading env file: ${envFile}`);
-console.log(`[config.js] dotenv result:`, result.error ? `ERROR: ${result.error.message}` : 'loaded successfully');
-console.log(`[config.js] VCD_URL=${process.env.VCD_URL}`);
-console.log(`[config.js] VCD_DEV_URL=${process.env.VCD_DEV_URL}`);
-console.log(`[config.js] VCD_UAT_URL=${process.env.VCD_UAT_URL}`);
-console.log(`[config.js] EMAIL=${process.env.EMAIL}`);
-console.log(`[config.js] NODE_ENV=${process.env.NODE_ENV}`);
-console.log(`[config.js] CI=${process.env.CI}`);
+dotenv.config({ path: envFile });
 
 const isCi = process.env.CI === 'true';
 const retryCount = isCi ? Number(process.env.CUCUMBER_RETRY || 0) : 0;

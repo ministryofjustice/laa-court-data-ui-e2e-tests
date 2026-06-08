@@ -17,5 +17,8 @@ Then("The system will pause", async function () {
 })
 
 Then("User should land in the home page", async function () {
-    await expect(this.page).toHaveURL(`${this.parameters.baseUrl}search_filters/new`);
+    const expectedUrl = this.authMode === "dev-auth"
+        ? this.parameters.devUrl
+        : this.parameters.baseUrl;
+    await expect(this.page).toHaveURL(`${expectedUrl}`);
 });

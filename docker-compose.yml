@@ -23,13 +23,14 @@ services:
   laa-court-data-end-to-end-tests:
     container_name: laa-court-data-end-to-end-tests
     build: .
-    command: sh -c "npm run restore-auth && npm run e2e-test"
+    command: sh -c "npm run restore-auth && npm run e2e:dev-auth"
     environment:
       - COOKIES=${COOKIES}
       - VCD_URL=${VCD_UAT_URL}
       - VCD_DEV_URL=http://vcd:3000
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
+      - ADMIN_EMAIL=admin@example.com
       - URN=TEST1234567
       - DEFENDANT_NAME=Jammy Dodger
       - DEFENDANT_DOB=21-05-1987
