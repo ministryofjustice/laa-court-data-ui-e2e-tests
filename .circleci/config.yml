@@ -76,8 +76,8 @@ jobs:
         name: Ensure artifact paths exist
         when: always
         command: |
-        mkdir -p reports reports/screenshots reports/traces
-        touch reports/cucumber.html reports/cucumber.json reports/cucumber.junit.xml
+            mkdir -p reports reports/screenshots reports/traces
+            touch reports/cucumber.html reports/cucumber.json reports/cucumber.junit.xml
       - store_test_results:
           path: reports/cucumber.junit.xml
       - store_artifacts:
