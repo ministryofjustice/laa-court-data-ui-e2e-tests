@@ -8,7 +8,7 @@ export default class UsersPage extends NewPage {
     }
 
     async goto() {
-        await this.page.goto(`${this.baseUrl}/users`);
+        await this.navigateTo('/users');
     }
 
     async addNewCaseworker(firstName, lastName, username, email) {
@@ -30,8 +30,7 @@ export default class UsersPage extends NewPage {
         const maxAttempts = 6;
         for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
             if (attempt > 0) {
-                const usersUrl = new URL('/users', this.page.url()).toString();
-                await this.page.goto(usersUrl);
+                await this.navigateTo('/users');
                 await this.page.waitForLoadState("networkidle");
             }
 

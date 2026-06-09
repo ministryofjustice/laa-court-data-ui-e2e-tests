@@ -57,6 +57,6 @@ export default class SignInPage extends NewPage {
         await this.goToDev();
         await this.locators.userSelect.selectOption(email);
         await this.locators.signInWithoutSsoButton.click();
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('networkidle');
     }
 }

@@ -18,7 +18,7 @@ When("User opens the appeal application", async function () {
 });
 
 When("User opens the first appellant", async function () {
-    await this.page.waitForURL(`${this.parameters.baseUrl}court_applications/**`);
+    await this.page.waitForURL(`${this.parameters.baseUrl}/court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
 });
 

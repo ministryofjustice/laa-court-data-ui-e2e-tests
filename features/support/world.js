@@ -71,7 +71,7 @@ export class CustomWorld extends World {
         await this.page.waitForLoadState("networkidle");
         const currentUrl = this.page.url();
         if (!currentUrl.includes('/search_filters')) {
-            await this.page.goto(`${this.parameters.baseUrl}search_filters/new`);
+            await this.page.goto(`${this.parameters.baseUrl}/search_filters/new`);
             await this.page.waitForLoadState('networkidle');
         }
     }
