@@ -73,9 +73,9 @@ jobs:
           command: |
             docker-compose run laa-court-data-end-to-end-tests
       - run:
-        name: Ensure artifact paths exist
-        when: always
-        command: |
+          name: Ensure artifact paths exist
+          when: always
+          command: |
             mkdir -p reports reports/screenshots reports/traces
             touch reports/cucumber.html reports/cucumber.json reports/cucumber.junit.xml
       - store_test_results:
