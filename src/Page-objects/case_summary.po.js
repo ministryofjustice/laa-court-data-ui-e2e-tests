@@ -8,15 +8,15 @@ export default class CaseSummaryPage extends NewPage {
     }
 
     async goto(urn) {
-        await this.page.goto(`${this.baseUrl}/prosecution_cases/${urn}`);
+        await this.navigateTo(`/prosecution_cases/${urn}`);
     }
 
     async gotoDev(urn) {
-        await this.page.goto(`${this.parameters.devUrl}/prosecution_cases/${urn}`);
+        await this.goto(urn);
     }
 
     async gotoRelatedCourtApplications(urn) {
-        await this.page.goto(`${this.baseUrl}/prosecution_cases/${urn}/related_court_applications`);
+        await this.navigateTo(`/prosecution_cases/${urn}/related_court_applications`);
     }
 
     async sortByDate() {

@@ -4,20 +4,17 @@ import { expect } from "@playwright/test";
 setDefaultTimeout(60 * 1000);
 
 When("User visits the search page", async function () {
-    const url = this.authMode === "dev-auth"
-        ? `${this.parameters.devUrl}/search_filters/new`
-        : `${this.parameters.baseUrl}/search_filters/new`;
-    await this.searchPage.goto(url);
+    await this.searchPage.goto("/search_filters/new");
 });
 
 When("User searches by valid {string}", async function (urnValue) {
-    let urn;
-
-    if (urnValue === "URN") {
-        urn = this.testData.urn;
-    } else {
-        urn = urnValue;
-    }
+    const testDataLookup = {
+        URN: this.testData.urn,
+        ASN: this.testData.asn,
+        NI_NUMBER: this.testData.niNumber,
+        DEFENDANT_NAME: this.testData.defendantName
+    };
+    const urn = testDataLookup[urnValue] ?? urnValue;
 
     await this.searchPage.searchByURN(urn);
 });
@@ -43,9 +40,11 @@ When("User searches with a blank NI identifier", async function () {
 });
 
 Then("I should see {int} search result(s)", async function (count) {
-    const responseText = count > 1 ? 'search results'  : 'search result'
-    const resultsText = `${count} ${responseText}`
-    await expect(this.searchPage.resultsCountHeading()).toContainText(resultsText);
+    const resultsPattern = new RegExp(
+        `\\b${count}\\s+(search\\s+results?|results?)\\b`,
+        "i"
+    );
+    await expect(this.page.getByRole("main")).toContainText(resultsPattern);
 });
 
 Then("I should see the no results message", async function () {

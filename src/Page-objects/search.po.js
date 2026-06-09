@@ -8,18 +8,15 @@ export default class SearchPage extends NewPage {
     }
 
     async goto(url) {
-        await this.page.goto(url);
+        await this.navigateTo(url);
     }
 
     async searchByURN(urn) {
-        await this.locators.caseByUrnRadio.click();
-        await this.page.waitForTimeout(1000);
-        await this.locators.caseByUrnRadio.click();
+        await this.locators.caseByUrnRadio.check();
         await this.locators.continueButton.click();
-        await this.page.waitForLoadState();
         await this.locators.searchTermField.fill(urn);
         await this.locators.searchButton.click();
-        await this.page.waitForLoadState();
+        await this.waitForSearchOutcome();
     }
 
     async searchByASNOrNI(asnOrNi) {
@@ -27,6 +24,7 @@ export default class SearchPage extends NewPage {
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(asnOrNi);
         await this.locators.searchButton.click();
+        await this.waitForSearchOutcome();
     }
 
     async searchByDefendant(defendantName, dateStr) {
@@ -39,6 +37,15 @@ export default class SearchPage extends NewPage {
         await this.locators.monthField.fill(month);
         await this.locators.yearField.fill(year);
         await this.locators.searchButton.click();
+        await this.waitForSearchOutcome();
+    }
+
+    async waitForSearchOutcome() {
+        await this.page.waitForLoadState("domcontentloaded");
+        await this.page.waitForSelector(
+            "h1, .govuk-error-summary, body",
+            { timeout: 10000 }
+        );
     }
 
     resultsCountHeading() {

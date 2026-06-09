@@ -22,7 +22,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get searchTermField() {
-        return this.page.getByRole('textbox');
+        return this.page.locator('#search-term-field');
     }
 
     get defendantNameField() {
@@ -42,11 +42,11 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get searchButton() {
-        return this.page.getByRole('button', { type: 'Search' });
+        return this.page.getByRole('button', { name: 'Search' });
     }
 
     get resultsCountHeading() {
-        return this.page.locator('div.govuk-heading-l');
+        return this.page.getByRole('heading', { name: /search result/i });
     }
 
     caseURNLink(urn) {
