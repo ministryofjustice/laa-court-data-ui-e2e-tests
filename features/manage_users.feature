@@ -1,4 +1,5 @@
 @dev-auth
+@smoke-test
 Feature: Manage users
 
     Scenario: Not-logged-in users cannot access the page

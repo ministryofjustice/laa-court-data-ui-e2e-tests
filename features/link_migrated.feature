@@ -1,4 +1,5 @@
 @dev-auth
+@smoke-test
 Feature: Pending Xhibit cases
   Background:
     Given User is signed in as a caseworker

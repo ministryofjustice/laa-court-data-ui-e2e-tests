@@ -1,7 +1,8 @@
 @smoke-test
 Feature: Errors
 
-    Scenario: 404 errors are handled appropriately
-        When User logs in
+    Scenario: Unauthorised users are redirected to sign in
+        Given User is not signed in
         And User visits the summary page for a nonexistent case
-        Then I should see the error message "There was a problem getting the information you requested. If this problem persists, please contact the IT Helpdesk on 0800 9175148."
+        Then I should see the error message "You need to sign in before continuing."
+        And I should see the error message "Sign in to view court data"

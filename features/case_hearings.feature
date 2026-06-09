@@ -1,4 +1,5 @@
 @dev-auth
+@smoke-test
 Feature: Case hearings
     Background:
         When User logs in

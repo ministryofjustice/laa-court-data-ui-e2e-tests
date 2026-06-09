@@ -24,7 +24,16 @@ function buildTestUser() {
 }
 
 Given("User is not signed in", async function () {
-    // Intentionally no action for unauthenticated access.
+    await this.context.clearCookies();
+
+    const baseUrl = this.parameters.baseUrl || this.parameters.devUrl;
+    await this.page.goto(baseUrl);
+    await this.page.evaluate(() => {
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+    });
+    await this.page.goto(baseUrl);
+    await this.page.waitForLoadState("domcontentloaded");
 });
 
 Given("User is signed in as a caseworker", async function () {
