@@ -23,7 +23,11 @@ services:
   laa-court-data-end-to-end-tests:
     container_name: laa-court-data-end-to-end-tests
     build: .
+    command: sh -c "npm run restore-auth && npm run e2e:smoke-test"
     environment:
+      - COOKIES=${COOKIES}
+      - VCD_DEV_URL=http://vcd:3000
+      - ADMIN_EMAIL=admin@example.com
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
@@ -33,7 +37,8 @@ services:
       - ASN=912ZWN690MMK
       - NI_NUMBER=JC123456A
     volumes:
-      - ./data:/data
+      - ./reports:/app/reports
+      - ./test-results:/app/test-results
 
   # DATABASE services
 

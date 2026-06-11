@@ -42,21 +42,56 @@ jobs:
           name: Pull vcd
           command: |
             ./.circleci/pull_image vcd
-
+      - run:
+          name: Prepare report directories
+          command: mkdir -p reports data/auth
       - run:
           name: Build and check/wait for services to be up
           command: |
             docker-compose build
             docker-compose run start_applications
       - run:
+          name: Validate COOKIES env var exists
+          command: |
+            if [ -z "$COOKIES" ]; then
+              echo "COOKIES env var is missing"
+              exit 1
+            fi
+      - run:
           name: "Failure: output container logs to console"
           command: |
             docker-compose logs
           when: on_fail
       - run:
+          name: Check E2E URL environment variables
+          command: |
+            echo "VCD_UAT_URL set? $([[ -n "$VCD_UAT_URL" ]] && echo yes || echo no)"
+            echo "VCD_DEV_URL set? $([[ -n "$VCD_DEV_URL" ]] && echo yes || echo no)"
+            docker-compose config | sed -n '/laa-court-data-end-to-end-tests:/,/^[^ ]/p'
+      - run:
           name: Run end to end tests
           command: |
             docker-compose run laa-court-data-end-to-end-tests
+      - run:
+          name: Ensure artifact paths exist
+          when: always
+          command: |
+            mkdir -p reports reports/screenshots reports/traces
+            touch reports/cucumber.html reports/cucumber.json reports/cucumber.junit.xml
+      - store_test_results:
+          path: reports/cucumber.junit.xml
+      - store_artifacts:
+          path: reports/cucumber.html
+          destination: e2e-report/cucumber.html
+      - store_artifacts:
+          path: reports/cucumber.json
+          destination: e2e-report/cucumber.json
+      - store_artifacts:
+          path: reports/screenshots
+          destination: e2e-report/screenshots
+      - store_artifacts:
+          path: reports/traces
+          destination: e2e-report/traces
 
 # ------------------
 # WORKFLOWS

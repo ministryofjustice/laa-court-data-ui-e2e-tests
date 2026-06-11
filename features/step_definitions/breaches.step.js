@@ -1,0 +1,61 @@
+import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
+import { expect } from "@playwright/test";
+
+setDefaultTimeout(60 * 1000);
+
+const breachLinkText = "Failing to comply with the community requirements of a suspended sentence order";
+
+When("User visits the summary page for breach case {string}", async function (urn) {
+    await this.caseSummaryPage.goto(urn);
+});
+
+When("User visits related court applications for breach case {string}", async function (urn) {
+    await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
+});
+
+When("User opens the breach application", async function () {
+    await this.genericPage.clickLink(breachLinkText);
+});
+
+When("User opens the breach application for the link {string}", async function (link) {
+    await this.genericPage.clickLink(link);
+    await this.page.waitForLoadState('domcontentloaded');
+});
+
+When("User opens the first respondent", async function () {
+    await this.courtApplicationPage.clickFirstAppellant();
+});
+
+Then("I should see the tag for the breach", async function () {
+    const element = this.breachPage.locators.tag('Breach');
+    await expect(element).toHaveText('Breach');
+    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)')
+});
+
+Then("I should see the tag for the POCA", async function () {
+    const element = this.breachPage.locators.tag('POCA');
+    await expect(element).toHaveText('POCA');
+    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)');
+});
+
+Then("I should see the breach heading for case {string}", async function (urn) {
+    const heading = this.genericPage.heading();
+    await expect(heading).toContainText("Breach");
+    await expect(heading).toContainText(urn);
+});
+
+Then("I should see the POCA heading for case {string}", async function (urn) {
+    const heading = this.genericPage.heading();
+    await expect(heading).toContainText("POCA");
+    await expect(heading).toContainText(urn);
+});
+
+Then("I should see the link {string}", async function (text) {
+    const heading = this.caseSummaryPage.locators.applicationTypeLink;
+    await expect(heading).toContainText(text);
+});
+
+Then("I should see the respondent heading", async function () {
+    await expect(this.genericPage.heading()).toContainText("Respondent");
+});
+

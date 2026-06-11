@@ -17,7 +17,7 @@ containers based on those images, seed appropriate data, and then run the tests 
 the following command (defined in `package.json`):
 
 ```
-npx playwright test --reporter line -j 1
+npx cucumber-js
 ```
 The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
 
@@ -62,9 +62,9 @@ To run the tests outside docker, follow these steps:
   Note that if you want to run the tests against the dockerised version of VCD you can point `VCD_URL` at `localhost:3001` (you will also need to ensure your local env vars mirror those in the docker-compose)
 
 4. Run the tests.
-   Use the Playwright test runner UI:
+   Use the Cucumber test runner UI:
    ```
-   npx playwright test --ui
+   npx cucumber,js
    ```
 
    This will open an interactive UI where you can explore and run the test suite.

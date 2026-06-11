@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e-test": "playwright test -j 1 --reporter line"
+    "restore-auth": "node scripts/restore-auth.js",
+    "pretest": "npm run restore-auth",
+    "e2e-test": "cucumber-js",
+    "e2e:dev-auth": "cucumber-js --tags '@dev-auth'",
+    "e2e:smoke-test": "cucumber-js --tags '@smoke-test and not @dev-auth'",
+    "e2e:smoke-dev": "cucumber-js --tags '@smoke-test and @dev-auth'",
+    "e2e:wip": "cucumber-js --tags '@wip'",
+    "e2e:flaky": "cucumber-js --tags '@flaky' --retry 1",
+    "e2e:headed": "HEADLESS=false npm run e2e-test",
+    "encode-auth": "node --input-type=module -e \"import fs from 'fs'; console.log(fs.readFileSync('data/auth/user.json').toString('base64'));\""
   },
   "keywords": [],
   "author": "",
@@ -18,6 +27,8 @@
     "globals": "^16.4.0"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^12.6.0",
+    "@cucumber/messages": "^32.2.0",
     "dotenv": "^17.2.2"
   }
 }
