@@ -125,7 +125,7 @@ commands:
           name: Run playwright end-to-end tests
           command: |
             cd $E2E_WORKING_DIRECTORY
-            docker-compose run laa-court-data-end-to-end-tests
+            docker-compose run laa-court-data-end-to-end-tests npm run e2e:smoke-dev
 
 # ------------
 # JOBS
