@@ -65,7 +65,7 @@ services:
     image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor:latest}
     ports:
       - 3002:3000
-    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
+    command: sh -c "set -e; bundle exec rails db:prepare db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
     environment: &cdaenvironment
       RAILS_ENV: development
       ENV: localhost
@@ -110,7 +110,7 @@ services:
     image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:latest}
     ports:
       - 3001:3000
-    command: sh -c "echo 'setting up db' ; bundle exec rails db:create db:migrate db:seed ; echo 'starting server' ; bundle exec puma"
+    command: sh -c "set -e; echo 'setting up db'; bundle exec rails db:prepare db:seed; echo 'starting server'; bundle exec puma"
     environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local
