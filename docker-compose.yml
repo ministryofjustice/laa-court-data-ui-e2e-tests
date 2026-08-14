@@ -121,5 +121,6 @@ services:
       COURT_DATA_ADAPTOR_API_UID: test-app-id
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
       FAKE_AUTH: 'true'
+      SHOW_LINK_MIGRATED_CASES: 'true'
     depends_on:
       - acd-db-services
