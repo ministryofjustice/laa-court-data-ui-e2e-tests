@@ -31,11 +31,10 @@ services:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
-      - URN=TEST1234567
-      - DEFENDANT_NAME=Jammy Dodger
-      - DEFENDANT_DOB=21-05-1987
-      - ASN=912ZWN690MMK
-      - NI_NUMBER=JC123456A
+      - APPEAL_URN=RQ122672778
+      - BREACH_URN=OQAC172426
+      - URN_WITH_MULTIPLE_HEARINGS=OQAC172426
+      - POCA_URN=20NX5872348
     volumes:
       - ./reports:/app/reports
       - ./test-results:/app/test-results

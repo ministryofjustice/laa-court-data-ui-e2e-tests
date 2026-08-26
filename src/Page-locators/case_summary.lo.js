@@ -9,8 +9,8 @@ export default class CaseSummaryLocators extends NewPage {
         return this.page.locator('a[aria-label="Sort type desc"]');
     }
 
-    hearingLink(hearingDate) {
-        return this.page.getByRole('link', { name: hearingDate });
+    hearingLink(hearingDate, index = 0) {
+        return this.page.getByRole('link', { name: hearingDate }).nth(index);
     }
 
     get applicationTypeLink() {

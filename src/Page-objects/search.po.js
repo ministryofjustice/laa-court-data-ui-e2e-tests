@@ -12,7 +12,7 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByURN(urn) {
-        await this.locators.caseByUrnRadio.click();
+        await this.locators.caseByUrnRadio.click({ force: true });
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(urn);
         await this.locators.searchButton.click();

@@ -27,8 +27,8 @@ export default class CaseSummaryPage extends NewPage {
         await this.locators.hearingTypeSortLink.click();
     }
 
-    async clickOnHearing(hearingDate) {
-        await this.locators.hearingLink(hearingDate).click();
+    async clickOnHearing(hearingDate, index = 0) {
+        await this.locators.hearingLink(hearingDate, index).click();
     }
 
     async clickOnApplication() {

@@ -8,7 +8,11 @@ export default class CaseDetailPage extends NewPage {
     }
 
     async clickDefendant(defendantName) {
-        await this.locators.defendantLink(defendantName).click();
+        if (defendantName) {
+            await this.locators.defendantLink(defendantName).click();
+        } else {
+            await this.locators.firstDefendantLink.click();
+        }
     }
 
     async enterMaatId(maatId) {
@@ -33,5 +37,13 @@ export default class CaseDetailPage extends NewPage {
 
     tableCells() {
         return this.locators.tableCells;
+    }
+
+    dateCells() {
+        return this.locators.dateCells;
+    }
+
+    hearingTypeCells() {
+        return this.locators.hearingTypeCells;
     }
 }

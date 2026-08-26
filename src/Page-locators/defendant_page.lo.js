@@ -33,6 +33,14 @@ export default class DefendantPagelocator extends NewPage {
         return this.page.getByRole('row', { name: 'MAAT number' }).getByRole('cell');
     }
 
+    get defendantName() {
+        return this.header.locator("#defendant-name").innerText();
+    }
+
+    get maatIDLink() {
+        return this.page.getByRole('link', { name: 'Link MAAT ID' })
+    }
+
     copyButtonByType(name) {
         if (name === 'Defendant name') {
             return this.page
@@ -41,5 +49,9 @@ export default class DefendantPagelocator extends NewPage {
         }
 
         return this.page.locator(`tr:has-text("${name}")`).getByRole('button', { name: 'Copy' });
+    }
+
+    valueByType(name) {
+        return this.page.locator(`tr:has-text("${name}")`).getByRole('cell').nth(0);
     }
 }

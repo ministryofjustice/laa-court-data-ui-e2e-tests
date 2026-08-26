@@ -11,7 +11,19 @@ export default class DefendantPage extends NewPage {
         await this.locators.caseButton.click()
     }
 
+    async clickLinkMaatID() {
+        await this.locators.maatIDLink.click();
+    }
+
     async copyDetailsByType(name) {
         await this.locators.copyButtonByType(name).click();
+    }
+
+    async getValueByType(name) {
+        return await this.locators.valueByType(name).innerText();
+    }
+
+    async getDefendantName() {
+        return await this.locators.defendantName;
     }
 }

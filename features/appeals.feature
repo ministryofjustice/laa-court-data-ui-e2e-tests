@@ -2,12 +2,12 @@
 Feature: Appeals
    Background:
         When User logs in
-        And User visits the summary page of unlinked case "TESTAP123"
+        And User visits the summary page of an appeal case
         And User opens related court applications tab
-        And User opens the breach application for the link "Appeal against conviction and sentence by a Magistrates' Court to the Crown Court"
+        And User opens the appeal application
 
     Scenario: Caseworker visits related court applications and the appeal page
-        Then I should see the appeal heading for case "AppealMyString"
+        Then I should see the heading for the appeal case
         And I should see the subheading "Appellant"
         And I should see the subheading "Hearings"
 

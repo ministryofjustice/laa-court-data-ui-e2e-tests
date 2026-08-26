@@ -9,12 +9,16 @@ When("User visits the summary page for breach case {string}", async function (ur
     await this.caseSummaryPage.goto(urn);
 });
 
+When("User visits the summary page of a breach case", async function () {
+    await this.caseSummaryPage.goto(this.testData.breachUrn);
+});
+
 When("User visits related court applications for breach case {string}", async function (urn) {
     await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
 });
 
 When("User opens the breach application", async function () {
-    await this.genericPage.clickLink(breachLinkText);
+    await this.genericPage.clickLink(/Failing to comply/);
 });
 
 When("User opens the breach application for the link {string}", async function (link) {
@@ -41,12 +45,6 @@ Then("I should see the tag for the POCA", async function () {
 Then("I should see the breach heading for case {string}", async function (urn) {
     const heading = this.genericPage.heading();
     await expect(heading).toContainText("Breach");
-    await expect(heading).toContainText(urn);
-});
-
-Then("I should see the POCA heading for case {string}", async function (urn) {
-    const heading = this.genericPage.heading();
-    await expect(heading).toContainText("POCA");
     await expect(heading).toContainText(urn);
 });
 

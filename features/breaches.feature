@@ -2,13 +2,12 @@
 Feature: Breaches
     Background:
         When User logs in
-        And User visits the summary page of unlinked case "BREACHMULTI"
+        And User visits the summary page of a breach case
         And User opens related court applications tab
-        And User opens the breach application for the link "Failing to comply with the requirements of a community order"
-        
+        And User opens the breach application
 
     Scenario: Caseworker visits related court applications and the breach page
-        Then I should see the breach heading for case "BreachMyString"
+        Then I should see the heading for the breach case
         And I should see the subheading "Respondent"
         And I should see the subheading "Hearings"
 

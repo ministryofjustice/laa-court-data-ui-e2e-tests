@@ -3,7 +3,7 @@
 Feature: Case hearings
     Background:
         When User logs in
-        And User visits the summary page of unlinked case "JEZUCBHAYN"
+        And User visits the summary page of a case with multiple hearings
 
     Scenario: Hearings are sorted by date by default
         Then Hearings should be sorted by date ascending
