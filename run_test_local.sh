@@ -7,6 +7,21 @@
 set -e
 export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
 
+WIREMOCK_RECORD=false
+for arg in "$@"; do
+  case "$arg" in
+    --wiremock-record)
+      WIREMOCK_RECORD=true
+      ;;
+  esac
+done
+
+if [[ "$WIREMOCK_RECORD" == true ]]; then
+  SHARED_SECRET_KEY=$(kubectl -n laa-court-data-adaptor-uat get secret aws-secrets -o jsonpath="{.data.common_platform_secret_key}" | base64 -d)
+  export SHARED_SECRET_KEY
+  export DOCKER_FILES="$DOCKER_FILES -f docker-compose.mtls.yml"
+fi
+
 if [[ $(uname -m) == 'arm64' ]];
 then
   echo "Apple Silicon detected"
@@ -26,7 +41,7 @@ function start_applications {
 }
 
 function run_tests {
-  docker compose up --build laa-court-data-end-to-end-tests
+  docker compose $DOCKER_FILES up --build laa-court-data-end-to-end-tests
 }
 
 teardown

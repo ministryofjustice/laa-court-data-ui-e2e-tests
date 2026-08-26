@@ -84,7 +84,7 @@ services:
       - wiremock
     volumes:
       - ./tmp/logs/cda:/usr/src/app/log
-      
+
   wiremock:
     container_name: wiremock
     image: wiremock/wiremock:3.13.2
@@ -111,7 +111,8 @@ services:
     image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:latest}
     ports:
       - 3001:3000
-    command: sh -c "set -e; echo 'setting up db'; bundle exec rails db:prepare db:seed; echo 'starting server'; bundle exec puma"    environment: &vcdenvironment
+    command: sh -c "set -e; echo 'setting up db'; bundle exec rails db:prepare db:seed; echo 'starting server'; bundle exec puma"
+    environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local
       RAILS_DEVELOPMENT_HOSTS: vcd
