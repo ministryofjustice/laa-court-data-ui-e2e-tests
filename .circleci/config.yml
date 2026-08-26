@@ -13,11 +13,10 @@ orbs:
 # ------------------
 jobs:
   run-e2e-tests:
-    docker:
-      - image: cimg/node:21.6.1
+    machine:
+      image: ubuntu-2204:current
     steps:
       - checkout
-      - setup_remote_docker
 
       - aws-cli/setup:
           role_arn: $MOCK_ECR_ROLE_TO_ASSUME
