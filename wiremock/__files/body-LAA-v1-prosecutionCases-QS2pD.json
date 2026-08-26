@@ -1,0 +1,268 @@
+{
+  "totalResults": 4,
+  "cases": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "62058fda-a49e-4a17-818f-b48c3f4b014b",
+      "prosecutionCaseReference": "test1234567",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": false,
+          "defendantId": "90b46bce-7ba3-462c-97d3-00c20bf555cb",
+          "masterDefendantId": "90b46bce-7ba3-462c-97d3-00c20bf555cb",
+          "defendantFirstName": "Riley",
+          "defendantLastName": "Smith",
+          "defendantDOB": "1970-01-20",
+          "offenceSummary": [
+            {
+              "offenceId": "73afea93-65f3-4399-a5e0-2bbc8d27e5fc",
+              "offenceCode": "RR84168",
+              "offenceTitle": "Exceed a 50mph speed restriction on a special road / motorway - automatic camera device",
+              "offenceLegislation": "Contrary to the above regulations and section 17(2), (3) and (4) of the Road Traffic Regulation Act 1984 and Schedule 2 to the Road Traffic Offenders Act 1988.",
+              "proceedingsConcluded": false,
+              "startDate": "2021-01-01",
+              "chargeDate": "2008-01-01",
+              "orderIndex": 0,
+              "wording": "On or in 1 January 2021 at Town1 drove a motor vehicle, namely JT 13 Pen on a special road, namely the lane subject of  regulations, namely the law at a speed exceeding 50 miles per hour",
+              "laaApplnReference": {},
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "92e3d2bc-cf9e-4f1d-8ace-3563d2cb5ed2",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2021-09-28T09:00:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 10,
+              "hasSharedResults": false
+            }
+          ],
+          "hearingType": {
+            "id": "bd30a723-a375-3ae9-9332-871724cd8edd",
+            "description": "Appeal"
+          },
+          "courtCentre": {
+            "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+            "name": "Lavender Hill Magistrates' Court",
+            "roomId": "b6cc0e08-6227-3786-8ebe-36febddec7ff",
+            "roomName": "Courtroom 04"
+          },
+          "defenceCounsel": []
+        },
+        {
+          "hearingId": "3de694be-2889-4e77-a260-b107a92080ca",
+          "jurisdictionType": "CROWN",
+          "defendantIds": [
+            "90b46bce-7ba3-462c-97d3-00c20bf555cb"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2022-06-30T09:00:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 240
+            }
+          ],
+          "hearingType": {
+            "id": "bf8155e1-90b9-4080-b133-bfbad895d6e4",
+            "description": "Trial"
+          },
+          "courtCentre": {
+            "id": "07e45c88-9e5d-3e44-b664-d5345bb13be2",
+            "name": "Croydon Crown Court",
+            "roomId": "731816c1-5ee4-373a-9bda-840e13a5bcb0",
+            "roomName": "Courtroom 01",
+            "code": "C01CY00"
+          },
+          "defenceCounsel": []
+        }
+      ],
+      "applicationSummary": [
+        {
+          "applicationId": "3c0fc044-1e89-4165-af7f-ad9d8e851d56",
+          "applicationReference": "test1234567",
+          "receivedDate": "2021-09-27",
+          "applicationTitle": "Appeal against conviction"
+        }
+      ]
+    },
+    {
+      "prosecutionCaseId": "935c61af-cbfa-4f4a-8b09-eaceb754df2a",
+      "prosecutionCaseReference": "Test1234567",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": false,
+          "defendantId": "09f926c1-bebf-4314-ad53-a44e64e67f61",
+          "masterDefendantId": "09f926c1-bebf-4314-ad53-a44e64e67f61",
+          "defendantFirstName": "Alex",
+          "defendantLastName": "Brown",
+          "offenceSummary": [
+            {
+              "offenceId": "87a38763-c79a-4fae-827b-a898b02bdd6f",
+              "offenceCode": "TH68023",
+              "offenceTitle": "Robbery",
+              "offenceLegislation": "Contrary to section 8(1) of the Theft Act 1968.",
+              "proceedingsConcluded": false,
+              "startDate": "2021-10-10",
+              "modeOfTrial": "Indictable",
+              "orderIndex": 1,
+              "wording": "On or in 10 October 2021 at bank robbed reus of money to the value of 10000",
+              "laaApplnReference": {},
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "8e937336-bf8c-4f89-aaae-c91152b4298b",
+          "jurisdictionType": "CROWN",
+          "defendantIds": [
+            "09f926c1-bebf-4314-ad53-a44e64e67f61"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2022-06-30T13:30:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 20,
+              "hasSharedResults": false
+            }
+          ],
+          "hearingType": {
+            "id": "bf8155e1-90b9-4080-b133-bfbad895d6e4",
+            "description": "Trial"
+          },
+          "courtCentre": {
+            "id": "07e45c88-9e5d-3e44-b664-d5345bb13be2",
+            "name": "Croydon Crown Court",
+            "roomId": "df4f5204-63d7-3111-a93a-a034ce5ad901",
+            "welshName": "Llys Y Goron Croydon"
+          },
+          "defenceCounsel": []
+        }
+      ]
+    },
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "ef7c369b-c959-4cac-b688-c0ee48946465",
+      "prosecutionCaseReference": "TEST1234567",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": true,
+          "defendantId": "276b3f41-5147-4501-862e-ac7941839a0c",
+          "masterDefendantId": "276b3f41-5147-4501-862e-ac7941839a0c",
+          "defendantASN": "4dcc9a60-8332-27d9",
+          "defendantFirstName": "Avery",
+          "defendantLastName": "Smith",
+          "offenceSummary": [
+            {
+              "offenceId": "43ca49fa-30ce-4ae3-9a59-413ebffe595f",
+              "offenceCode": "CJ88144",
+              "offenceTitle": "Possess knife blade / sharp pointed article in a public place - Criminal Justice Act 1988",
+              "offenceLegislation": "Contrary to section 139(1) and (6) of the Criminal Justice Act 1988.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2023-10-13",
+              "startDate": "2023-10-12",
+              "chargeDate": "2023-10-13",
+              "modeOfTrial": "Either Way",
+              "orderIndex": 1,
+              "wording": "On or in 12 October 2023 at England and Wales had with you, without good reason or lawful authority, in a public place LocationX an article which had a blade or was sharply pointed, namely A Knife . .",
+              "laaApplnReference": {},
+              "plea": []
+            }
+          ]
+        },
+        {
+          "proceedingsConcluded": true,
+          "defendantId": "5f681e94-7d07-42d5-b24e-50dd667ad262",
+          "masterDefendantId": "5f681e94-7d07-42d5-b24e-50dd667ad262",
+          "defendantASN": "30c89a71-6335-8ad0",
+          "defendantFirstName": "Avery",
+          "defendantLastName": "Walker",
+          "offenceSummary": [
+            {
+              "offenceId": "613a422a-b238-4313-82cd-895a3b20106c",
+              "offenceCode": "MD71530",
+              "offenceTitle": "Possess a controlled drug of Class B - Cannabis / Cannabis Resin",
+              "offenceLegislation": "Contrary to section 5(2) of and Schedule 4 to the Misuse of    Drugs Act 1971.",
+              "proceedingsConcluded": false,
+              "arrestDate": "2023-10-13",
+              "startDate": "2023-10-12",
+              "chargeDate": "2023-10-13",
+              "modeOfTrial": "Either Way",
+              "orderIndex": 2,
+              "wording": "On or in 12 October 2023 at England and Wales had in your possession a quantity of cannabis a controlled drug of class B in contravention of section 5(1) of the Misuse of Drugs Act 1971",
+              "laaApplnReference": {},
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "098d1bb8-6ec7-4ad7-8224-9d020014601e",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [
+            "276b3f41-5147-4501-862e-ac7941839a0c",
+            "5f681e94-7d07-42d5-b24e-50dd667ad262"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2023-10-13T13:00:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 20
+            }
+          ],
+          "hearingType": {
+            "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+            "description": "First hearing"
+          },
+          "courtCentre": {
+            "id": "07178fbe-4b93-37d0-99c4-4859ffaa23a2",
+            "name": "Chelmsford Magistrates' Court",
+            "roomId": "a102458c-301f-3fe5-88d0-5cda9455f235",
+            "roomName": "Courtroom 01",
+            "code": "B42CM00"
+          },
+          "defenceCounsel": []
+        }
+      ]
+    },
+    {
+      "caseStatus": "ACTIVE",
+      "prosecutionCaseId": "8af52ff1-1da4-4dc3-b2b6-aea5927c08e5",
+      "prosecutionCaseReference": "Test1234567",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": false,
+          "defendantId": "2817e5a7-5382-4a67-a8c3-1f61d8d65f32",
+          "masterDefendantId": "2817e5a7-5382-4a67-a8c3-1f61d8d65f32",
+          "defendantFirstName": "Morgan",
+          "defendantLastName": "Evans",
+          "offenceSummary": [
+            {
+              "offenceId": "990a82e3-3a96-4383-bf4f-59012302fd18",
+              "offenceCode": "SV77015",
+              "offenceTitle": "Motor vehicle exceed 60 mph on single carriageway - manned equipment",
+              "offenceLegislation": "Contrary to article 3b of the 70 Miles Per Hour, 60 Miles Per Hour and 50 Miles Per Hour (Temporary Speed Limit) Order 1977, section 89(1) of the Road Traffic Regulation Act 1984 and Schedule 2 to the Road Traffic Offenders Act 1988.",
+              "proceedingsConcluded": false,
+              "startDate": "2000-01-01",
+              "chargeDate": "2000-01-01",
+              "modeOfTrial": "1",
+              "orderIndex": 1,
+              "wording": "On or in 1 January 2000 at Portsmouth drove a motor vehicle, namely Mini CAR1 on a single carriageway road, namely The Road at a speed exceeding 60 miles per hour",
+              "laaApplnReference": {},
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": []
+    }
+  ]
+}

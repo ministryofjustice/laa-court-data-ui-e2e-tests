@@ -1,0 +1,20 @@
+{
+  "id" : "c0c2040f-87ca-3803-b443-1eb5f9b6ac64",
+  "request" : {
+    "url" : "/LAA/v1/applications/543562bb-030f-4843-a4f7-7ad424e585af",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-applications-543562bb-030f-4843-a4f7-7ad424e585af-jla6S.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "118",
+      "cppid" : "96f4af76-c621-49e3-9b36-0491ea0f000a",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Wed, 26 Aug 2026 06:44:26 GMT",
+      "Content-Type" : "application/vnd.progression.query.application-laa+json"
+    }
+  },
+  "uuid" : "c0c2040f-87ca-3803-b443-1eb5f9b6ac64"
+}

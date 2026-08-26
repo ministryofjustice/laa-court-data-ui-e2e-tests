@@ -1,0 +1,82 @@
+{
+  "applicationId": "bbbced4c-115b-42f6-aad1-664b5d56351e",
+  "applicationReference": "20NX5872348",
+  "applicationStatus": "FINALISED",
+  "applicationTitle": "Application for a confiscation order in the Crown Court",
+  "applicationType": "PC02541",
+  "applicationTypeId": "2494fa76-b89e-47cd-8a9b-d8ede263e925",
+  "caseSummary": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "0a11d292-ebe6-4d82-8352-45f303a78879",
+      "prosecutionCaseReference": "20NX5872348"
+    }
+  ],
+  "hearingSummary": [
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "address3": "42 Sample Street",
+          "address4": "42 Sample Street",
+          "postCode": "L1 1AA"
+        },
+        "code": "C01BL00",
+        "id": "89592405-c29b-3706-b1d3-b1dd3a08b227",
+        "name": "Blackfriars Crown Court",
+        "roomId": "d0624ee3-9198-3c8b-94d6-42fb197ebe5e",
+        "roomName": "Courtroom 01"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 660,
+          "listingSequence": 1,
+          "sittingDay": "2026-02-04T10:00:00.000Z"
+        }
+      ],
+      "hearingId": "23628f8f-559d-4569-b8c0-84a88ab72445",
+      "hearingType": {
+        "description": "Application under the Proceeds of Crime Act 2002",
+        "id": "0e164535-6a82-3db4-b237-d04f12758807"
+      },
+      "jurisdictionType": "CROWN"
+    }
+  ],
+  "judicialResults": [
+    {
+      "category": "FINAL",
+      "isAdjournmentResult": false,
+      "isAvailableForCourtExtract": true,
+      "isConvictedResult": false,
+      "isFinancialResult": false,
+      "judicialResultId": "4ae7b94f-7220-46f0-a73e-50c6a93789d0",
+      "label": "Application refused",
+      "lastSharedDateTime": "2026-02-04",
+      "orderedDate": "2026-02-04",
+      "orderedHearingId": "23628f8f-559d-4569-b8c0-84a88ab72445",
+      "rank": 212300,
+      "resultText": "RFSD - Application refused",
+      "terminatesOffenceProceedings": false
+    }
+  ],
+  "laaApplicationShortId": "A26GY9LUAK0O",
+  "laaApplnReference": {
+    "applicationReference": "6324582",
+    "statusCode": "AP",
+    "statusDescription": "Application Pending",
+    "statusId": "31a80a9a-fb91-3043-a08b-d738abc86ef5"
+  },
+  "receivedDate": "2026-02-04",
+  "subjectSummary": {
+    "dateOfNextHearing": "2026-02-04T10:00:00.000Z",
+    "defendantDOB": "1970-01-01",
+    "defendantFirstName": "Avery",
+    "defendantLastName": "Hughes",
+    "masterDefendantId": "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1",
+    "offenceSummary": [],
+    "proceedingsConcluded": true,
+    "subjectId": "95b1f309-978f-4af3-b109-4cb6aafc1e3b"
+  }
+}

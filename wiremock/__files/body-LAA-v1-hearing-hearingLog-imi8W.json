@@ -1,0 +1,24 @@
+{
+  "hearingId": "6135d19f-178d-4fd6-9b3e-c049c1a3ff83",
+  "hasActiveHearing": false,
+  "events": [
+    {
+      "hearingEventId": "74d70539-5c8d-41c0-a974-0a64b5e39636",
+      "hearingEventDefinitionId": "b71e7d2a-d3b3-4a55-a393-6d451767fc05",
+      "recordedLabel": "Hearing started",
+      "eventTime": "2025-12-04T15:28:11.212Z",
+      "lastModifiedTime": "2026-01-22T15:28:18.813Z",
+      "alterable": false,
+      "note": "CHILD APP EVENT started"
+    },
+    {
+      "hearingEventId": "3d623894-f515-4828-bc08-69fdb4412c52",
+      "hearingEventDefinitionId": "0df93f18-0a21-40f5-9fb3-da4749cd70fe",
+      "recordedLabel": "Hearing ended",
+      "eventTime": "2025-12-04T15:28:24.212Z",
+      "lastModifiedTime": "2026-01-22T15:28:34.038Z",
+      "alterable": false,
+      "note": "CHILD APP EVENT ended"
+    }
+  ]
+}

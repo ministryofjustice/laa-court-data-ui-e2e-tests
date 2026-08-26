@@ -1,0 +1,89 @@
+{
+  "applicationId": "543562bb-030f-4843-a4f7-7ad424e585af",
+  "applicationReference": "OQAC172426",
+  "applicationStatus": "FINALISED",
+  "applicationTitle": "Application for transfer of legal aid",
+  "applicationType": "LA12505",
+  "applicationTypeId": "38f948b2-cb7f-418c-ac5e-61bf82cac888",
+  "caseSummary": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "5b3f5526-d977-44ba-b81c-4164172a88e8",
+      "prosecutionCaseReference": "OQAC172426"
+    }
+  ],
+  "hearingSummary": [
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "address3": "42 Sample Street",
+          "address4": "42 Sample Street",
+          "postCode": "M1 1AA"
+        },
+        "code": "B01IX00",
+        "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+        "name": "Westminster Magistrates' Court",
+        "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+        "roomName": "Courtroom 01"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 20,
+          "listingSequence": 1,
+          "sittingDay": "2025-12-04T10:00:00.000Z"
+        }
+      ],
+      "hearingId": "6135d19f-178d-4fd6-9b3e-c049c1a3ff83",
+      "hearingType": {
+        "description": "Application",
+        "id": "3449743b-95d6-4836-8941-57f588b52068"
+      },
+      "jurisdictionType": "MAGISTRATES"
+    }
+  ],
+  "judicialResults": [
+    {
+      "category": "FINAL",
+      "cjsCode": "2063",
+      "isAdjournmentResult": false,
+      "isAvailableForCourtExtract": true,
+      "isConvictedResult": false,
+      "isFinancialResult": false,
+      "judicialResultId": "0fc7a78b-79e1-4b31-912a-cf81f1be63e1",
+      "label": "Withdrawn",
+      "lastSharedDateTime": "2026-01-22",
+      "orderedDate": "2025-12-04",
+      "orderedHearingId": "6135d19f-178d-4fd6-9b3e-c049c1a3ff83",
+      "rank": 171900,
+      "resultText": "WDRN - Withdrawn\nComplaint withdrawn.",
+      "terminatesOffenceProceedings": true
+    }
+  ],
+  "laaApplicationShortId": "A25MRXFV1ZA5",
+  "laaApplnReference": {
+    "applicationReference": "Z10000440",
+    "statusCode": "AP",
+    "statusDescription": "Application Pending",
+    "statusId": "31a80a9a-fb91-3043-a08b-d738abc86ef5"
+  },
+  "receivedDate": "2025-12-03",
+  "subjectSummary": {
+    "dateOfNextHearing": "2025-12-04T10:00:00.000Z",
+    "defendantDOB": "1970-01-31",
+    "defendantFirstName": "Avery",
+    "defendantLastName": "Hughes",
+    "masterDefendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+    "offenceSummary": [],
+    "proceedingsConcluded": false,
+    "representationOrder": {
+      "applicationReference": "6286243",
+      "effectiveFromDate": "2026-01-22",
+      "effectiveToDate": "2026-01-22",
+      "laaContractNumber": "1M383Y"
+    },
+    "subjectId": "5a6147d1-6ed7-4303-b020-b552b7d9d9af"
+  }
+}

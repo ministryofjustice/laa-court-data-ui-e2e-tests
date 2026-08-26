@@ -88,10 +88,6 @@ commands:
       - aws-cli/setup:
           role_arn: $MOCK_ECR_ROLE_TO_ASSUME # this will use the env var
           region: $ECR_REGION
-      - run:
-          name: Pull mock image
-          command: |
-            $E2E_WORKING_DIRECTORY/.circleci/pull_image mock
 
       - aws-cli/setup:
           role_arn: $CDA_ECR_ROLE_TO_ASSUME

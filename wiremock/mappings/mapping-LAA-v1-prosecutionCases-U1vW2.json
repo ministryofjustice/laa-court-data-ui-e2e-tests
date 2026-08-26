@@ -1,0 +1,20 @@
+{
+  "id" : "7938e522-7fd7-3b81-b1b2-dd3dd1a28f2d",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?prosecutionCaseReference=20NX5872348",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-U1vW2.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "58",
+      "cppid" : "df1a9cb0-fc38-4862-9d0a-17dff460ea1d",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Wed, 26 Aug 2026 06:44:20 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "7938e522-7fd7-3b81-b1b2-dd3dd1a28f2d"
+}

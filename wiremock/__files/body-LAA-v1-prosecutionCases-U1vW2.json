@@ -1,0 +1,135 @@
+{
+  "totalResults": 1,
+  "cases": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "0a11d292-ebe6-4d82-8352-45f303a78879",
+      "prosecutionCaseReference": "20NX5872348",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": true,
+          "representationOrder": {},
+          "defendantId": "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1",
+          "masterDefendantId": "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1",
+          "defendantASN": "830b0fdb-6ff4-fc3e",
+          "defendantFirstName": "Avery",
+          "defendantLastName": "Hughes",
+          "defendantDOB": "1970-01-01",
+          "offenceSummary": [
+            {
+              "offenceId": "dd1d7034-6481-4c56-85ac-868718cc3089",
+              "offenceCode": "TH68023",
+              "offenceTitle": "Robbery",
+              "offenceLegislation": "Contrary to section 8(1) of the Theft Act 1968.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2022-10-28",
+              "startDate": "2022-10-28",
+              "chargeDate": "2022-10-28",
+              "modeOfTrial": "Indictable",
+              "orderIndex": 1,
+              "wording": "Contrary to section 8(1) of the Theft Act 1968.",
+              "laaApplnReference": {
+                "applicationReference": "6307203",
+                "statusId": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                "statusCode": "AP",
+                "statusDescription": "Application Pending"
+              },
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "c0dfa5aa-58b2-4e59-ad64-d24093bcbdc6",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [
+            "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2026-02-04T12:00:00.000Z",
+              "listingSequence": 3,
+              "listedDurationMinutes": 20,
+              "hasSharedResults": true
+            }
+          ],
+          "hearingType": {
+            "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+            "description": "First hearing"
+          },
+          "courtCentre": {
+            "id": "d9bff7d8-6168-4163-ad77-3b98d61de174",
+            "name": "Wimbledon Magistrates' Court",
+            "roomId": "1414ea28-8b0e-3ba7-8f97-f2bb6d5dd38c",
+            "roomName": "Courtroom 05",
+            "code": "B01OK00"
+          },
+          "defenceCounsel": [
+            {
+              "id": "bbbba239-f1e6-48a8-8f8e-ec2496a1c4d7",
+              "title": "",
+              "firstName": "Parker",
+              "middleName": "Morgan",
+              "lastName": "Walker",
+              "status": "Junior alone",
+              "defendants": [
+                "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1"
+              ],
+              "attendanceDays": [
+                "2026-02-04"
+              ]
+            }
+          ]
+        },
+        {
+          "hearingId": "23628f8f-559d-4569-b8c0-84a88ab72445",
+          "jurisdictionType": "CROWN",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2026-02-04T10:00:00.000Z",
+              "listingSequence": 1,
+              "listedDurationMinutes": 660,
+              "hasSharedResults": true
+            }
+          ],
+          "hearingType": {
+            "id": "0e164535-6a82-3db4-b237-d04f12758807",
+            "description": "Application under the Proceeds of Crime Act 2002"
+          },
+          "courtCentre": {
+            "id": "89592405-c29b-3706-b1d3-b1dd3a08b227",
+            "name": "Blackfriars Crown Court",
+            "roomId": "d0624ee3-9198-3c8b-94d6-42fb197ebe5e",
+            "roomName": "Courtroom 01",
+            "code": "C01BL00"
+          },
+          "defenceCounsel": []
+        }
+      ],
+      "applicationSummary": [
+        {
+          "applicationId": "bbbced4c-115b-42f6-aad1-664b5d56351e",
+          "applicationReference": "20NX5872348",
+          "receivedDate": "2026-02-04",
+          "subjectSummary": {
+            "subjectId": "95b1f309-978f-4af3-b109-4cb6aafc1e3b",
+            "masterDefendantId": "f2229b5c-0ca7-439b-ad7f-70c36ccce1d1",
+            "firstName": "Avery",
+            "lastName": "Hughes",
+            "dateOfBirth": "1970-01-01",
+            "address": {
+              "address1": "57 Example Road",
+              "address2": "1 Example Road",
+              "address3": "80 Mock Lane",
+              "address4": "52 Mock Lane",
+              "address5": "3 Demo Avenue"
+            }
+          },
+          "applicationTitle": "Application for a confiscation order in the Crown Court"
+        }
+      ]
+    }
+  ]
+}
