@@ -12,18 +12,18 @@ services:
     command: >
       -wait tcp://cda:3000
       -wait tcp://vcd:3000
-      -wait tcp://mock:3000
+      -wait tcp://wiremock:8080
       -wait-retry-interval 10s
       -timeout 300s
     depends_on:
       - cda
       - vcd
-      - mock
+      - wiremock
 
   laa-court-data-end-to-end-tests:
     container_name: laa-court-data-end-to-end-tests
     build: .
-    command: sh -c "npm run restore-auth && npm run e2e:smoke-test"
+    command: sh -c "npm run e2e-test"
     environment:
       - COOKIES=${COOKIES}
       - VCD_DEV_URL=http://vcd:3000
@@ -31,10 +31,13 @@ services:
       - VCD_URL=${VCD_URL:-http://vcd:3000}
       - EMAIL=caseworker@example.com
       - MANAGER_EMAIL=manager@example.com
-      - URN=TEST1234567
-      - DEFENDANT_NAME=Jammy Dodger
-      - DEFENDANT_DOB=21-05-1987
-      - ASN=912ZWN690MMK
+      - APPEAL_URN=RQ122672778
+      - BREACH_URN=OQAC172426
+      - URN_WITH_MULTIPLE_HEARINGS=OQAC172426
+      - POCA_URN=20NX5872348
+      - ASN=2391NX0000456263896D
+      - DEFENDANT_NAME=Ervin Kub
+      - DEFENDANT_DOB=03-12-2001
       - NI_NUMBER=JC123456A
     volumes:
       - ./reports:/app/reports
@@ -44,7 +47,7 @@ services:
 
   acd-db-services:
     container_name: acd-db-services
-    image: postgres:16.9-alpine3.22
+    image: postgres:17.4-alpine
     volumes:
       - ./tmp/pgdata:/var/lib/data
     environment:
@@ -65,15 +68,15 @@ services:
     image: ${CDA_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/laa-court-data-adaptor:latest}
     ports:
       - 3002:3000
-    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
+    command: sh -c "set -e; bundle exec rails db:prepare db:seed; bundle exec rails client:create name=test-app uid=test-app-id secret=test-app-secret; bundle exec puma -C config/puma.rb"
     environment: &cdaenvironment
       RAILS_ENV: development
       ENV: localhost
       RAILS_DEVELOPMENT_HOSTS: cda
       HOSTS: "cda:3000"
       PROTOCOL: http
-      COMMON_PLATFORM_URL: http://mock:3000
-      SHARED_SECRET_KEY: super-secret-key
+      COMMON_PLATFORM_URL: http://wiremock:8080/LAA/v1
+      SHARED_SECRET_KEY: ${SHARED_SECRET_KEY:-super-secret-key}
       INLINE_SIDEKIQ: 'true'
       DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/cda_dev
       MAAT_API_API_URL: ''
@@ -82,35 +85,37 @@ services:
       BREACH_COURT_APPLICATIONS: 'true'
     depends_on:
       - acd-db-services
+      - wiremock
+    volumes:
+      - ./tmp/logs/cda:/usr/src/app/log
 
-  mock: &mock
-    container_name: mock
-    image: ${MOCK_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-crime-apps-team/hmcts-common-platform-mock-api:latest}
+  wiremock:
+    container_name: wiremock
+    image: wiremock/wiremock:3.13.2
     ports:
-      - 3003:3000
-    command: sh -c "bundle exec rails db:create db:migrate db:seed; bundle exec rails mock:demodata:unload; bundle exec rails mock:demodata:load; bundle exec puma -C config/puma.rb"
-    environment: &mockenvironment
-      RAILS_ENV: development
-      ENV: localhost
-      RAILS_DEVELOPMENT_HOSTS: mock
-      HOSTS: "mock:3000"
-      DATABASE_URL: postgresql://postgres:postgres@acd-db-services:5432/mock_dev
-      SHARED_SECRET_KEY: super-secret-key
-      LAA_DEV_API_URL: http://cda:3000
-      LAA_DEV_OAUTH_URL: http://cda:3000/v1/oauth/token
-      LAA_DEV_CLIENT_ID: test-app-id
-      LAA_DEV_CLIENT_SECRET: test-app-secret
-      ADMIN_USERNAME: admin
-      ADMIN_PASSWORD: password
-    depends_on:
-      - acd-db-services
+      - 3003:8080
+    command:
+      - --verbose
+      - --root-dir
+      - /home/wiremock
+      - --port
+      - "8080"
+      - --proxy-all=https://apigw.sit.cjscp.org.uk
+      - --record-mappings
+      - --disable-connection-reuse
+      - "true"
+      - --proxy-timeout
+      - "30000"
+      - --disable-http2-tls
+    volumes:
+      - ./wiremock:/home/wiremock
 
   vcd: &vcd
     container_name: vcd
     image: ${VCD_IMAGE:-754256621582.dkr.ecr.eu-west-2.amazonaws.com/laa-assess-a-claim/laa-court-data-ui:latest}
     ports:
       - 3001:3000
-    command: sh -c "echo 'setting up db' ; bundle exec rails db:create db:migrate db:seed ; echo 'starting server' ; bundle exec puma"
+    command: sh -c "set -e; echo 'setting up db'; bundle exec rails db:prepare db:seed; echo 'starting server'; bundle exec puma"
     environment: &vcdenvironment
       RAILS_ENV: development
       ENV: local
@@ -121,5 +126,6 @@ services:
       COURT_DATA_ADAPTOR_API_UID: test-app-id
       COURT_DATA_ADAPTOR_API_SECRET: test-app-secret
       FAKE_AUTH: 'true'
+      SHOW_LINK_MIGRATED_CASES: 'true'
     depends_on:
       - acd-db-services

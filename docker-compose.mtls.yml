@@ -1,0 +1,21 @@
+services:
+  wiremock:
+    command:
+      - --verbose
+      - --root-dir
+      - /home/wiremock
+      - --port
+      - "8080"
+      - --proxy-all=https://apigw.sit.cjscp.org.uk
+      - --record-mappings
+      - --disable-connection-reuse
+      - "true"
+      - --proxy-timeout
+      - "30000"
+      - --disable-http2-tls
+      - --https-truststore
+      - /home/wiremock/certs/wiremock-proxy-client.p12
+      - --truststore-type
+      - PKCS12
+      - --truststore-password
+      - ${WIREMOCK_TRUSTSTORE_PASSWORD:-secret}

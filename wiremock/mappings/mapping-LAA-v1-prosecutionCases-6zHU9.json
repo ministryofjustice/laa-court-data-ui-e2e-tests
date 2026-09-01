@@ -1,0 +1,20 @@
+{
+  "id" : "91747c78-4d88-387b-b542-417833dfd293",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?defendantASN=912ZWN690MMK",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-6zHU9.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "50",
+      "cppid" : "f4e64dc9-72f0-4c1e-b2af-0b44f9f57963",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Tue, 01 Sep 2026 09:33:52 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "91747c78-4d88-387b-b542-417833dfd293"
+}

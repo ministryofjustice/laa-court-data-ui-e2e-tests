@@ -1,0 +1,150 @@
+{
+  "allegationOrComplaintStartDate": "2025-12-01",
+  "applicationId": "ca9999f4-4662-424f-9c32-2947c33336d2",
+  "applicationReference": "OQAC172426",
+  "applicationStatus": "FINALISED",
+  "applicationTitle": "Failing to comply with the requirements of an engagement and support order",
+  "applicationType": "SO59501",
+  "applicationTypeId": "c76c4d40-896a-49b2-b2be-31dfa65025c6",
+  "hearingSummary": [
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "postCode": "M1 1AA"
+        },
+        "code": "B01IX00",
+        "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+        "name": "Westminster Magistrates' Court"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 10,
+          "sittingDay": "2025-12-13T00:00:00.000Z"
+        }
+      ],
+      "hearingId": "6992a0c3-2ccb-43ec-8dd2-dfbbd19cc9e2",
+      "hearingType": {
+        "description": "Application",
+        "id": "3449743b-95d6-4836-8941-57f588b52068"
+      },
+      "jurisdictionType": "MAGISTRATES"
+    },
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "address3": "42 Sample Street",
+          "address4": "42 Sample Street",
+          "postCode": "M1 1AA"
+        },
+        "code": "B01IX00",
+        "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+        "name": "Westminster Magistrates' Court",
+        "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+        "roomName": "Courtroom 01"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 10,
+          "listingSequence": 0,
+          "sittingDay": "2025-12-13T10:00:00.000Z"
+        }
+      ],
+      "hearingId": "00f12e90-af81-44d4-9198-0f514faa428b",
+      "hearingType": {
+        "description": "Mention",
+        "id": "f730b853-f9bb-4d46-8c1e-cc3af5a13fe8"
+      },
+      "jurisdictionType": "MAGISTRATES"
+    },
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "address3": "42 Sample Street",
+          "address4": "42 Sample Street",
+          "postCode": "M1 1AA"
+        },
+        "code": "B01IX00",
+        "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+        "name": "Westminster Magistrates' Court",
+        "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+        "roomName": "Courtroom 01"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 20,
+          "listingSequence": 2,
+          "sittingDay": "2025-12-13T10:00:00.000Z"
+        }
+      ],
+      "hearingId": "676257d3-397c-47e8-bb24-240564b374cf",
+      "hearingType": {
+        "description": "Breach of Order",
+        "id": "136dfc3a-a874-32ce-8493-e50849590b49"
+      },
+      "jurisdictionType": "MAGISTRATES"
+    }
+  ],
+  "judicialResults": [
+    {
+      "category": "FINAL",
+      "cjsCode": "1029",
+      "isAdjournmentResult": false,
+      "isAvailableForCourtExtract": true,
+      "isConvictedResult": false,
+      "isFinancialResult": false,
+      "judicialResultId": "d87488b6-a391-480f-89a8-793a13dea0ee",
+      "label": "Order revoked",
+      "lastSharedDateTime": "2026-01-22",
+      "orderedDate": "2025-12-13",
+      "orderedHearingId": "676257d3-397c-47e8-bb24-240564b374cf",
+      "rank": 106000,
+      "resultText": "OREV - Order revoked\ncommunity order made by Barnsley Magistrates' Court on 21/12/2025 revoked.",
+      "terminatesOffenceProceedings": false
+    }
+  ],
+  "laaApplicationShortId": "A25ID2IBZXMU",
+  "laaApplnReference": {
+    "applicationReference": "Z10000440",
+    "statusCode": "AP",
+    "statusDescription": "Application Pending",
+    "statusId": "31a80a9a-fb91-3043-a08b-d738abc86ef5"
+  },
+  "linkedApplications": [
+    {
+      "applicantDisplayName": "Probation Service - South West",
+      "applicationId": "543562bb-030f-4843-a4f7-7ad424e585af",
+      "applicationReference": "OQAC172426",
+      "applicationStatus": "FINALISED",
+      "applicationTitle": "Application for transfer of legal aid",
+      "respondentDisplayNames": [
+        "Ervin Kub"
+      ]
+    }
+  ],
+  "receivedDate": "2025-11-28",
+  "subjectSummary": {
+    "dateOfNextHearing": "2025-12-13T10:00:00.000Z",
+    "defendantASN": "942c3f6f-1846-b451",
+    "defendantDOB": "1970-01-31",
+    "defendantFirstName": "Avery",
+    "defendantLastName": "Hughes",
+    "masterDefendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+    "proceedingsConcluded": true,
+    "representationOrder": {
+      "applicationReference": "6286243",
+      "effectiveFromDate": "2026-01-22",
+      "effectiveToDate": "2026-01-22",
+      "laaContractNumber": "1M383Y"
+    },
+    "subjectId": "e5b43366-909f-498b-8275-c622d26ecaf0"
+  }
+}

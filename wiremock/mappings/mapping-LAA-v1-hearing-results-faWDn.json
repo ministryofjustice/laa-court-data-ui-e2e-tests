@@ -1,0 +1,19 @@
+{
+  "id" : "ff161333-5841-3cf8-8e88-ce147cb9e931",
+  "request" : {
+    "url" : "/LAA/v1/hearing/results?hearingId=694f56da-669e-4aaf-8b93-9d9775ac9519",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-hearing-results-faWDn.txt",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Wed, 26 Aug 2026 06:44:46 GMT",
+      "Request-Context" : "appId=cid-v1:8b201324-0bd7-49d2-bebd-be0bae12b22e",
+      "Content-Type" : "text/plain;charset=UTF-8"
+    }
+  },
+  "uuid" : "ff161333-5841-3cf8-8e88-ce147cb9e931"
+}

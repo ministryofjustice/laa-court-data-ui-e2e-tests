@@ -18,12 +18,23 @@ When("User visits the summary page of a linked case", async function () {
     await expect(this.genericPage.body()).toContainText(MAAT_ID);
 });
 
+When("User visits the summary page of an appeal case", async function () {
+    await this.searchPage.searchByURN(this.testData.appealUrn)
+    await this.searchPage.openSearchedCase(this.testData.appealUrn)
+    await expect(this.genericPage.body()).toContainText(this.testData.appealUrn);
+});
+
 When("User opens the defendant details for {string}", async function (urn) {
     const testUser = testUsers.find(v => v.urn === urn);
     await this.caseDetailPage.clickDefendant(testUser.name);
 });
 
+When("User opens the defendant details page", async function () {
+    await this.caseDetailPage.clickDefendant();
+});
+
 When("User enters an invalid MAAT ID", async function () {
+    await this.defendantPage.clickLinkMaatID();
     await this.caseDetailPage.enterMaatId("123456");
     await this.caseDetailPage.createLinkToCourtData();
 });
@@ -63,12 +74,19 @@ Then("I should see the MAAT ID as {string}", async function (status) {
     await expect(this.caseDetailPage.locators.mattColumn).toContainText(status)
 });
 
+Then("I should be able to copy the defendant's name to the clipboard", async function () {
+    const value = await this.defendantPage.getDefendantName();
+    await this.defendantPage.copyDetailsByType("Defendant name");
+    const clipboardText = await this.page.evaluate(() => navigator.clipboard.readText());
+    expect(clipboardText).toBe(value);
+});
+
 Then('I should be able to copy the following details to clipboard:', async function (dataTable) {
-    for (const row of dataTable.hashes()) {
-        for (const [key, value] of Object.entries(row)) {
-            await this.defendantPage.copyDetailsByType(key);
-            const clipboardText = await this.page.evaluate(() => navigator.clipboard.readText());
-            expect(clipboardText).toBe(value);
-        }
+    const keys = dataTable.raw()[0]
+    for (const key of keys) {
+        const value = await this.defendantPage.getValueByType(key);
+        await this.defendantPage.copyDetailsByType(key);
+        const clipboardText = await this.page.evaluate(() => navigator.clipboard.readText());
+        expect(clipboardText).toBe(value);
     }
 });

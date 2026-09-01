@@ -38,7 +38,10 @@ export default {
         managerEmail: process.env.MANAGER_EMAIL,
         adminEmail: process.env.ADMIN_EMAIL,
         testData: {
-            urn: process.env.URN,
+            appealUrn: process.env.APPEAL_URN,
+            breachUrn: process.env.BREACH_URN,
+            urnWithMultipleHearings: process.env.URN_WITH_MULTIPLE_HEARINGS,
+            pocaUrn: process.env.POCA_URN,
             asn: process.env.ASN,
             defendantName: process.env.DEFENDANT_NAME,
             defendantDob: process.env.DEFENDANT_DOB,

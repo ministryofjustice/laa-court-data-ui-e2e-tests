@@ -1,24 +1,18 @@
+@dev-auth
 Feature: Link and unlink defendants
     Background: 
         When User logs in
+        And User visits the summary page of an appeal case
+        And User opens the defendant details page
 
     Scenario: Link status is visible
-        # When User visits the summary page of unlinked case "ZFAC125888"
-        When User visits the summary page of unlinked case "PYAC513991"
-        And User opens the defendant details for "PYAC513991"
+        Then I should see the defendant details page
+        And I should be able to copy the defendant's name to the clipboard
         And I should be able to copy the following details to clipboard:
-            | Case URN | Defendant name | Date of birth | ASN |
-            | PYAC513991 | Seymour Adams| 03/12/1975| 2391NX0000143825641D |
-
-    Scenario: Defendant details are accessible
-        When User visits the summary page of unlinked case "PYAC513991"
-        And User opens the defendant details for "PYAC513991"
-        Then I should see the defendant details page for "PYAC513991"
+            | Case URN | Date of birth | ASN |
 
     Scenario: MAAT is validated and errors are highlighted
-        When User visits the summary page of unlinked case "PYAC513991"
-        And User opens the defendant details for "PYAC513991"
-        And User enters an invalid MAAT ID
+        When User enters an invalid MAAT ID
         Then I should see the error message "Enter a MAAT ID in the correct format"
 
     # Scenario: Defendant details are accessible

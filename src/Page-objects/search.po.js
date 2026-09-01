@@ -12,7 +12,7 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByURN(urn) {
-        await this.locators.caseByUrnRadio.check();
+        await this.locators.caseByUrnRadio.click({ force: true });
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(urn);
         await this.locators.searchButton.click();
@@ -20,7 +20,7 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByASNOrNI(asnOrNi) {
-        await this.locators.defendantByAsnOrNiRadio.check();
+        await this.locators.defendantByAsnOrNiRadio.click();
         await this.locators.continueButton.click();
         await this.locators.searchTermField.fill(asnOrNi);
         await this.locators.searchButton.click();
@@ -28,7 +28,7 @@ export default class SearchPage extends NewPage {
     }
 
     async searchByDefendant(defendantName, dateStr) {
-        await this.locators.defendantByNameDobRadio.check();
+        await this.locators.defendantByNameDobRadio.click();
         await this.locators.continueButton.click();
         await this.locators.defendantNameField.fill(defendantName);
 

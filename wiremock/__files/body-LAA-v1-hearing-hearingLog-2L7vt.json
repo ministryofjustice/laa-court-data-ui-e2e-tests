@@ -1,0 +1,24 @@
+{
+  "hearingId": "676257d3-397c-47e8-bb24-240564b374cf",
+  "hasActiveHearing": false,
+  "events": [
+    {
+      "hearingEventId": "d566799f-6b71-49b2-abb5-49e3b2de10bf",
+      "hearingEventDefinitionId": "b71e7d2a-d3b3-4a55-a393-6d451767fc05",
+      "recordedLabel": "Hearing started",
+      "eventTime": "2025-12-13T15:28:42.768Z",
+      "lastModifiedTime": "2026-01-22T15:29:00.409Z",
+      "alterable": false,
+      "note": "breach hearing started - OREV "
+    },
+    {
+      "hearingEventId": "5360dc2d-31fd-4eb5-9283-98b6cc6ab49e",
+      "hearingEventDefinitionId": "0df93f18-0a21-40f5-9fb3-da4749cd70fe",
+      "recordedLabel": "Hearing ended",
+      "eventTime": "2025-12-13T15:29:05.767Z",
+      "lastModifiedTime": "2026-01-22T15:29:11.001Z",
+      "alterable": false,
+      "note": "breach hearing ended - OREV"
+    }
+  ]
+}

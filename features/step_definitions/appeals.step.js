@@ -13,10 +13,6 @@ When("User visits related court applications for appeal case {string}", async fu
     await this.caseSummaryPage.gotoRelatedCourtApplications(urn);
 });
 
-When("User opens the appeal application", async function () {
-    await this.genericPage.clickLink(appealLinkText);
-});
-
 When("User opens the first appellant", async function () {
     await this.page.waitForURL(`${this.parameters.baseUrl}/court_applications/**`);
     await this.courtApplicationPage.clickFirstAppellant();
@@ -47,4 +43,8 @@ Then("I should see the appeal heading for case {string}", async function (urn) {
 
 Then("I should see the appellant heading", async function () {
     await expect(this.genericPage.heading()).toContainText("Appellant");
+});
+
+When("User opens the appeal application", async function () {
+    await this.genericPage.clickLink(/Appeal/);
 });

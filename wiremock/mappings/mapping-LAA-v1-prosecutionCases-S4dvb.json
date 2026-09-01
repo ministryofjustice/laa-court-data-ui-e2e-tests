@@ -1,0 +1,20 @@
+{
+  "id" : "d5637507-12f9-3e1e-acac-a87ef21675a5",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?prosecutionCaseReference=OQAC172426",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-S4dvb.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "47",
+      "cppid" : "f45cb506-eeee-4122-8ed7-cd4b608c09d8",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Wed, 26 Aug 2026 06:43:39 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "d5637507-12f9-3e1e-acac-a87ef21675a5"
+}

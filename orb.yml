@@ -14,8 +14,8 @@ orbs:
 # ------------
 executors:
   e2e-test-executor:
-    docker:
-      - image: cimg/node:21.6.1
+    machine:
+      image: ubuntu-2204:current
 
 # ------------
 # COMMANDS
@@ -44,7 +44,6 @@ commands:
         default: ""
     steps:
       - checkout
-      - setup_remote_docker
       - unless:
           condition: << parameters.e2e_current_image_var >>
           steps:
@@ -88,10 +87,6 @@ commands:
       - aws-cli/setup:
           role_arn: $MOCK_ECR_ROLE_TO_ASSUME # this will use the env var
           region: $ECR_REGION
-      - run:
-          name: Pull mock image
-          command: |
-            $E2E_WORKING_DIRECTORY/.circleci/pull_image mock
 
       - aws-cli/setup:
           role_arn: $CDA_ECR_ROLE_TO_ASSUME
@@ -125,7 +120,7 @@ commands:
           name: Run playwright end-to-end tests
           command: |
             cd $E2E_WORKING_DIRECTORY
-            docker-compose run laa-court-data-end-to-end-tests
+            docker-compose run laa-court-data-end-to-end-tests npm run e2e-test
 
 # ------------
 # JOBS

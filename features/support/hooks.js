@@ -37,6 +37,22 @@ Before(async function (scenario) {
 
     this.context = await this.browser.newContext(contextOptions);
 
+    await this.context.addInitScript(() => {
+        let clipboardValue = "";
+
+        if (!navigator.clipboard) {
+            Object.defineProperty(navigator, "clipboard", {
+                configurable: true,
+                value: {
+                    writeText: async (value) => {
+                        clipboardValue = String(value);
+                    },
+                    readText: async () => clipboardValue
+                }
+            });
+        }
+    });
+
     if (process.env.TRACE === "true") {
         await this.context.tracing.start({
             screenshots: true,

@@ -1,4 +1,5 @@
 @smoke-test
+@dev-auth
 Feature: Errors
 
     Scenario: Unauthorised users are redirected to sign in

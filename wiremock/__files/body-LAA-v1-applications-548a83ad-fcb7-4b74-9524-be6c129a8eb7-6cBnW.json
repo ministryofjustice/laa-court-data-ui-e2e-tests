@@ -1,0 +1,102 @@
+{
+  "applicationId": "548a83ad-fcb7-4b74-9524-be6c129a8eb7",
+  "applicationReference": "RQ122672778",
+  "applicationStatus": "FINALISED",
+  "applicationTitle": "Appeal against conviction by a Magistrates' Court to the Crown Court",
+  "applicationType": "MC80802",
+  "applicationTypeId": "3fca31f0-7b30-47e8-8f3f-90601ad26b50",
+  "caseSummary": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "27f40462-2ef2-4991-bbb2-524e4c627291",
+      "prosecutionCaseReference": "RQ122672778"
+    }
+  ],
+  "hearingSummary": [
+    {
+      "courtCentre": {
+        "address": {
+          "address1": "52 Mock Lane",
+          "address2": "63 Demo Avenue",
+          "address3": "42 Sample Street",
+          "address4": "42 Sample Street",
+          "postCode": "L1 1AA"
+        },
+        "code": "C01BL00",
+        "id": "89592405-c29b-3706-b1d3-b1dd3a08b227",
+        "name": "Blackfriars Crown Court",
+        "roomId": "d0624ee3-9198-3c8b-94d6-42fb197ebe5e",
+        "roomName": "Courtroom 01"
+      },
+      "hearingDays": [
+        {
+          "hasSharedResults": true,
+          "listedDurationMinutes": 720,
+          "listingSequence": 2,
+          "sittingDay": "2025-08-22T09:00:00.000Z"
+        }
+      ],
+      "hearingId": "f07ec484-fedd-46a6-9568-cd78dfc33785",
+      "hearingType": {
+        "description": "Appeal against Conviction",
+        "id": "ba24aa48-e919-3592-8699-f901c902c859"
+      },
+      "jurisdictionType": "CROWN"
+    }
+  ],
+  "judicialResults": [
+    {
+      "category": "FINAL",
+      "isAdjournmentResult": false,
+      "isAvailableForCourtExtract": true,
+      "isConvictedResult": false,
+      "isFinancialResult": false,
+      "judicialResultId": "fefb1628-1d08-41b0-84ec-5ce2853b8ef4",
+      "label": "Appeal against conviction allowed ",
+      "lastSharedDateTime": "2025-08-22",
+      "orderedDate": "2025-08-22",
+      "orderedHearingId": "f07ec484-fedd-46a6-9568-cd78dfc33785",
+      "rank": 86700,
+      "resultText": "AACA - Appeal against conviction allowed \nDate of Conviction 22/12/2025.",
+      "terminatesOffenceProceedings": false
+    }
+  ],
+  "laaApplicationShortId": "A25WRPY83DD6",
+  "receivedDate": "2025-08-22",
+  "subjectSummary": {
+    "dateOfNextHearing": "2025-08-22T09:00:00.000Z",
+    "defendantDOB": "1970-02-03",
+    "defendantFirstName": "Casey",
+    "defendantLastName": "Patel",
+    "masterDefendantId": "91f2ae27-c7dd-45ae-890d-0d7f7f21395d",
+    "offenceSummary": [
+      {
+        "arrestDate": "2025-08-07",
+        "chargeDate": "2025-08-12",
+        "laaApplnReference": {
+          "applicationReference": "6152370",
+          "statusCode": "GR",
+          "statusDescription": "Granted (One Advocate)",
+          "statusId": "98e86937-9652-32a3-a9fb-dbd01eda86a5"
+        },
+        "modeOfTrial": "Either Way",
+        "offenceCode": "TH68155",
+        "offenceId": "107eb727-9834-404d-9fe6-0606ee21b74d",
+        "offenceLegislation": "Contrary to section 12A of the Theft Act 1968.",
+        "offenceTitle": "Aggravated vehicle taking - ( being carried on ) and property damage of £5000 or over",
+        "orderIndex": 1,
+        "proceedingsConcluded": true,
+        "startDate": "2025-06-23",
+        "wording": "Aggravated vehicle taking - ( being carried on ) and property damage of £5000 or over"
+      }
+    ],
+    "proceedingsConcluded": true,
+    "representationOrder": {
+      "applicationReference": "6152370",
+      "effectiveFromDate": "2025-08-22",
+      "effectiveToDate": "2025-08-22",
+      "laaContractNumber": "1M383Y"
+    },
+    "subjectId": "651a0557-80bc-421c-bb03-0a7c9fd1ba63"
+  }
+}

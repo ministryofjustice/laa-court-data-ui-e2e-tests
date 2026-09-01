@@ -13,19 +13,14 @@ orbs:
 # ------------------
 jobs:
   run-e2e-tests:
-    docker:
-      - image: cimg/node:21.6.1
+    machine:
+      image: ubuntu-2204:current
     steps:
       - checkout
-      - setup_remote_docker
 
       - aws-cli/setup:
           role_arn: $MOCK_ECR_ROLE_TO_ASSUME
           region: $ECR_REGION
-      - run:
-          name: Pull mock image
-          command: |
-            ./.circleci/pull_image mock
 
       - aws-cli/setup:
           role_arn: $CDA_ECR_ROLE_TO_ASSUME
@@ -72,12 +67,6 @@ jobs:
           name: Run end to end tests
           command: |
             docker-compose run laa-court-data-end-to-end-tests
-      - run:
-          name: Ensure artifact paths exist
-          when: always
-          command: |
-            mkdir -p reports reports/screenshots reports/traces
-            touch reports/cucumber.html reports/cucumber.json reports/cucumber.junit.xml
       - store_test_results:
           path: reports/cucumber.junit.xml
       - store_artifacts:

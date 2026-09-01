@@ -1,0 +1,215 @@
+{
+  "totalResults": 1,
+  "cases": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "27f40462-2ef2-4991-bbb2-524e4c627291",
+      "prosecutionCaseReference": "RQ122672778",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": true,
+          "representationOrder": {
+            "applicationReference": "6152369",
+            "effectiveFromDate": "2025-08-22",
+            "effectiveToDate": "2025-08-22",
+            "laaContractNumber": "1M383Y"
+          },
+          "defendantId": "91f2ae27-c7dd-45ae-890d-0d7f7f21395d",
+          "masterDefendantId": "91f2ae27-c7dd-45ae-890d-0d7f7f21395d",
+          "defendantASN": "57bc70b6-54f4-fce8",
+          "defendantFirstName": "Casey",
+          "defendantLastName": "Patel",
+          "defendantDOB": "1970-02-03",
+          "offenceSummary": [
+            {
+              "offenceId": "107eb727-9834-404d-9fe6-0606ee21b74d",
+              "offenceCode": "TH68155",
+              "offenceTitle": "Aggravated vehicle taking - ( being carried on ) and property damage of £5000 or over",
+              "offenceLegislation": "Contrary to section 12A of the Theft Act 1968.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2025-08-07",
+              "startDate": "2025-06-23",
+              "chargeDate": "2025-08-12",
+              "modeOfTrial": "Either Way",
+              "orderIndex": 1,
+              "wording": "Aggravated vehicle taking - ( being carried on ) and property damage of £5000 or over",
+              "verdict": {
+                "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                "verdictDate": "2025-08-22",
+                "verdictType": {
+                  "verdictTypeId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                  "sequence": 10,
+                  "categoryType": "GUILTY",
+                  "category": "Guilty",
+                  "description": "Found guilty"
+                }
+              },
+              "laaApplnReference": {
+                "applicationReference": "6152369",
+                "statusId": "98e86937-9652-32a3-a9fb-dbd01eda86a5",
+                "statusCode": "GR",
+                "statusDescription": "Granted (One Advocate)"
+              },
+              "plea": [
+                {
+                  "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                  "pleaDate": "2025-08-22",
+                  "pleaValue": "NOT_GUILTY"
+                }
+              ]
+            },
+            {
+              "offenceId": "a1f47fa3-4f9b-4c3e-bc15-3f588cc1451c",
+              "offenceCode": "LM98002",
+              "offenceTitle": "Develop / produce an anti-personnel mine",
+              "offenceLegislation": "Contrary to section 2(1)(b) and (8) of the Landmines Act 1998.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2025-08-07",
+              "startDate": "2025-06-23",
+              "chargeDate": "2025-08-12",
+              "modeOfTrial": "Indictable",
+              "orderIndex": 2,
+              "wording": "Develop / produce an anti-personnel mine",
+              "verdict": {
+                "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                "verdictDate": "2025-08-22",
+                "verdictType": {
+                  "verdictTypeId": "c81e728d-9d4c-3f63-af06-7f89cc14862c",
+                  "sequence": 20,
+                  "categoryType": "NOT_GUILTY",
+                  "category": "Not Guilty",
+                  "description": "Found not guilty"
+                }
+              },
+              "laaApplnReference": {
+                "applicationReference": "6152369",
+                "statusId": "98e86937-9652-32a3-a9fb-dbd01eda86a5",
+                "statusCode": "GR",
+                "statusDescription": "Granted (One Advocate)"
+              },
+              "plea": [
+                {
+                  "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                  "pleaDate": "2025-08-22",
+                  "pleaValue": "NOT_GUILTY"
+                }
+              ]
+            },
+            {
+              "offenceId": "c0ecfcf6-c88b-4026-bc6f-2b8b533dcb65",
+              "offenceCode": "RT88339",
+              "offenceTitle": "Drive whilst unfit through drink",
+              "offenceLegislation": "Contrary to section 4(1) of the Road Traffic Act 1988 and Schedule 2 to the Road Traffic Offenders Act 1988.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2025-08-07",
+              "startDate": "2025-06-23",
+              "chargeDate": "2025-08-12",
+              "modeOfTrial": "Summary",
+              "orderIndex": 3,
+              "wording": "Drive whilst unfit through drink",
+              "verdict": {
+                "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                "verdictDate": "2025-08-22",
+                "verdictType": {
+                  "verdictTypeId": "c4ca4238-a0b9-3382-8dcc-509a6f75849b",
+                  "sequence": 10,
+                  "categoryType": "GUILTY",
+                  "category": "Guilty",
+                  "description": "Found guilty"
+                }
+              },
+              "laaApplnReference": {
+                "applicationReference": "6152369",
+                "statusId": "98e86937-9652-32a3-a9fb-dbd01eda86a5",
+                "statusCode": "GR",
+                "statusDescription": "Granted (One Advocate)"
+              },
+              "plea": [
+                {
+                  "originatingHearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+                  "pleaDate": "2025-08-22",
+                  "pleaValue": "NOT_GUILTY"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "f07ec484-fedd-46a6-9568-cd78dfc33785",
+          "jurisdictionType": "CROWN",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-08-22T09:00:00.000Z",
+              "listingSequence": 2,
+              "listedDurationMinutes": 720,
+              "hasSharedResults": true
+            }
+          ],
+          "courtCentre": {
+            "id": "89592405-c29b-3706-b1d3-b1dd3a08b227",
+            "name": "Blackfriars Crown Court",
+            "roomId": "d0624ee3-9198-3c8b-94d6-42fb197ebe5e",
+            "roomName": "Courtroom 01",
+            "code": "C01BL00"
+          },
+          "hearingType": {
+            "id": "ba24aa48-e919-3592-8699-f901c902c859",
+            "description": "Appeal against Conviction"
+          },
+          "defenceCounsel": []
+        },
+        {
+          "hearingId": "694f56da-669e-4aaf-8b93-9d9775ac9519",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [
+            "91f2ae27-c7dd-45ae-890d-0d7f7f21395d"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-08-22T09:30:00.000Z",
+              "listingSequence": 66,
+              "listedDurationMinutes": 20
+            }
+          ],
+          "courtCentre": {
+            "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+            "name": "Lavender Hill Magistrates' Court",
+            "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+            "roomName": "Courtroom 01",
+            "code": "B01LY00"
+          },
+          "hearingType": {
+            "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+            "description": "First hearing"
+          },
+          "defenceCounsel": []
+        }
+      ],
+      "applicationSummary": [
+        {
+          "applicationId": "548a83ad-fcb7-4b74-9524-be6c129a8eb7",
+          "applicationReference": "RQ122672778",
+          "receivedDate": "2025-08-22",
+          "subjectSummary": {
+            "subjectId": "651a0557-80bc-421c-bb03-0a7c9fd1ba63",
+            "masterDefendantId": "91f2ae27-c7dd-45ae-890d-0d7f7f21395d",
+            "firstName": "Casey",
+            "lastName": "Patel",
+            "dateOfBirth": "1970-02-03",
+            "address": {
+              "address1": "3 Demo Avenue",
+              "address2": "11 Demo Avenue",
+              "address3": "29 Example Road",
+              "address4": "74 Sample Street",
+              "postCode": "M1 1AA"
+            }
+          },
+          "applicationTitle": "Appeal against conviction by a Magistrates' Court to the Crown Court"
+        }
+      ]
+    }
+  ]
+}

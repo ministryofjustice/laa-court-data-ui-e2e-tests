@@ -6,7 +6,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get caseByUrnRadio() {
-        return this.page.getByRole('radio', { name: 'A case by URN' });
+        return this.page.getByLabel('A case by URN');
     }
 
     get defendantByAsnOrNiRadio() {

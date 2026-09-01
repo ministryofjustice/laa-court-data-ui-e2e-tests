@@ -7,7 +7,7 @@ export default class CaseDetailLocators extends NewPage {
     }
 
     get createLinkButton() {
-        return this.page.getByRole('button', { name: 'Create link to court data' });
+        return this.page.getByRole('button', { name: 'Link court data' });
     }
 
     get unlinkReasonSelect() {
@@ -27,11 +27,19 @@ export default class CaseDetailLocators extends NewPage {
     }
 
     get dateCells() {
-        return this.page.locator('a');
+        return this.hearingsTable.locator("tbody tr td:nth-child(1)");
+    }
+
+    get hearingTypeCells() {
+        return this.hearingsTable.locator("tbody tr td:nth-child(2)");
     }
 
     defendantLink(defendantName) {
         return this.page.locator(`a:has-text("${defendantName}")`);
+    }
+
+    get firstDefendantLink() {
+        return this.page.locator('a[href*="/defendants/"]').first();
     }
 
     get defendantTable() {

@@ -1,0 +1,229 @@
+{
+  "totalResults": 1,
+  "cases": [
+    {
+      "caseStatus": "INACTIVE",
+      "prosecutionCaseId": "5b3f5526-d977-44ba-b81c-4164172a88e8",
+      "prosecutionCaseReference": "OQAC172426",
+      "defendantSummary": [
+        {
+          "proceedingsConcluded": true,
+          "representationOrder": {},
+          "defendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+          "masterDefendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+          "defendantASN": "900b1bb8-a925-1c6b",
+          "defendantFirstName": "Avery",
+          "defendantLastName": "Hughes",
+          "defendantDOB": "1970-01-31",
+          "offenceSummary": [
+            {
+              "offenceId": "c67d4fdb-60cc-40eb-b9d7-aae4c89e69f6",
+              "offenceCode": "TH68010",
+              "offenceTitle": "Theft from a shop",
+              "offenceLegislation": "Contrary to section 1(1) and 7 of the Theft Act 1968.",
+              "proceedingsConcluded": true,
+              "arrestDate": "2025-11-18",
+              "startDate": "2025-10-04",
+              "chargeDate": "2025-11-23",
+              "modeOfTrial": "Either Way",
+              "orderIndex": 1,
+              "wording": "Attempt theft from a shop",
+              "laaApplnReference": {
+                "applicationReference": "Z10000585",
+                "statusId": "31a80a9a-fb91-3043-a08b-d738abc86ef5",
+                "statusCode": "AP",
+                "statusDescription": "Application Pending"
+              },
+              "plea": []
+            }
+          ]
+        }
+      ],
+      "hearingSummary": [
+        {
+          "hearingId": "6992a0c3-2ccb-43ec-8dd2-dfbbd19cc9e2",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-12-13T00:00:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 10,
+              "hasSharedResults": true
+            }
+          ],
+          "courtCentre": {
+            "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+            "name": "Westminster Magistrates' Court",
+            "code": "B01IX00"
+          },
+          "hearingType": {
+            "id": "3449743b-95d6-4836-8941-57f588b52068",
+            "description": "Application"
+          },
+          "defenceCounsel": []
+        },
+        {
+          "hearingId": "00f12e90-af81-44d4-9198-0f514faa428b",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-12-13T10:00:00.000Z",
+              "listingSequence": 0,
+              "listedDurationMinutes": 10,
+              "hasSharedResults": true
+            }
+          ],
+          "estimatedDuration": "10 MINUTES",
+          "courtCentre": {
+            "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+            "name": "Westminster Magistrates' Court",
+            "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+            "roomName": "Courtroom 01",
+            "code": "B01IX00"
+          },
+          "hearingType": {
+            "id": "f730b853-f9bb-4d46-8c1e-cc3af5a13fe8",
+            "description": "Mention"
+          },
+          "defenceCounsel": []
+        },
+        {
+          "hearingId": "c0bf6b31-4823-41e4-92d3-cb13c98b8c72",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [
+            "7fd265f7-5659-4873-8af3-6bc2d419340a"
+          ],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-12-03T10:30:00.000Z",
+              "listingSequence": 54,
+              "listedDurationMinutes": 20
+            }
+          ],
+          "courtCentre": {
+            "id": "f8254db1-1683-483e-afb3-b87fde5a0a26",
+            "name": "Lavender Hill Magistrates' Court",
+            "roomId": "9e4932f7-97b2-3010-b942-ddd2624e4dd8",
+            "roomName": "Courtroom 01",
+            "code": "B01LY00"
+          },
+          "hearingType": {
+            "id": "4a0e892d-c0c5-3c51-95b8-704d8c781776",
+            "description": "First hearing"
+          },
+          "defenceCounsel": [
+            {
+              "id": "8ea9a7da-4f4a-4c3a-8987-40d8ed419d96",
+              "title": "",
+              "firstName": "Taylor",
+              "middleName": "Morgan",
+              "lastName": "Evans",
+              "status": "Leading junior",
+              "defendants": [
+                "7fd265f7-5659-4873-8af3-6bc2d419340a"
+              ],
+              "attendanceDays": [
+                "2025-12-03"
+              ]
+            }
+          ]
+        },
+        {
+          "hearingId": "676257d3-397c-47e8-bb24-240564b374cf",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-12-13T10:00:00.000Z",
+              "listingSequence": 2,
+              "listedDurationMinutes": 20,
+              "hasSharedResults": true
+            }
+          ],
+          "estimatedDuration": "20 MINUTES",
+          "courtCentre": {
+            "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+            "name": "Westminster Magistrates' Court",
+            "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+            "roomName": "Courtroom 01",
+            "code": "B01IX00"
+          },
+          "hearingType": {
+            "id": "136dfc3a-a874-32ce-8493-e50849590b49",
+            "description": "Breach of Order"
+          },
+          "defenceCounsel": []
+        },
+        {
+          "hearingId": "6135d19f-178d-4fd6-9b3e-c049c1a3ff83",
+          "jurisdictionType": "MAGISTRATES",
+          "defendantIds": [],
+          "hearingDays": [
+            {
+              "sittingDay": "2025-12-04T10:00:00.000Z",
+              "listingSequence": 1,
+              "listedDurationMinutes": 20,
+              "hasSharedResults": true
+            }
+          ],
+          "courtCentre": {
+            "id": "67aa82ba-67bb-4699-8176-5f572048352b",
+            "name": "Westminster Magistrates' Court",
+            "roomId": "c5f066ff-0aff-3dde-8bd9-40a587d3c58e",
+            "roomName": "Courtroom 01",
+            "code": "B01IX00"
+          },
+          "hearingType": {
+            "id": "3449743b-95d6-4836-8941-57f588b52068",
+            "description": "Application"
+          },
+          "defenceCounsel": []
+        }
+      ],
+      "applicationSummary": [
+        {
+          "applicationId": "ca9999f4-4662-424f-9c32-2947c33336d2",
+          "applicationReference": "OQAC172426",
+          "receivedDate": "2025-11-28",
+          "subjectSummary": {
+            "subjectId": "e5b43366-909f-498b-8275-c622d26ecaf0",
+            "masterDefendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+            "firstName": "Avery",
+            "lastName": "Hughes",
+            "dateOfBirth": "1970-01-31",
+            "address": {
+              "address1": "3 Demo Avenue",
+              "address2": "11 Demo Avenue",
+              "address3": "29 Example Road",
+              "address4": "74 Sample Street",
+              "postCode": "M1 1AA"
+            }
+          },
+          "applicationTitle": "Failing to comply with the requirements of an engagement and support order"
+        },
+        {
+          "applicationId": "543562bb-030f-4843-a4f7-7ad424e585af",
+          "applicationReference": "OQAC172426",
+          "receivedDate": "2025-12-03",
+          "subjectSummary": {
+            "subjectId": "5a6147d1-6ed7-4303-b020-b552b7d9d9af",
+            "masterDefendantId": "7fd265f7-5659-4873-8af3-6bc2d419340a",
+            "firstName": "Avery",
+            "lastName": "Hughes",
+            "dateOfBirth": "1970-01-31",
+            "address": {
+              "address1": "3 Demo Avenue",
+              "address2": "11 Demo Avenue",
+              "address3": "29 Example Road",
+              "address4": "74 Sample Street",
+              "postCode": "M1 1AA"
+            }
+          },
+          "applicationTitle": "Application for transfer of legal aid"
+        }
+      ]
+    }
+  ]
+}

@@ -19,3 +19,25 @@ Then("I should see the error message {string}", async function (message) {
 Then("I should see the subheading {string}", async function (text) {
     await expect(this.genericPage.subheading(text)).toBeVisible();
 });
+
+Then("I should see the heading for the {word} case", async function (caseType) {
+    const heading = this.genericPage.heading();
+    let caption
+    let urn
+    switch (caseType) {
+        case "appeal":
+            caption = "Appeal"
+            urn = this.testData.appealUrn;
+            break;
+        case "breach":
+            caption = "Breach"
+            urn = this.testData.breachUrn;
+            break;
+        case "POCA":
+            caption = "POCA"
+            urn = this.testData.pocaUrn;
+            break;
+    }
+    await expect(heading).toContainText(caption);
+    await expect(heading).toContainText(urn);
+});

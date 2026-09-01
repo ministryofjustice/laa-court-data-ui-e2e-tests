@@ -1,0 +1,20 @@
+{
+  "id" : "c3efaf5b-7013-3f21-9940-50ec716726d6",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?defendantASN=AAAAAAAAAAAA",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-KwBMZ.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "45",
+      "cppid" : "85cbb071-6243-4ab9-baa6-8cfb5479e071",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Wed, 26 Aug 2026 06:44:59 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "c3efaf5b-7013-3f21-9940-50ec716726d6"
+}
