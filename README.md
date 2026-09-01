@@ -47,6 +47,13 @@ You can then run the tests against the live Common Platform environment with the
 
 This will cause Wiremock to forward requests to the live environment and record the responses for future use.
 
+You can also add the `--wiremock-record` flag to the `./build_test_local.sh` command to build the test environment with 
+Wiremock recording enabled"
+
+```bash
+./build_test_local.sh --wiremock-record
+```
+
 ## Running the tests outside docker
 
 To run the tests outside docker, follow these steps:
