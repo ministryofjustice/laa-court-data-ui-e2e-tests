@@ -1,0 +1,20 @@
+{
+  "id" : "b550747b-fa5d-30fa-9c51-3b064367bcf0",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?defendantDOB=1987-05-21&defendantName=Jammy%20Dodger",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-sItkD.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "266",
+      "cppid" : "5448005d-a025-4a6e-b435-02290acd010f",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Tue, 01 Sep 2026 09:33:58 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "b550747b-fa5d-30fa-9c51-3b064367bcf0"
+}

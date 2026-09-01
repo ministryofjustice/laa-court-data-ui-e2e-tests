@@ -41,7 +41,11 @@ export default {
             appealUrn: process.env.APPEAL_URN,
             breachUrn: process.env.BREACH_URN,
             urnWithMultipleHearings: process.env.URN_WITH_MULTIPLE_HEARINGS,
-            pocaUrn: process.env.POCA_URN
+            pocaUrn: process.env.POCA_URN,
+            asn: process.env.ASN,
+            defendantName: process.env.DEFENDANT_NAME,
+            defendantDob: process.env.DEFENDANT_DOB,
+            niNumber: process.env.NI_NUMBER
         }
     }
 };

@@ -1,0 +1,20 @@
+{
+  "id" : "250de046-6d2e-3b9d-b413-66a0296a2688",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?defendantNINO=JC123456A",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-JWq6f.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "79",
+      "cppid" : "8c9302ae-4c6b-4b6e-8bfa-b283a968d79e",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Tue, 01 Sep 2026 10:25:13 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "250de046-6d2e-3b9d-b413-66a0296a2688"
+}

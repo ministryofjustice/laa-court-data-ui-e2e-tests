@@ -1,0 +1,20 @@
+{
+  "id" : "c7f8fdcf-1eb6-3273-b2b7-38cb3a4071b6",
+  "request" : {
+    "url" : "/LAA/v1/prosecutionCases?defendantDOB=2001-12-03&defendantName=Ervin%20Kub",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-LAA-v1-prosecutionCases-ca4gZ.json",
+    "headers" : {
+      "Strict-Transport-Security" : "max-age=31536000",
+      "x-envoy-upstream-service-time" : "318",
+      "cppid" : "7d482d4e-37a9-45ff-89ea-0bc162912730",
+      "X-FRAME-OPTIONS" : "SAMEORIGIN",
+      "Date" : "Tue, 01 Sep 2026 09:33:55 GMT",
+      "Content-Type" : "application/vnd.unifiedsearch.query.laa.cases+json"
+    }
+  },
+  "uuid" : "c7f8fdcf-1eb6-3273-b2b7-38cb3a4071b6"
+}

@@ -35,6 +35,10 @@ services:
       - BREACH_URN=OQAC172426
       - URN_WITH_MULTIPLE_HEARINGS=OQAC172426
       - POCA_URN=20NX5872348
+      - ASN=2391NX0000456263896D
+      - DEFENDANT_NAME=Ervin Kub
+      - DEFENDANT_DOB=03-12-2001
+      - NI_NUMBER=JC123456A
     volumes:
       - ./reports:/app/reports
       - ./test-results:/app/test-results

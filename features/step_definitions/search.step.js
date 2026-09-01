@@ -9,7 +9,7 @@ When("User visits the search page", async function () {
 
 When("User searches by valid {string}", async function (urnValue) {
     const testDataLookup = {
-        URN: this.testData.urn,
+        URN: this.testData.appealUrn,
         ASN: this.testData.asn,
         NI_NUMBER: this.testData.niNumber,
         DEFENDANT_NAME: this.testData.defendantName
