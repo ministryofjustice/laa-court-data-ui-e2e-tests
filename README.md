@@ -54,6 +54,12 @@ Wiremock recording enabled"
 ./build_test_local.sh --wiremock-record
 ```
 
+If you need to scrub personal data from the recorded Wiremock fixtures, run:
+
+```bash
+npm run anonymise-wiremock
+```
+
 ## Running the tests outside docker
 
 To run the tests outside docker, follow these steps:

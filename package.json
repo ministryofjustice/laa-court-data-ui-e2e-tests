@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "restore-auth": "node scripts/restore-auth.js",
+    "anonymise-wiremock": "node scripts/anonymise-wiremock.js wiremock",
     "pretest": "npm run restore-auth",
     "e2e-test": "cucumber-js",
     "e2e:dev-auth": "cucumber-js --tags '@dev-auth'",
