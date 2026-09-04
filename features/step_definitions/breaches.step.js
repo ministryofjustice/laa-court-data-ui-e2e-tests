@@ -33,13 +33,13 @@ When("User opens the first respondent", async function () {
 Then("I should see the tag for the breach", async function () {
     const element = this.breachPage.locators.tag('Breach');
     await expect(element).toHaveText('Breach');
-    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)')
+    await expect(element).toContainClass('govuk-tag--yellow');
 });
 
 Then("I should see the tag for the POCA", async function () {
     const element = this.breachPage.locators.tag('POCA');
     await expect(element).toHaveText('POCA');
-    await expect(element).toHaveCSS('background-color', 'rgb(255, 247, 191)');
+    await expect(element).toContainClass('govuk-tag--yellow');
 });
 
 Then("I should see the breach heading for case {string}", async function (urn) {
