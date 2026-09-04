@@ -6,7 +6,7 @@ export default class CaseSummaryLocators extends NewPage {
     }
 
     get hearingTypeSortLink() {
-        return this.page.locator('a[aria-label="Sort type desc"]');
+        return this.page.locator('a[aria-label="Sort type descending"]');
     }
 
     hearingLink(hearingDate, index = 0) {
