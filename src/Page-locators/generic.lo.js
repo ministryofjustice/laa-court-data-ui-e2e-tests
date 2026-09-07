@@ -25,6 +25,10 @@ export default class GenericLocators extends NewPage {
         return this.page.locator('h1');
     }
 
+    get caption() {
+        return this.page.locator('.govuk-caption-xl');
+    }
+
     subheading(text) {
         return this.page.locator('h2', { hasText: text });
     }

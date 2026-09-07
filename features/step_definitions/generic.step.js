@@ -22,22 +22,23 @@ Then("I should see the subheading {string}", async function (text) {
 
 Then("I should see the heading for the {word} case", async function (caseType) {
     const heading = this.genericPage.heading();
-    let caption
+    const caption = this.genericPage.caption();
+    let captionText
     let urn
     switch (caseType) {
         case "appeal":
-            caption = "Appeal"
+            captionText = "Appeal"
             urn = this.testData.appealUrn;
             break;
         case "breach":
-            caption = "Breach"
+            captionText = "Breach"
             urn = this.testData.breachUrn;
             break;
         case "POCA":
-            caption = "POCA"
+            captionText = "POCA"
             urn = this.testData.pocaUrn;
             break;
     }
-    await expect(heading).toContainText(caption);
+    await expect(caption).toContainText(captionText);
     await expect(heading).toContainText(urn);
 });
