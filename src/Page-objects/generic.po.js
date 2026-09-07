@@ -24,6 +24,10 @@ export default class GenericPage extends NewPage {
         return this.locators.heading;
     }
 
+    caption() {
+        return this.locators.caption;
+    }
+
     subheading(text) {
         return this.locators.subheading(text);
     }
