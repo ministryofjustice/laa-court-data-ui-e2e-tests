@@ -5,16 +5,28 @@
 
 # Exit immediately if there is an error
 set -e
-export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
 
 WIREMOCK_RECORD=false
+DEV_BUILD=false
+
 for arg in "$@"; do
   case "$arg" in
     --wiremock-record)
       WIREMOCK_RECORD=true
       ;;
+    --dev)
+      DEV_BUILD=true
+      ;;
   esac
 done
+
+if [[ "$DEV_BUILD" == true ]]; then
+  echo "Building services from local checked-out code (dev build)"
+  export DOCKER_FILES="-f docker-compose.yml -f docker-compose.dev.yml"
+else
+  echo "Building services from the main branch of the VCD and CDA repos"
+  export DOCKER_FILES="-f docker-compose.yml -f docker-compose.local.yml"
+fi
 
 if [[ "$WIREMOCK_RECORD" == true ]]; then
   SHARED_SECRET_KEY=$(kubectl -n laa-court-data-adaptor-uat get secret aws-secrets -o jsonpath="{.data.common_platform_secret_key}" | base64 -d)

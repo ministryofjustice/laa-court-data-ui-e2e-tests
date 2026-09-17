@@ -28,6 +28,18 @@ you can use:
 
 You can pass in the `--fast` flag to avoid a full rebuild.
 
+If you want to run the tests against the local versions of your code, you can pass the `--dev` flag:
+
+```
+./run_test_local.sh --dev
+```
+
+Or:
+
+```
+./build_test_local.sh --dev
+```
+
 ## Wiremock
 
 By default, the tests will run against a Wiremock instance that is spun up in the docker compose. This returns canned

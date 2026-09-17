@@ -1,0 +1,25 @@
+services:
+  laa-court-data-end-to-end-tests:
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+
+  vcd:
+    platform: ${LOCAL_PLATFORM}
+    build:
+      context: ../laa-court-data-ui
+      dockerfile: docker/Dockerfile
+    pull_policy: always
+    volumes:
+      - ./tmp/logs/vcd:/usr/src/app/log
+
+  cda:
+    platform: ${LOCAL_PLATFORM}
+    build:
+      context: ../laa-court-data-adaptor
+      dockerfile: Dockerfile
+      args:
+        BUNDLE_DEPLOYMENT: 'false'
+        BUNDLE_WITHOUT: ' '
+    pull_policy: always
+    volumes:
+      - ./tmp/logs/cda:/usr/src/app/log
