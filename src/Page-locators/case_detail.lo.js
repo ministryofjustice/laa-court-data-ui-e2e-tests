@@ -7,7 +7,7 @@ export default class CaseDetailLocators extends NewPage {
     }
 
     get createLinkButton() {
-        return this.page.getByRole('button', { name: 'Link court data' });
+        return this.page.getByRole('button', { name: 'Create link to court data' });
     }
 
     get unlinkReasonSelect() {
