@@ -34,7 +34,6 @@ When("User opens the defendant details page", async function () {
 });
 
 When("User enters an invalid MAAT ID", async function () {
-    await this.defendantPage.clickLinkMaatID();
     await this.caseDetailPage.enterMaatId("123456");
     await this.caseDetailPage.createLinkToCourtData();
 });
