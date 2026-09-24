@@ -76,7 +76,7 @@ Then("I should see the MAAT ID as {string}", async function (status) {
 
 Then("I should be able to copy the defendant's name to the clipboard", async function () {
     const value = await this.defendantPage.getDefendantName();
-    await this.defendantPage.copyDetailsByType("Defendant name");
+    await this.defendantPage.copyDetailsByType("name");
     const clipboardText = await this.page.evaluate(() => navigator.clipboard.readText());
     expect(clipboardText).toBe(value);
 });
