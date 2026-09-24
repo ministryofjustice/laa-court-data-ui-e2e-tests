@@ -13,7 +13,7 @@ export default {
         'features/step_definitions/**/*.js'
     ],
     format: [
-        'progress-bar',
+        'progress',
         ['html', 'reports/cucumber.html'],
         ['json', 'reports/cucumber.json'],
         ['junit', 'reports/cucumber.junit.xml']
