@@ -27,7 +27,7 @@ export default class CaseDetailLocators extends NewPage {
     }
 
     get dateCells() {
-        return this.hearingsTable.locator("tbody tr td:nth-child(1)");
+        return this.hearingsTable.locator("tbody tr td:nth-child(1) span[class='govuk-visually-hidden']");
     }
 
     get hearingTypeCells() {
