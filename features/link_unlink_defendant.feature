@@ -9,7 +9,7 @@ Feature: Link and unlink defendants
         Then I should see the defendant details page
         And I should be able to copy the defendant's name to the clipboard
         And I should be able to copy the following details to clipboard:
-            | Case URN | Date of birth | ASN |
+            | case-urn | dob | asn |
 
     Scenario: MAAT is validated and errors are highlighted
         When User enters an invalid MAAT ID

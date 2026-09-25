@@ -1,6 +1,6 @@
 import NewPage from "../Page/NewPage.js";
 
-export default class DefendantPagelocator extends NewPage {
+export default class DefendantPageLocators extends NewPage {
     get navLinks() {
         return this.page.locator('div.govuk-service-navigation__container');
     }
@@ -42,16 +42,16 @@ export default class DefendantPagelocator extends NewPage {
     }
 
     copyButtonByType(name) {
-        if (name === 'Defendant name') {
+        if (name === 'name') {
             return this.page
                 .locator('span.copy-button-heading')
                 .getByRole('button', { name: 'Copy' })
         }
 
-        return this.page.locator(`tr:has-text("${name}")`).getByRole('button', { name: 'Copy' });
+        return this.page.locator(`#copy-${name}`)
     }
 
     valueByType(name) {
-        return this.page.locator(`tr:has-text("${name}")`).getByRole('cell').nth(0);
+        return this.page.locator(`#defendant-${name}`)
     }
 }

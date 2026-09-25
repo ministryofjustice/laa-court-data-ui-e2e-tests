@@ -9,9 +9,9 @@ set -e
 export DOCKER_FILES="-f docker-compose.yml"
 
 if [[ $* == *--dev* ]]; then
-  export DOCKER_FILES="$DOCKER_FILES -f docker-compose.local.yml"
-else
   export DOCKER_FILES="$DOCKER_FILES -f docker-compose.dev.yml"
+else
+  export DOCKER_FILES="$DOCKER_FILES -f docker-compose.local.yml"
 fi
 
 if [[ $* == *--no-mock* ]]; then
