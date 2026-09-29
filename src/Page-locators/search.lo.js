@@ -50,6 +50,6 @@ export default class SearchPageLocators extends NewPage {
     }
 
     caseURNLink(urn) {
-        return this.page.getByRole('link', { name: urn })
+        return this.page.getByRole('link', { name: urn, includeHidden: true });
     }
 }
