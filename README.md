@@ -17,7 +17,6 @@ the following command (defined in `package.json`):
 ```
 npx cucumber-js
 ```
-The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
 
 If you want to build the test environment and shell into the test runner but not run the tests automatically,
 you can use:
@@ -102,10 +101,9 @@ To run the tests outside docker, follow these steps:
   Note that if you want to run the tests against the dockerised version of VCD you can point `VCD_URL` at `localhost:3001` (you will also need to ensure your local env vars mirror those in the docker-compose)
 
 4. Run the tests.
-   Use the Cucumber test runner UI:
+   Run the Cucumber test suite:
    ```
    npx cucumber-js
    ```
 
-   This will open an interactive UI where you can explore and run the test suite.
 ---
