@@ -57,6 +57,10 @@ Or:
 ./build_test_local.sh --dev
 ```
 
+**NOTE** this assumes that you have the VCD and CDA repos checked out in the same parent directory as this repo. If you 
+have them checked out elsewhere, you can set the `VCD_PATH` and `CDA_PATH` environment variables to point to the 
+appropriate directories.
+
 ## Wiremock
 
 By default, the tests will run against a Wiremock instance that is spun up in the docker compose. This returns canned

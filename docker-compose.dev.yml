@@ -6,7 +6,7 @@ services:
   vcd:
     platform: ${LOCAL_PLATFORM}
     build:
-      context: ../laa-court-data-ui
+      context: ${VCD_PATH:-../laa-court-data-ui}
       dockerfile: docker/Dockerfile
     pull_policy: always
     volumes:
@@ -15,7 +15,7 @@ services:
   cda:
     platform: ${LOCAL_PLATFORM}
     build:
-      context: ../laa-court-data-adaptor
+      context: ${CDA_PATH:-../laa-court-data-adaptor}
       dockerfile: Dockerfile
       args:
         BUNDLE_DEPLOYMENT: 'false'
