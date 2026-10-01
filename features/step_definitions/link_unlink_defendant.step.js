@@ -1,6 +1,5 @@
 import { When, Then, setDefaultTimeout } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import testUsers from "../../data/testUsers.js";
 
 setDefaultTimeout(60 * 1000);
 
@@ -22,11 +21,6 @@ When("User visits the summary page of an appeal case", async function () {
     await this.searchPage.searchByURN(this.testData.appealUrn)
     await this.searchPage.openSearchedCase(this.testData.appealUrn)
     await expect(this.genericPage.body()).toContainText(this.testData.appealUrn);
-});
-
-When("User opens the defendant details for {string}", async function (urn) {
-    const testUser = testUsers.find(v => v.urn === urn);
-    await this.caseDetailPage.clickDefendant(testUser.name);
 });
 
 When("User opens the defendant details page", async function () {

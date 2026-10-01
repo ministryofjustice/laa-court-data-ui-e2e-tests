@@ -14,10 +14,7 @@ else
   export DOCKER_FILES="$DOCKER_FILES -f docker-compose.local.yml"
 fi
 
-if [[ $* == *--no-mock* ]]; then
-  echo "Skipping the mock"
-  export DOCKER_FILES="$DOCKER_FILES -f docker-compose.local.no-mock.yml"
-elif [[ $* == *--wiremock-record* ]]; then
+if [[ $* == *--wiremock-record* ]]; then
   echo "Building services for wiremock recording"
   SHARED_SECRET_KEY=$(kubectl -n laa-court-data-adaptor-uat get secret aws-secrets -o jsonpath="{.data.common_platform_secret_key}" | base64 -d)
   export SHARED_SECRET_KEY
@@ -58,5 +55,6 @@ else
   build_clean
 fi
 
-shellin
-# now run `npm run e2e-test` in container
+if [[ $* != *--background* ]]; then
+  shellin
+fi

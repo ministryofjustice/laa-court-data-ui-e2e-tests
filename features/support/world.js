@@ -1,5 +1,4 @@
 import { setWorldConstructor, World } from "@cucumber/cucumber";
-import { CommonPlatformTestData } from "../../lib/common_platform_test_data.js";
 
 export class CustomWorld extends World {
     constructor(options) {
@@ -54,10 +53,6 @@ export class CustomWorld extends World {
 
     get testData() {
         return this.parameters.testData || {};
-    }
-
-    loadDataset(name) {
-        return new CommonPlatformTestData(name).content;
     }
 
     async loginAsDefaultUser() {

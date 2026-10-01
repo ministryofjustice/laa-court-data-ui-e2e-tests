@@ -17,7 +17,8 @@ the following command (defined in `package.json`):
 ```
 npx cucumber-js
 ```
-The `-j` flag ensures the tests are run in series, as the suite is not designed for different tests to run at the same time. The `--reporter` flag stops playwright from hanging while it spins up an HTTP server if there are any errors.
+
+### Building the test environment
 
 If you want to build the test environment and shell into the test runner but not run the tests automatically,
 you can use:
@@ -28,7 +29,23 @@ you can use:
 
 You can pass in the `--fast` flag to avoid a full rebuild.
 
-If you want to run the tests against the local versions of your code, you can pass the `--dev` flag:
+If you want to run the tests locally (for example, if you want to run the tests in headed mode), you can use the
+following command to build the containers:
+
+```
+./build_test_local.sh --background
+```
+
+Then you can run the tests with npm in your own terminal (for example):
+
+```
+npm run e2e:headed
+```
+
+### Running against local versions of your code
+
+Sometimes you may want to run the tests against your local versions of the VCD and CDA code. (for example, if you are 
+developing a new feature and want to test it). You can do this by passing the `--dev` flag to appropriate scripts:
 
 ```
 ./run_test_local.sh --dev
@@ -39,6 +56,10 @@ Or:
 ```
 ./build_test_local.sh --dev
 ```
+
+**NOTE** this assumes that you have the VCD and CDA repos checked out in the same parent directory as this repo. If you 
+have them checked out elsewhere, you can set the `VCD_PATH` and `CDA_PATH` environment variables to point to the 
+appropriate directories.
 
 ## Wiremock
 
@@ -71,41 +92,3 @@ If you need to scrub personal data from the recorded Wiremock fixtures, run:
 ```bash
 npm run anonymise-wiremock
 ```
-
-## Running the tests outside docker
-
-To run the tests outside docker, follow these steps:
-
-1. Install Node.js.
-   Check the required version in the `.tool-versions` file and install it using a version manager like `asdf` or `nvm`.
-
-2. Install Playwright and dependencies.
-   Run the following commands:
-   ```
-   npm install
-   npx playwright install
-   ```
-
-3. Set up environment variables.
-   Copy the example environment file and configure your credentials:
-   ```
-   cp .env.example .env.local
-   ```
-   Then edit `.env.local` and set the following variables:
-   - `VCD_URL`: The base URL of the Court Data UI application.
-   - `EMAIL`: The user email for authentication.
-   - `APPEAL_URN`: The URN of an appeal case
-   - `BREACH_URN`: The URN of a breach case
-   - `URN_WITH_MULTIPLE_HEARINGS`: The URN of a case with multiple hearings
-   - `POCA_URN`: The URN of a POCA case
-
-  Note that if you want to run the tests against the dockerised version of VCD you can point `VCD_URL` at `localhost:3001` (you will also need to ensure your local env vars mirror those in the docker-compose)
-
-4. Run the tests.
-   Use the Cucumber test runner UI:
-   ```
-   npx cucumber-js
-   ```
-
-   This will open an interactive UI where you can explore and run the test suite.
----
