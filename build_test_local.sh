@@ -55,5 +55,6 @@ else
   build_clean
 fi
 
-shellin
-# now run `npm run e2e-test` in container
+if [[ $* != *--background* ]]; then
+  shellin
+fi
