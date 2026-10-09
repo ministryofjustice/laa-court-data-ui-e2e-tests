@@ -10,7 +10,7 @@ export default class SearchPageLocators extends NewPage {
     }
 
     get defendantByAsnOrNiRadio() {
-        return this.page.getByLabel('A defendant by ASN or National insurance number');
+        return this.page.getByLabel(/A defendant by ASN.*or National insurance number/);
     }
 
     get defendantByNameDobRadio() {
