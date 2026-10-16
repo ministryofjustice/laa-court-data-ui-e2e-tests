@@ -17,14 +17,14 @@
   "type": "module",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "^1.63.0",
-    "@types/node": "^26.6.4",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
     "eslint": "^10.12.0",
     "globals": "^17.13.0"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^13.2.1",
+    "@cucumber/cucumber": "^13.3.0",
     "@cucumber/messages": "^34.2.1",
-    "dotenv": "^18.0.5"
+    "dotenv": "^18.0.7"
   }
 }
